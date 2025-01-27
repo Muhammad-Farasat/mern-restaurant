@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import multer from "multer";
+import cors from 'cors'
 
 dotenv.config();
 db();
@@ -15,6 +16,12 @@ db();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true, 
+  })
+);
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUD_NAME,
