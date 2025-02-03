@@ -8,7 +8,7 @@ const router = express.Router()
 router.post('/addFood', verifyRestaurantToken, addFood)
 router.post('/deleteFood', verifyRestaurantToken, deleteFood)
 router.post('/updateFood', verifyRestaurantToken, updateFood)
-router.get('/getFoods', getFoods)
+router.get('/getFoods', verifyRestaurantToken, getFoods)
 router.get('/getFood/:id', specificFood)
 
 

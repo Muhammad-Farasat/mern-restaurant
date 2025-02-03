@@ -5,12 +5,13 @@ export const addFood = async(req, res) => {
     try {
         
         const { name, description, price, image } = req.body
+        const restaurantId = req.user.id
 
         if (!name || !description || !price || !image) {
             return res.status(400).json({message: "Fill all fields"})
         }
 
-        const food = await new Food({name, description, price, image})
+        const food = await new Food({name, description, price, image, restaurantId})
 
         const data = await food.save()
 
@@ -27,9 +28,11 @@ export const deleteFood = async(req, res) => {
         
         const {id} = req.body
         
-        const food = await Food.findByIdAndDelete(id)
+        console.log(id);
+        
+        await Food.findByIdAndDelete(id)
 
-        return res.status(200).json({success: true, message: "Deleted successfully"})
+        return res.status(200).json({success: true,  message: "Deleted successfully"})
 
     } catch (error) {
         console.error("Error in deleting food", error);
@@ -40,11 +43,17 @@ export const deleteFood = async(req, res) => {
 export const updateFood = async(req, res) => {
     try {
         
-        const {name, description, price, image, id} = req.body
+        const {name, description, price, image, foodId, restaurantId} = req.body
+
+        console.log(name, description, price, image, foodId, restaurantId);
+
+        if (!foodId) {
+           return res.status(400).json({message: "Id not found"})
+        }
 
         const updatedFood = {name, description, price, image}
 
-        const food = await Food.findByIdAndUpdate(id, updatedFood, {new: true})
+        const food = await Food.findByIdAndUpdate(foodId, updatedFood, {new: true})
 
         return res.status(200).json({success: true, food})
 
@@ -57,9 +66,11 @@ export const updateFood = async(req, res) => {
 export const getFoods = async(req, res) => {
     try {
         
-        let food = await Food.find({})
+        const restaurantId = req.user.id
 
-        return res.status(200).json({success: true, food})
+        let foods = await Food.find({restaurantId})
+
+        return res.status(200).json({success: true, foods})
 
     } catch (error) {
         console.error("Error in getting all food", error);

@@ -16,6 +16,9 @@ const Restaurant = mongoose.model('Restaurant', {
     confirmPassword: {
         type: String,
     },
+    image: {
+        type: String
+    },
     location: {
         type: String,
         required: true

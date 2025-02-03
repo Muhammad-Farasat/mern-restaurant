@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
+import Cookies from 'js-cookie'
 
 function useLogout() {
 
@@ -10,7 +11,10 @@ function useLogout() {
       try {
         setLoading(true)
 
-        await axios.post('http://localhost:3000/logout', {withCredentials: true})
+        await axios.post('http://localhost:3000/logout',  {withCredentials: true})
+
+        Cookies.remove('authorization')
+        Cookies.remove('user-data')
 
         window.location.replace('/login')
 

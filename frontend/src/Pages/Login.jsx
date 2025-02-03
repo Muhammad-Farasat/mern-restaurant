@@ -58,6 +58,11 @@ const Login = () => {
               Sign up
             </a>
           </p>
+          <p className="text-sm text-center text-gray-600 mt-4">
+            <a href="/registerRestaurant" className="text-blue-500 hover:underline">
+              Want to register your restaurant?
+            </a>
+          </p>
         </div>
       </div>
     </>

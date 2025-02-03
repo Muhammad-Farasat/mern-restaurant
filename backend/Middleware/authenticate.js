@@ -11,7 +11,7 @@ const verifyToken = (cookieName) => {
 
       const decoded = jwt.verify(auth, process.env.JWT_SECRET);
 
-      req.user = decoded.id;
+      req.user = decoded;
 
 
       next();
