@@ -11,9 +11,9 @@ function useDisplayRestaurant() {
         try {
             setLoading(true)
 
-            const response = await axios.get('http://localhost:3000/allRestaurant', {withCredentials: true})
+            const response = await axios.get('http://localhost:4000/allRestaurant', {withCredentials: true})
 
-            console.log(response.data);
+            // console.log(response.data);
 
             if (response.status === 200) {
                 setDisplayRestaurant(response.data.restaurant)

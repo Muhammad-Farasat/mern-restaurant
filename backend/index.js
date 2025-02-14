@@ -1,14 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 import db from "./DbConfig/DbConfig.js";
-import userRoute from "./Routes/user.route.js";
-import restaurantRoute from "./Routes/restaurant.route.js";
-import foodRoute from "./Routes/food.route.js";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import multer from "multer";
 import cors from 'cors'
+import userRoute from "./Routes/user.route.js";
+import restaurantRoute from "./Routes/restaurant.route.js";
+import foodRoute from "./Routes/food.route.js";
+import orderRoute from "./Routes/order.route.js";
+import cartRoute from './Routes/cart.route.js'
 
 dotenv.config();
 db();
@@ -54,7 +56,9 @@ app.post("/upload", upload.single("image"), (req, res) => {
 app.use(userRoute);
 app.use(restaurantRoute);
 app.use(foodRoute);
+app.use(orderRoute);
+app.use(cartRoute);
 
-app.listen("3000", () => {
+app.listen("4000", () => {
   console.log("Port Connected");
 });

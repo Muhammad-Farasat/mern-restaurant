@@ -1,52 +1,21 @@
 import jwt from "jsonwebtoken";
-import Cart from "../Models/Cart.js";
 import Restaurant from "../Models/Restaurant.js";
 
-export const addToCart = async (req, res) => {
-  try {
-    const { userID, restaurantId, foodId, quantity } = req.body;
 
-    const cart = await Cart.findById({ userID });
-
-    if (cart) {
-      if (cart.restaurantId.toString() !== restaurantId) {
-        cart.items = [];
-        cart.restaurantId = restaurantId;
-      }
-    } else {
-      cart = new Cart({
-        restaurantId,
-        userID,
-        items: [],
-      });
-    }
-
-    const foodIndex = cart.items.findIndex(
-      (item) => item.foodId.toString() === foodId
-    );
-
-    if (foodIndex > -1) {
-      cart.items[foodIndex].quantity += quantity;
-    } else {
-      cart.items.push({ foodId, quantity });
-    }
-
-    await cart.save();
-
-    res
-      .status(200)
-      .json({ success: true, cart, message: "Item added to cart." });
-  } catch (error) {
-    console.error("Error in add to cart", error);
-    res.status(500).json({ error: "Internal server error", error });
-  }
-};
 
 export const restaurantSignup = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword, location, image } = req.body;
+    const { name, email, password, confirmPassword, location, image } =
+      req.body;
 
-    const credential = { name, email, password, confirmPassword, location, image };
+    const credential = {
+      name,
+      email,
+      password,
+      confirmPassword,
+      location,
+      image,
+    };
 
     if (!credential) {
       return res.status(400).json({ message: "Fill all feilds" });
@@ -58,7 +27,13 @@ export const restaurantSignup = async (req, res) => {
       return res.status(400).json({ message: "Already exits" });
     }
 
-    const restaurant = new Restaurant({ name, email, password, location, image });
+    const restaurant = new Restaurant({
+      name,
+      email,
+      password,
+      location,
+      image,
+    });
 
     await restaurant.save();
 
@@ -105,7 +80,7 @@ export const restaurantLogin = async (req, res) => {
 
 export const restaurantRemove = async (req, res) => {
   try {
-    res.clearCookie("restaurant-auth", { httpOnly:false });
+    res.clearCookie("restaurant-auth", { httpOnly: false });
 
     return res
       .status(200)
@@ -117,32 +92,25 @@ export const restaurantRemove = async (req, res) => {
 };
 
 export const displayRestaurant = async (req, res) => {
-    try {
-        let restaurant = await Restaurant.find({})
+  try {
+    let restaurant = await Restaurant.find({});
 
-        console.log(restaurant);
-
-        return res.status(200).json({message: "There you go", restaurant})
-
-    } catch (error) {
-        console.error("Error in getting all restaurant", error);
-        res.status(500).json({ error: "Internal server error", error });        
-    }
+    return res.status(200).json({ message: "There you go", restaurant });
+  } catch (error) {
+    console.error("Error in getting all restaurant", error);
+    res.status(500).json({ error: "Internal server error", error });
+  }
 };
 
 export const specificRestaurant = async (req, res) => {
   try {
+    let restaurant = await Restaurant.findById(req.params.id);
 
-    const {id} = req.body()
+    // console.log(restaurant);
 
-      let restaurant = await Restaurant.findById({id})
-
-      console.log(restaurant);
-
-      return res.status(200).json({message: "There you go", restaurant})
-
+    return res.status(200).json({ message: "There you go", restaurant });
   } catch (error) {
-      console.error("Error in getting all restaurant", error);
-      res.status(500).json({ error: "Internal server error", error });        
+    console.error("Error in getting all restaurant", error);
+    res.status(500).json({ error: "Internal server error", error });
   }
 };

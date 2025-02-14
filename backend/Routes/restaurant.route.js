@@ -7,6 +7,6 @@ router.post('/registerRestaurant', restaurantSignup)
 router.post('/loginRestaurant', restaurantLogin)
 router.post('/removeRestaurant', restaurantRemove)
 router.get('/allRestaurant', displayRestaurant)
-router.get('/specificRestaurant', specificRestaurant)
+router.get('/specificRestaurant/:id', specificRestaurant)
 
 export default router

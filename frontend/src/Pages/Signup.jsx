@@ -20,7 +20,7 @@ const Signup = () => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       let lat = position.coords.latitude;
       let lgn = position.coords.longitude;
-      
+
       try {
         const response = await axios.get(
           `http://api.positionstack.com/v1/reverse?access_key=b4f083b25cc72a7b04fcda2825f8e04d&query=${lat},${lgn}`
@@ -29,7 +29,7 @@ const Signup = () => {
         const result = response.data
 
         if (result.data && result.data.length > 0) {
-          const address = result.data[0].label; 
+          const address = result.data[0].label;
           data.location = address
           console.log("Location:", data.location);
         } else {
@@ -52,84 +52,94 @@ const Signup = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
-          <h2 className="text-2xl font-semibold text-center mb-6">
-            Create an Account
+      <div className="flex justify-center items-center h-screen bg-[#F5F0E6]">
+        <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
+          <h2 className="text-3xl font-bold text-center mb-8 text-[#2A3B4D]">
+            Join Us
           </h2>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
                 Name
               </label>
               <input
                 type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200"
                 placeholder="Enter your name"
                 value={data.username}
                 onChange={(e) => setData({ ...data, username: e.target.value })}
               />
             </div>
 
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+            <div>
+              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
                 Email
               </label>
               <input
                 type="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200"
                 placeholder="Enter your email"
                 value={data.email}
                 onChange={(e) => setData({ ...data, email: e.target.value })}
               />
             </div>
 
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+            <div>
+              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
                 Password
               </label>
               <input
                 type="password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200"
                 placeholder="Enter your password"
                 value={data.password}
                 onChange={(e) => setData({ ...data, password: e.target.value })}
               />
             </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+            <div>
+              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
                 Confirm Password
               </label>
               <input
                 type="password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200"
                 placeholder="Confirm your password"
                 value={data.confirmPassword}
-                onChange={(e) =>
-                  setData({ ...data, confirmPassword: e.target.value })
-                }
+                onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
               />
             </div>
 
             <button
               type="button"
-              className="w-full bg-gray-500 text-white py-2 rounded-md hover:bg-gray-600 transition duration-300 mb-4"
+              className="w-full bg-[#8AA896] text-white py-3 rounded-lg font-medium hover:bg-[#769382] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
               onClick={geoLocation}
             >
-              {data.location === null ? 'Location' : data.location}
+              {data.location === null ? (
+                '📍 Get Location'
+              ) : (
+                `📍 ${data.location}`
+              )}
             </button>
 
             <button
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
+              type="submit"
+              className="w-full bg-[#D87C5A] text-white py-3 rounded-lg font-semibold hover:bg-[#C56947] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
               onClick={handleSubmit}
             >
-              {loading ? "loading" : "Sign Up"}
+              {loading ? (
+                <div className="flex justify-center items-center">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                </div>
+              ) : (
+                'Create Account'
+              )}
             </button>
           </form>
-          <p className="text-sm text-center text-gray-600 mt-4">
+
+          <p className="text-sm text-center text-[#4A4A4A] mt-6">
             Already have an account?{" "}
-            <a href="/login" className="text-blue-500 hover:underline">
+            <a href="/login" className="text-[#8AA896] hover:text-[#769382] font-medium transition-colors duration-200">
               Login
             </a>
           </p>

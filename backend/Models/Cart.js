@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const Cart = mongoose.model('Cart', {
-    customerId: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User' 
     },
@@ -11,10 +11,10 @@ const Cart = mongoose.model('Cart', {
     },
     items: [
         {
-            foodId: {type: mongoose.Schema.Types.ObjectId, ref: 'Food', required: true}
-        },
-        {
-            quantity: {type: Number, required: true, min: 1}
+            foodId: { type: mongoose.Schema.Types.ObjectId, ref: 'Food', required: true },
+            name: { type: String, required: true },
+            price: { type: Number, required: true },
+            quantity: { type: Number, required: true, min: 1 }
         }
     ],
     totalPrice: {

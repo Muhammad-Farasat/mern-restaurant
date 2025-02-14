@@ -51,111 +51,126 @@ const RestaurantSignup = () => {
   };
 
   return (
-    <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
-        <form
-          onSubmit={handleSubmit}
-          className="w-full max-w-lg p-8 bg-white rounded-xl shadow-xl"
-        >
-          <h2 className="mb-6 text-3xl font-extrabold text-center text-gray-800">
-            Register Your Restaurant
-          </h2>
+    <div className="flex items-center justify-center min-h-screen bg-[#F5F0E6] px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-lg p-8 bg-white rounded-xl shadow-lg border border-[#E0E3E6]"
+      >
+        <h2 className="mb-8 text-3xl font-bold text-center text-[#2A3B4D]">
+          Register Your Restaurant
+        </h2>
 
-          {/* Restaurant Name */}
-          <div className="mb-5">
-            <label className="block mb-2 text-lg font-semibold text-gray-700">
-              Restaurant Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={data.name}
-              onChange={(e) => setData({ ...data, name: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="Enter restaurant name"
-              required
-            />
-          </div>
+        {/* Restaurant Name */}
+        <div className="mb-6">
+          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
+            Restaurant Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={data.name}
+            onChange={(e) => setData({ ...data, name: e.target.value })}
+            className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
+            placeholder="Enter restaurant name"
+            required
+          />
+        </div>
 
-          {/* Email */}
-          <div className="mb-5">
-            <label className="block mb-2 text-lg font-semibold text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={data.email}
-              onChange={(e) => setData({ ...data, email: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="Enter restaurant email"
-              required
-            />
-          </div>
+        {/* Email */}
+        <div className="mb-6">
+          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={data.email}
+            onChange={(e) => setData({ ...data, email: e.target.value })}
+            className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
+            placeholder="Enter restaurant email"
+            required
+          />
+        </div>
 
-          {/* Location */}
-          <div className="mb-5 flex items-center gap-x-4">
+        {/* Location */}
+        <div className="mb-6">
+          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
+            Location
+          </label>
+          <div className="flex items-center gap-4">
             <button
               type="button"
-              className="px-5 py-2.5 text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 transition-all"
+              className="px-6 py-3 text-[#2A3B4D] bg-[#8AA896] rounded-lg font-medium hover:bg-[#769382] hover:text-white transition-all transform hover:scale-105 active:scale-95 shadow-md"
               onClick={geoLocation}
             >
               Get My Location
             </button>
-            <p className="text-gray-700 font-medium">
+            <p className="text-[#4A4A4A] font-medium">
               {data.location ? (
-                <span className="text-green-600">{data.location}</span>
+                <span className="text-[#D87C5A]">{data.location}</span>
               ) : (
                 "Select Location"
               )}
             </p>
           </div>
+        </div>
 
-          {/* Password */}
-          <div className="mb-5">
-            <label className="block mb-2 text-lg font-semibold text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={data.password}
-              onChange={(e) => setData({ ...data, password: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="Enter password"
-              required
-            />
-          </div>
+        {/* Password */}
+        <div className="mb-6">
+          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={data.password}
+            onChange={(e) => setData({ ...data, password: e.target.value })}
+            className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
+            placeholder="Enter password"
+            required
+          />
+        </div>
 
-          {/* Upload Image */}
-          <div className="mb-5">
-            <label className="block mb-2 text-lg font-semibold text-gray-700">
-              Upload Image
-            </label>
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              onChange={handleImage}
-              className="w-full border border-gray-300 rounded-lg file:px-4 file:py-2 file:bg-gray-200 file:text-gray-700 file:rounded-lg file:border-none file:shadow-sm"
-              required
-            />
-          </div>
+        {/* Upload Image */}
+        <div className="mb-6">
+          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
+            Upload Image
+          </label>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleImage}
+            className="w-full border border-[#A79B8D] rounded-lg file:px-4 file:py-2 file:bg-[#E0E3E6] file:text-[#4A4A4A] file:rounded-lg file:border-none file:shadow-sm file:hover:bg-[#D87C5A] file:hover:text-white transition-all"
+            required
+          />
+        </div>
 
-          <div>
-            <p className="text-sm text-center text-gray-600 mt-4 mb-4">Already have an account? <a href="/loginRestaurant" className="text-blue-500 hover:underline" >Login</a></p>
-          </div>
+        {/* Login Link */}
+        <div className="mb-6">
+          <p className="text-center text-[#4A4A4A]">
+            Already have an account?{" "}
+            <a href="/loginRestaurant" className="text-[#8AA896] hover:text-[#769382] font-medium">
+              Login
+            </a>
+          </p>
+        </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full px-4 py-3 text-lg font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 transition-all"
-          >
-            {loading ? "Loading..." : "Register"}
-          </button>
-        </form>
-      </div>
-    </>
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full px-4 py-3 text-lg font-semibold text-white bg-[#D87C5A] rounded-lg hover:bg-[#C56947] transition-all transform hover:scale-105 active:scale-95 shadow-md"
+        >
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+            </div>
+          ) : (
+            'Register'
+          )}
+        </button>
+      </form>
+    </div>
   );
 };
 

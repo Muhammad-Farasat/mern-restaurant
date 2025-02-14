@@ -2,51 +2,50 @@ import React, { useState } from "react";
 import useRestaurantLogin from "../Hooks/useRestaurantLogin";
 
 const RestaurantLogin = () => {
+  const [data, setData] = useState({ email: "", password: "" });
 
-    const [data, setData] = useState({email: '', password: ''})
+  const { loading, login } = useRestaurantLogin();
 
-    const {loading, login} = useRestaurantLogin()
-
-    const handleSubmit = async(e) => {
-      e.preventDefault()
-      await login({data})
-    }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login({ data });
+  };
 
   return (
-    <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
-        <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-xl">
-          <h2 className="mb-6 text-3xl font-extrabold text-center text-gray-800">
-            Login to Your Account
-          </h2>
+    <div className="flex items-center justify-center min-h-screen bg-[#F5F0E6] px-4">
+      <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg border border-[#E0E3E6]">
+        <h2 className="mb-8 text-3xl font-bold text-center text-[#2A3B4D]">
+          Restaurant Login
+        </h2>
+
+        <form onSubmit={handleSubmit} action="">
 
           {/* Email Input */}
-          <div className="mb-5">
-            <label className="block mb-2 text-lg font-semibold text-gray-700">
+          <div className="mb-6">
+            <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
               Email
             </label>
             <input
               type="email"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
               placeholder="Enter your email"
               value={data.email}
-              onChange={(e)=>{setData({...data, email:e.target.value})}}
+              onChange={(e) => setData({ ...data, email: e.target.value })}
               required
             />
           </div>
 
           {/* Password Input */}
-          <div className="mb-5">
-            <label className="block mb-2 text-lg font-semibold text-gray-700">
+          <div className="mb-6">
+            <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
               Password
             </label>
             <input
               type="password"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
               placeholder="Enter your password"
               value={data.password}
-              onChange={(e)=>{setData({...data, password:e.target.value})}}
+              onChange={(e) => setData({ ...data, password: e.target.value })}
               required
             />
           </div>
@@ -54,25 +53,49 @@ const RestaurantLogin = () => {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full px-4 py-3 text-lg font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 transition-all"
-            onClick={handleSubmit}
+            className="w-full px-4 py-3 text-lg font-semibold text-white bg-[#D87C5A] rounded-lg hover:bg-[#C56947] transition-all transform hover:scale-105 active:scale-95 shadow-md"
           >
-            { loading ? 'loading' : 'Login'}
+            {loading ? (
+              <div className="flex justify-center items-center">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+              </div>
+            ) : (
+              'Login'
+            )}
           </button>
 
-          {/* Divider */}
-          <div className="my-6 text-center text-gray-500">or</div>
+        </form>
 
-          {/* Sign Up Link */}
-          <p className="text-center text-gray-700">
+
+
+        {/* Sign Up Link */}
+        <div className="text-center space-y-2 mt-4">
+          <p className="text-[#4A4A4A]">
             Don't have an account?{" "}
-            <a href="/registerRestaurant" className="text-blue-500 hover:underline">
+            <a
+              href="/registerRestaurant"
+              className="text-[#8AA896] hover:text-[#769382] font-medium"
+            >
               Sign Up
             </a>
           </p>
+          {/* Divider */}
         </div>
+        <div className="my-4 flex items-center">
+          <div className="flex-1 border-t border-[#A79B8D]"></div>
+          <span className="px-4 text-[#4A4A4A]">or</span>
+          <div className="flex-1 border-t border-[#A79B8D]"></div>
+        </div>
+        <p className="mt-4 text-center text-[#4A4A4A]">
+          <a
+            href="/login"
+            className="text-[#8AA896] hover:text-[#769382] font-medium"
+          >
+            Login as Customer
+          </a>
+        </p>
       </div>
-    </>
+    </div>
   );
 };
 

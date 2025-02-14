@@ -22,7 +22,13 @@ const Restaurant = mongoose.model('Restaurant', {
     location: {
         type: String,
         required: true
-    }
+    },
+    foodItems: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Food'
+        }
+    ]
 })
 
 export default Restaurant

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
+import Cookies from 'js-cookie'
 
 function useRestaurantSignup() {
 
@@ -13,7 +14,7 @@ function useRestaurantSignup() {
             const formData = new FormData()
             formData.append("image", data.image)
 
-            const imgUrl = await axios.post('http://localhost:3000/upload', formData)
+            const imgUrl = await axios.post('http://localhost:4000/upload', formData)
 
             // console.log(imgUrl);
             if (!imgUrl.data.image_url) {
@@ -22,11 +23,15 @@ function useRestaurantSignup() {
 
             const restaurantData = {...data, image: imgUrl.data.image_url}
 
-            const response = await axios.post('http://localhost:3000/registerRestaurant', restaurantData, {withCredentials: true})
+            const response = await axios.post('http://localhost:4000/registerRestaurant', restaurantData, {withCredentials: true})
 
             if (response.status === 200) {
                 console.log(response);
-                window.location.replace('/RestaurantHome')
+                const restaurantUser = response.data.restaurant
+                const cookie =  Cookies.set('restaurant-user', JSON.stringify(restaurantUser), {expiresIn: '1d'})
+                const data = JSON.parse(Cookies.get(cookie))
+                const id = data._id
+                window.location.replace(`/RestaurantHome/${id}`)
             }
 
         } catch (error) {

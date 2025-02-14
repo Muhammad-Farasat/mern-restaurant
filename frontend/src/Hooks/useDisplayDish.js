@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-function useDisplayDish() {
+function useDisplayDish(id) {
 
     const [dishesDisplay, setDishesDisplay] = useState([])
     const [loading, setLoading] = useState(false)
@@ -11,13 +11,13 @@ function useDisplayDish() {
         try {
             setLoading(true)
 
-            const response = await axios.get('http://localhost:3000/getFoods', {withCredentials: true})
+            const response = await axios.get(`http://localhost:4000/getFoods?restaurantId=${id}`, {withCredentials: true})
 
-            console.log(response);
-
+            
             if (response.status === 200) {
                 setDishesDisplay(response.data.foods)
             }
+            console.log(response.data.foods);
 
         } catch (error) {
             toast.error("Can't bring dishes")
@@ -29,9 +29,9 @@ function useDisplayDish() {
 
     useEffect(()=>{
         dishes()
-    },[])
+    },[id])
 
-  return {dishes, dishesDisplay, loading}
+  return {dishesDisplay, loading}
 }
 
 export default useDisplayDish

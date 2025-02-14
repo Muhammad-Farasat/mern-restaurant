@@ -18,7 +18,7 @@ function useAddFood() {
             const user = restaurantData ? JSON.parse(restaurantData) : null
 
            
-            const imageUrl = await axios.post('http://localhost:3000/upload', formData)
+            const imageUrl = await axios.post('http://localhost:4000/upload', formData)
            
             console.log(imageUrl);
            
@@ -28,7 +28,7 @@ function useAddFood() {
 
             const foodDetails = {...foodData, restaurantId: user._id, image: imageUrl.data.image_url}
 
-            const response = await axios.post('http://localhost:3000/addFood', foodDetails, {withCredentials: true})
+            const response = await axios.post('http://localhost:4000/addFood', foodDetails, {withCredentials: true})
 
             console.log(response.data.data);
 

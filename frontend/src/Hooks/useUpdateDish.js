@@ -16,7 +16,7 @@ function useUpdateDish() {
             if (foodData.image instanceof File) {
                 formData.append("image", foodData.image)
 
-                const imageResponse = await axios.post('http://localhost:3000/upload', formData)
+                const imageResponse = await axios.post('http://localhost:4000/upload', formData)
                 console.log("Image Upload Response:", imageResponse.data)
 
                 if (!imageResponse.data.image_url) {
@@ -41,11 +41,12 @@ function useUpdateDish() {
 
             console.log("Updating Food with Data:", foodDetails) // Debugging
 
-            const response = await axios.post('http://localhost:3000/updateFood', foodDetails, {
+            const response = await axios.post('http://localhost:4000/updateFood', foodDetails, {
                 withCredentials: true
             })
 
-            console.log("Update Response:", response)
+            // console.log("Update Response:", response)
+
 
             toast.success("Food updated successfully!")
 

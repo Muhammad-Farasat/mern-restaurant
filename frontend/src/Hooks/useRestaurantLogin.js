@@ -12,14 +12,14 @@ function useRestaurantLogin() {
             
             setLoading(true)
 
-            const response = await axios.post('http://localhost:3000/loginRestaurant', data, {withCredentials: true})
+            const response = await axios.post('http://localhost:4000/loginRestaurant', data, {withCredentials: true})
 
             // console.log(response.data.restaurant);
 
             if (response.status === 200) {
                 const restaurantUser = response.data.restaurant
                 Cookies.set('restaurant-user', JSON.stringify(restaurantUser), {expiresIn: '1d'})
-                window.location.replace('/RestaurantHome')
+                window.location.replace(`/RestaurantHome/${restaurantUser._id}`)
             }
 
         } catch (error) {

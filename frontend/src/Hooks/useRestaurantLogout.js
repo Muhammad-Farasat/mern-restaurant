@@ -10,7 +10,7 @@ function useRestaurantLogout() {
     try {
       setLoading(true);
 
-      await axios.post("http://localhost:3000/removeRestaurant", {
+      await axios.post("http://localhost:4000/removeRestaurant", {
         withCredentials: true,
       });
 

@@ -1,8 +1,10 @@
 import Cart from "../Models/Cart.js";
 import Food from "../Models/Food.js";
+import Restaurant from "../Models/Restaurant.js"
+
 
 export const addFood = async(req, res) => {
-    try {
+    try {   
         
         const { name, description, price, image } = req.body
         const restaurantId = req.user.id
@@ -13,9 +15,13 @@ export const addFood = async(req, res) => {
 
         const food = await new Food({name, description, price, image, restaurantId})
 
-        const data = await food.save()
+        await food.save()
 
-        return res.status(200).json({success: true, data})
+        await Restaurant.findByIdAndUpdate(restaurantId, {
+            $push: {foodItems: food._id}
+        })
+
+        return res.status(200).json({success: true, food})
 
     } catch (error) {
         console.error("Error in add food controller", error);
@@ -26,11 +32,26 @@ export const addFood = async(req, res) => {
 export const deleteFood = async(req, res) => {
     try {
         
-        const {id} = req.body
+        const {foodId} = req.body
+        const restaurantId = req.user.id
         
-        console.log(id);
+        console.log("This is ID from body", req.body);
         
-        await Food.findByIdAndDelete(id)
+        const food = await Food.findByIdAndDelete(foodId)
+
+        const restaurant = await Restaurant.findByIdAndUpdate(restaurantId, {
+            $pull: { foods: foodId },
+        });
+
+        if (!food) {
+            console.log("This is food", food);
+            return res.status(400).json({message: "No Food"})
+        }
+
+        if (!restaurant) {
+            console.log("This is restaurant",restaurant);
+            return res.status(400).json({message: "No restaurant"})
+        }
 
         return res.status(200).json({success: true,  message: "Deleted successfully"})
 
@@ -66,10 +87,12 @@ export const updateFood = async(req, res) => {
 export const getFoods = async(req, res) => {
     try {
         
-        const restaurantId = req.user.id
+        const {restaurantId} = req.query
 
         let foods = await Food.find({restaurantId})
 
+        // console.log("This is restaurant ID", restaurantId);
+        
         return res.status(200).json({success: true, foods})
 
     } catch (error) {

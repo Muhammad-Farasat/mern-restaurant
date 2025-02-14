@@ -1,5 +1,6 @@
 import User from '../Models/User.js'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 export const signup = async(req, res) =>{
     try {
@@ -20,10 +21,13 @@ export const signup = async(req, res) =>{
             return res.status(400).json({error: "User already exists"})
         }
 
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(password, salt)
+
         const user = new User({
             username,
             email,
-            password,
+            password: hashedPassword,
             location
         })
 
@@ -56,6 +60,12 @@ export const login = async(req, res) =>{
             return res.status(400).json({message: "user doesn't exit"})
         }
         
+        const isPasswordCorrect = await bcrypt.compare(password, user.password)
+
+        if (!isPasswordCorrect) {
+            return res.json({message: "Incorrect password"})
+        }
+
         const token = jwt.sign({id:user._id}, process.env.JWT_SECRET, {expiresIn: '1d'})
 
         res.cookie('authorization', token, {httpOnly: false})
@@ -81,21 +91,45 @@ export const logout = async(req, res) => {
     }
 }
 
-// export const userSpecific = async(req, res) => {
-//     try {
-//         const id = req.user
-
-//         const user = await User.findById(id)
-
-//         if (!user) {
-//             res.status(400).json({message: "User not found"})
-//         }
-
-//         res.status(200).json({success: true, user})
+export const userDetail = async(req, res) => {
+    try {
+        const id = req.user.id
+        console.log("This is the user ID: ", id);
         
 
-//     } catch (error) {
-//         console.error("Error in controller", error);
-//         res.status(500).json({error: "Internal servre error"})
-//     }
-// }
+        const user = await User.findById(id)
+
+        if (!user) {
+            res.status(400).json({message: "User not found"})
+        }
+
+        res.status(200).json({success: true, user})
+        
+
+    } catch (error) {
+        console.error("Error in controller", error);
+        res.status(500).json({error: "Internal servre error"})
+    }
+}
+
+export const editUser = async(req, res) => {
+    try {
+        
+        const { username, email, location } = req.body
+
+        const user = { username, location }
+
+        const updateUser = await User.findOneAndUpdate({email}, user,{new: true})
+
+        if (!updateUser) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        return res.status(200).json({success: "User updated successfully", updateUser})
+
+    } catch (error) {
+        console.log(error);
+        
+        return res.status(500).json({message: "Internal Server Error" ,error})
+    }
+}
