@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRestaurantOrders, updateOrderStatus } from "../Redux/orderSlice";
+import { fetchRestaurantOrders, updateOrderStatus } from "../redux/orderSlice";
 import Cookies from 'js-cookie'
 
 const RestaurantDashboard = () => {

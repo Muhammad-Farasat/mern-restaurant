@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useDisplayDish from "../../Hooks/useDisplayRestaurant";
+import useDisplayDish from "../../hooks/useDisplayRestaurant";
 import Card from "../Card/Card";
 import { useParams } from "react-router-dom";
 

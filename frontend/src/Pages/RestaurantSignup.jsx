@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import useRestaurantSignup from "../Hooks/useRestaurantSignup";
+import useRestaurantSignup from "../hooks/useRestaurantSignup";
 
 const RestaurantSignup = () => {
   const [data, setData] = useState({
@@ -56,45 +56,47 @@ const RestaurantSignup = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-lg p-8 bg-white rounded-xl shadow-lg border border-[#E0E3E6]"
       >
-        <h2 className="mb-8 text-3xl font-bold text-center text-[#2A3B4D]">
-          Register Your Restaurant
+        <h2 className="mb-8 text-3xl font-medium text-center text-[#2A3B4D]">
+          Register Your <span className="text-[#4A4A4A] font-bold ">Restaurant</span>
         </h2>
 
-        {/* Restaurant Name */}
-        <div className="mb-6">
-          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
-            Restaurant Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={data.name}
-            onChange={(e) => setData({ ...data, name: e.target.value })}
-            className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
-            placeholder="Enter restaurant name"
-            required
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div className="mb-6">
+            <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
+              Restaurant Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={data.name}
+              onChange={(e) => setData({ ...data, name: e.target.value })}
+              className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200  "
+              placeholder="Enter restaurant name"
+              required
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={data.email}
+              onChange={(e) => setData({ ...data, email: e.target.value })}
+              className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
+              placeholder="Enter restaurant email"
+              required
+            />
+          </div>
         </div>
 
-        {/* Email */}
-        <div className="mb-6">
-          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={data.email}
-            onChange={(e) => setData({ ...data, email: e.target.value })}
-            className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
-            placeholder="Enter restaurant email"
-            required
-          />
-        </div>
 
         {/* Location */}
         <div className="mb-6">
-          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
+          <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
             Location
           </label>
           <div className="flex items-center gap-4">
@@ -117,7 +119,7 @@ const RestaurantSignup = () => {
 
         {/* Password */}
         <div className="mb-6">
-          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
+          <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
             Password
           </label>
           <input
@@ -133,7 +135,7 @@ const RestaurantSignup = () => {
 
         {/* Upload Image */}
         <div className="mb-6">
-          <label className="block mb-3 text-lg font-medium text-[#4A4A4A]">
+          <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
             Upload Image
           </label>
           <input
@@ -169,6 +171,21 @@ const RestaurantSignup = () => {
             'Register'
           )}
         </button>
+
+        <div className="my-4 flex items-center">
+          <div className="flex-1 border-t border-[#A79B8D]"></div>
+          <span className="px-4 text-[#4A4A4A]">or</span>
+          <div className="flex-1 border-t border-[#A79B8D]"></div>
+        </div>
+        <p className="mt-4 text-center text-[#4A4A4A]">
+          <a
+            href="/login"
+            className="text-[#8AA896] hover:text-[#769382] font-medium"
+          >
+            Login as Customer
+          </a>
+        </p>
+
       </form>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import useDisplayDish from "../Hooks/useDisplayDish";
+import useDisplayDish from "../hooks/useDisplayDish";
 import Navbar from "../Components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import Card from '../Components/Card/Card'

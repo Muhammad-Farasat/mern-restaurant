@@ -12,7 +12,7 @@ function useRestaurantLogin() {
             
             setLoading(true)
 
-            const response = await axios.post('http://localhost:4000/loginRestaurant', data, {withCredentials: true})
+            const response = await axios.post('/loginRestaurant', data, {withCredentials: true})
 
             // console.log(response.data.restaurant);
 

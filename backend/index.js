@@ -15,9 +15,16 @@ import cartRoute from './Routes/cart.route.js'
 dotenv.config();
 db();
 
+const port = process.env.PORT
+
 const app = express();
+
 app.use(express.json());
+
+const __dirname = path.resolve();
+
 app.use(cookieParser());
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -59,6 +66,12 @@ app.use(foodRoute);
 app.use(orderRoute);
 app.use(cartRoute);
 
-app.listen("4000", () => {
+app.use(express.static(path.join(__dirname, '/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+app.listen(port, () => {
   console.log("Port Connected");
 });

@@ -11,7 +11,7 @@ function VerifyEmail() {
     useEffect(() => {
         const verify = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/verify-email/${token}`);
+                const response = await axios.get(`/verify-email/${token}`);
                 toast.success(response.data.message);
                 setVerified(true);
                 setTimeout(() => navigate("/login"), 3000);  // Redirect to login after 3 seconds

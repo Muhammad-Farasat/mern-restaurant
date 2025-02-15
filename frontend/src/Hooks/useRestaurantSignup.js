@@ -14,7 +14,7 @@ function useRestaurantSignup() {
             const formData = new FormData()
             formData.append("image", data.image)
 
-            const imgUrl = await axios.post('http://localhost:4000/upload', formData)
+            const imgUrl = await axios.post('/upload', formData)
 
             // console.log(imgUrl);
             if (!imgUrl.data.image_url) {
@@ -23,7 +23,7 @@ function useRestaurantSignup() {
 
             const restaurantData = {...data, image: imgUrl.data.image_url}
 
-            const response = await axios.post('http://localhost:4000/registerRestaurant', restaurantData, {withCredentials: true})
+            const response = await axios.post('/registerRestaurant', restaurantData, {withCredentials: true})
 
             if (response.status === 200) {
                 console.log(response);

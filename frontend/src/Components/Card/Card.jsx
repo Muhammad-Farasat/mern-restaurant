@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../Redux/cartSlice";
-import useDisplayDish from "../../Hooks/useDisplayDish";
-import useUpdateDish from "../../Hooks/useUpdateDish";
+import { addToCart } from "../../redux/cartSlice";
+import useDisplayDish from "../../hooks/useDisplayDish";
+import useUpdateDish from "../../hooks/useUpdateDish";
 import { Modal } from "antd";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -47,7 +47,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
   const handleDelete = async (foodId) => {
 
     const response = await axios.post(
-      "http://localhost:4000/deleteFood",
+      "/deleteFood",
       { foodId },
       { withCredentials: true }
 

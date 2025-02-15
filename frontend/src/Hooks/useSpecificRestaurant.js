@@ -10,7 +10,7 @@ function useSpecificRestaurant(id) {
   const specificRestaurant = async() => {
     try {
       setLoading(true)
-      const response = await axios.get(`http://localhost:4000/specificRestaurant/${id}`)
+      const response = await axios.get(`/specificRestaurant/${id}`)
       // console.log(response.data);
       setOneRestaurant(response.data.restaurant)
     } catch (error) {

@@ -11,7 +11,7 @@ function useDisplayDish(id) {
         try {
             setLoading(true)
 
-            const response = await axios.get(`http://localhost:4000/getFoods?restaurantId=${id}`, {withCredentials: true})
+            const response = await axios.get(`/getFoods?restaurantId=${id}`, {withCredentials: true})
 
             
             if (response.status === 200) {

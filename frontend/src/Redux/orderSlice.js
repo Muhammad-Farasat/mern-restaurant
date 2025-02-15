@@ -8,7 +8,7 @@ export const placeOrder = createAsyncThunk(
     console.log(orderData.restaurantId, orderData.userId);
     
 
-      const res = await fetch("http://localhost:4000/placeOrder", {
+      const res = await fetch("/placeOrder", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
@@ -30,7 +30,7 @@ export const placeOrder = createAsyncThunk(
 export const fetchUserOrders = createAsyncThunk(
   "order/fetchUserOrders",
   async (userId) => {
-    const res = await fetch(`http://localhost:4000/userOrders/${userId}`);
+    const res = await fetch(`/userOrders/${userId}`);
     const data = await res.json();
     return data.orders;
   }
@@ -41,7 +41,7 @@ export const fetchRestaurantOrders = createAsyncThunk(
   "order/fetchRestaurantOrders",
   async (restaurantId) => {
     const res = await fetch(
-      `http://localhost:4000/restaurantOrders/${restaurantId}`
+      `/restaurantOrders/${restaurantId}`
     );
     const data = await res.json();
     console.log(data.orders);
@@ -56,7 +56,7 @@ export const updateOrderStatus = createAsyncThunk(
     console.log("This is orderId",orderId);
     
     const res = await fetch(
-      `http://localhost:4000/updateOrder/${orderId}`,
+      `/updateOrder/${orderId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

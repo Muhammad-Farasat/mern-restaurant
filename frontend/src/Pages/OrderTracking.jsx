@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUserOrders } from '../Redux/orderSlice'
+import { fetchUserOrders } from '../redux/orderSlice'
 import Cookies from 'js-cookie'
 
 const OrderTracking = () => {

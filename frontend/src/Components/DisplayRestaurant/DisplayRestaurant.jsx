@@ -1,5 +1,5 @@
 import React from 'react'
-import useDisplayRestaurant from '../../Hooks/useDisplayRestaurant'
+import useDisplayRestaurant from '../../hooks/useDisplayRestaurant'
 import RestaurantCard from '../RestaurantCard/RestaurantCard'
 
 const DisplayRestaurant = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useRestaurantLogin from "../Hooks/useRestaurantLogin";
+import useRestaurantLogin from "../hooks/useRestaurantLogin";
 
 const RestaurantLogin = () => {
   const [data, setData] = useState({ email: "", password: "" });

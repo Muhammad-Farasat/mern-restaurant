@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from "react-redux";
-import { placeOrder } from '../../Redux/orderSlice';
+import { placeOrder } from '../../redux/orderSlice';
 import toast from 'react-hot-toast';
-import { clearCart } from '../../Redux/cartSlice';
+import { clearCart } from '../../redux/cartSlice';
 // import { placeOrder } from ;
 
 const CheckOut = ({ isOpen, onclose }) => {

@@ -11,7 +11,7 @@ function useDisplayRestaurant() {
         try {
             setLoading(true)
 
-            const response = await axios.get('http://localhost:4000/allRestaurant', {withCredentials: true})
+            const response = await axios.get('/allRestaurant', {withCredentials: true})
 
             // console.log(response.data);
 

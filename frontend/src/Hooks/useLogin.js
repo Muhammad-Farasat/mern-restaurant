@@ -11,7 +11,7 @@ function useLogin() {
         try {
             setLoading(true)
 
-            const resposne = await axios.post('http://localhost:4000/login', data, {withCredentials: true})
+            const resposne = await axios.post('/login', data, {withCredentials: true})
             // console.log(resposne);
             
             if (resposne.status === 200) {

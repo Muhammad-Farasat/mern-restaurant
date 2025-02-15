@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import useRestaurantLogout from "../../Hooks/useRestaurantLogout";
+import useRestaurantLogout from "../../hooks/useRestaurantLogout";
 import { useNavigate } from 'react-router-dom'
 import Cookies from "js-cookie";
-import useLogout from "../../Hooks/useLogout";
+import useLogout from "../../hooks/useLogout";
 import { Modal } from "antd";
-import useDisplayUser from "../../Hooks/useDisplayUser";
-import useAddFood from "../../Hooks/useAddFood";
+import useDisplayUser from "../../hooks/useDisplayUser";
+import useAddFood from "../../hooks/useAddFood";
 import { IoIosArrowDown } from "react-icons/io";
 
 

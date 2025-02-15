@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 // Fix endpoint URLs and parameter handling
 export const addToCart = createAsyncThunk('cart/addToCart', 
   async({ userId, restaurantId, foodId, price, quantity, name }) => {
-    const res = await fetch("http://localhost:4000/cart/add", { // Update endpoint
+    const res = await fetch("/cart/add", { // Update endpoint
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId, foodId, quantity, name, price }),
@@ -21,7 +21,7 @@ export const addToCart = createAsyncThunk('cart/addToCart',
 
 export const removeFromCart = createAsyncThunk('cart/removeFromCart', 
   async({ userId, restaurantId, foodId }) => { // Add userId
-    const res = await fetch("http://localhost:4000/cart/remove", { // Update endpoint
+    const res = await fetch("/cart/remove", { // Update endpoint
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId, foodId }),
@@ -37,7 +37,7 @@ export const removeFromCart = createAsyncThunk('cart/removeFromCart',
 
 export const clearCart = createAsyncThunk('cart/clearCart', 
   async({ userId, restaurantId }) => {
-    const res = await fetch("http://localhost:4000/cart/clear", { 
+    const res = await fetch("/cart/clear", { 
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId }),
@@ -55,7 +55,7 @@ export const clearCart = createAsyncThunk('cart/clearCart',
 export const fetchCart = createAsyncThunk("cart/getCart", 
   async({ userId, restaurantId }) => {
     const res = await fetch(
-      `http://localhost:4000/cart/${userId}?restaurantId=${restaurantId}`
+      `/cart/${userId}?restaurantId=${restaurantId}`
     );
     const data = await res.json();
     return data.cart; 

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useSpecificRestaurant from "../Hooks/useSpecificRestaurant";
-import useDisplayDish from "../Hooks/useDisplayDish";
+import useSpecificRestaurant from "../hooks/useSpecificRestaurant";
+import useDisplayDish from "../hooks/useDisplayDish";
 import Card from "../Components/Card/Card";
 import Cart from "../Components/Cart/Cart";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../Redux/cartSlice";
+import { removeFromCart } from "../redux/cartSlice";
 import Navbar from "../Components/Navbar/Navbar";
 
 const SpecificRestaurant = () => {

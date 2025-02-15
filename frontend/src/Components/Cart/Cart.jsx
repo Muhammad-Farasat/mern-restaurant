@@ -4,7 +4,7 @@ import {
   removeFromCart,
   clearCartState,
   clearCart,
-} from "../../Redux/cartSlice";
+} from "../../redux/cartSlice";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useSignup from "../Hooks/useSignup";
+import useSignup from "../hooks/useSignup";
 import axios from "axios";
 
 const Signup = () => {
@@ -84,31 +84,36 @@ const Signup = () => {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200"
-                placeholder="Enter your password"
-                value={data.password}
-                onChange={(e) => setData({ ...data, password: e.target.value })}
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="w-full px-4 py-2.5 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
+                  placeholder="Enter your password"
+                  value={data.password}
+                  onChange={(e) => setData({ ...data, password: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  className="w-full px-4 py-2.5 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
+                  placeholder="Confirm your password"
+                  value={data.confirmPassword}
+                  onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
+                />
+              </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200"
-                placeholder="Confirm your password"
-                value={data.confirmPassword}
-                onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
-              />
-            </div>
+
+            {/*  */}
 
             <button
               type="button"
@@ -143,6 +148,18 @@ const Signup = () => {
               Login
             </a>
           </p>
+
+          <div className="my-4 flex items-center">
+            <div className="flex-1 border-t border-[#A79B8D]"></div>
+            <span className="px-4 text-[#4A4A4A]">or</span>
+            <div className="flex-1 border-t border-[#A79B8D]"></div>
+          </div>
+          <p className="text-sm text-center text-[#4A4A4D]">
+            <a href="/registerRestaurant" className="text-[#8AA896] hover:text-[#769382] font-medium transition-colors duration-200">
+              Register your restaurant
+            </a>
+          </p>
+
         </div>
       </div>
     </>

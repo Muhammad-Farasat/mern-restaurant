@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie'
-import useEditProfile from "../Hooks/useEditProfile";
-import useDisplayUser from "../Hooks/useDisplayUser";
+import useEditProfile from "../hooks/useEditProfile";
+import useDisplayUser from "../hooks/useDisplayUser";
 
 
 const EditProfile = () => {

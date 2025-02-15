@@ -12,7 +12,7 @@ function useSignup() {
         try {
             setLoading(true)
 
-            const response = await axios.post('http://localhost:4000/signup', data, { withCredentials: true })
+            const response = await axios.post('/signup', data, { withCredentials: true })
 
             if (response.status === 200) {
                 

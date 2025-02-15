@@ -11,7 +11,7 @@ function useLogout() {
       try {
         setLoading(true)
 
-        await axios.post('http://localhost:4000/logout',  {withCredentials: true})
+        await axios.post('/logout',  {withCredentials: true})
 
         Cookies.remove('authorization')
         Cookies.remove('user-data')
