@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import CheckOut from "../CheckOut/CheckOut";
 
 const Cart = () => {
+  
   let { id } = useParams();
 
   const [isCheckedOpen, setIsCheckedOpen] = useState(false)

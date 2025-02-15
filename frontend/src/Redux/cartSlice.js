@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 
 // Fix endpoint URLs and parameter handling
@@ -9,6 +10,11 @@ export const addToCart = createAsyncThunk('cart/addToCart',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId, foodId, quantity, name, price }),
     });
+
+    if (res.status === 200) {
+      toast.success("Added to cart..!")
+    }
+
     const data = await res.json();
     return data.cart;
 });
@@ -20,6 +26,11 @@ export const removeFromCart = createAsyncThunk('cart/removeFromCart',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId, foodId }),
     });
+    
+    if (res.status === 200) {
+      toast.success("Removed from cart..!")
+    }
+    
     const data = await res.json();
     return data.cart;
 });
@@ -31,6 +42,12 @@ export const clearCart = createAsyncThunk('cart/clearCart',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId }),
     });
+    
+    if (res.status === 200) {
+      toast.success("Cleared the cart..!")
+    }
+    console.log(res);
+    
     const data = await res.json();
     return data.cart;
 });

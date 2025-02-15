@@ -12,6 +12,8 @@ import SpecificRestaurant from './Pages/SpecificRestaurant'
 import RestaurantDashboard from './Pages/RestaurantDashboard'
 import OrderTracking from './Pages/OrderTracking'
 import EditProfile from './Pages/EditProfile'
+import CheckEmail from './Pages/CheckEmail'
+import VerifyEmail from './Pages/VerifyEmail'
 
 function App() {
 
@@ -31,6 +33,9 @@ function App() {
         <Route path='/dashboard/:id' element={<RestaurantDashboard />} />
         <Route path='/order-tracking' element={<OrderTracking />} />
         <Route path='/edit-profile' element={<EditProfile />} />
+        <Route path="/verify-email/:token" element={<VerifyEmail />} />
+        <Route path="/check-email" element={<CheckEmail />} />
+
       </Routes>
       <Toaster />
     </>

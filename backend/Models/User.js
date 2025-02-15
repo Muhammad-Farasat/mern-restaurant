@@ -16,6 +16,10 @@ const User = mongoose.model('User',{
     },
     location: {
         type: String,
+    },
+    verified:{
+        type: Boolean,
+        default: false
     }
 })
 

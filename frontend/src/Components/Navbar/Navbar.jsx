@@ -37,12 +37,7 @@ const Navbar = () => {
     image: null,
     restaurantId: null,
     foodId: null,
-  });
-
-
-  
-
-  
+  }); 
 
   const {data} = useDisplayUser()
   
@@ -59,7 +54,7 @@ const Navbar = () => {
 
         {/* User Address Section */}
         {userType === "customer" && (
-          <div className="text-center flex-grow mx-4">
+          <div className="text-center flex-grow mx-4 max-sm:hidden ">
             <p className="text-sm md:text-base text-[#E8B7A3] truncate max-w-[200px] md:max-w-[400px]">
               📍 {data.location}
             </p>

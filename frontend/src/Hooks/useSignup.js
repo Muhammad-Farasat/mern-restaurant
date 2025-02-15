@@ -19,10 +19,11 @@ function useSignup() {
                 console.log(response);
                 const userData = response.data.user
 
-                console.log(response.data.user);
-                Cookies.set('user-data', JSON.stringify(userData), { expiresIn: '1d' })
+                console.log(userData);
 
-                window.location.replace('/')
+                localStorage.setItem("user-email", userData.email);
+
+                window.location.replace('/check-email')
             }
 
         } catch (error) {

@@ -23,7 +23,7 @@ const SpecificRestaurant = () => {
       <Navbar />
       <div className="min-h-screen bg-[#F5F0E6]">
         {/* Banner Section */}
-        <div className="relative h-64 w-full">
+        <div className="relative h-72 w-full">
           <img
             src={oneRestaurant?.image}
             alt="Restaurant Banner"

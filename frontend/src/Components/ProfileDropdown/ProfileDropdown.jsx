@@ -95,7 +95,7 @@ const ProfileDropdown = () => {
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border">
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-50 ">
                     {
                         userType === 'customer' ?
                             <ul className="py-2">
