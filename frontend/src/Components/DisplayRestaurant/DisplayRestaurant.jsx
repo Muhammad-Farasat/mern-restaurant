@@ -11,7 +11,7 @@ const DisplayRestaurant = () => {
       <section className="w-full min-h-screen py-12 bg-[#F5F0E6]">
         <div className="container mx-auto px-4">
           {/* Heading */}
-          <h1 className="text-4xl md:text-5xl font-bold text-center text-[#2A3B4D] mb-12">
+          <h1 className="text-4xl md:text-5xl font-[Nunito-ExtraBold] text-center text-[#2A3B4D] mb-12">
             Discover Restaurants
           </h1>
 

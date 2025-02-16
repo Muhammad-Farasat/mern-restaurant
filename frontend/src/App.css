@@ -1,8 +1,40 @@
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .animate-spin {
-    animation: spin 1s linear infinite;
+
+  100% {
+    transform: rotate(360deg);
   }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@font-face {
+  font-family: Nunito;
+  src: url('Fonts/static/Nunito-Regular.ttf');
+}
+
+
+@font-face {
+  font-family: Nunito-Medium;
+  src: url('Fonts/static/Nunito-Medium.ttf');
+}
+
+
+@font-face {
+  font-family: Nunito-Bold;
+  src: url('Fonts/static/Nunito-Bold.ttf');
+}
+
+
+@font-face {
+  font-family: Nunito-ExtraBold;
+  src: url('Fonts/static/Nunito-ExtraBold.ttf');
+}
+
+body{
+  font-family: 'Nunito';
+}

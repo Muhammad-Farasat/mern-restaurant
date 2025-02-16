@@ -49,41 +49,49 @@ const Signup = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen bg-[#F5F0E6]">
-        <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
-          <h2 className="text-3xl font-bold text-center mb-8 text-[#2A3B4D]">
-            Join Us
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="flex justify-center items-center min-h-screen bg-[#F5F0E6] p-4">
+        <div className="bg-white rounded-xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
+          {/* Header */}
+          <div className="p-6 border-b  border-[#E0E3E6]">
+            <h2 className="text-3xl font-[Nunito-ExtraBold] text-[#2A3B4D] text-center">
+              Join Us
+            </h2>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="p-6 space-y-5">
+            {/* Name */}
             <div>
-              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+              <label className="block max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                 Name
               </label>
               <input
                 type="text"
-                className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-2.5 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
                 placeholder="Enter your name"
                 value={data.username}
                 onChange={(e) => setData({ ...data, username: e.target.value })}
               />
             </div>
 
+            {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+              <label className="block max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                 Email
               </label>
               <input
                 type="email"
-                className="w-full px-4 py-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-2.5 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
                 placeholder="Enter your email"
                 value={data.email}
                 onChange={(e) => setData({ ...data, email: e.target.value })}
               />
             </div>
 
+            {/* Password and Confirm Password */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                <label className="block max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                   Password
                 </label>
                 <input
@@ -96,7 +104,7 @@ const Signup = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                <label className="block max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                   Confirm Password
                 </label>
                 <input
@@ -109,25 +117,23 @@ const Signup = () => {
               </div>
             </div>
 
-
-            {/*  */}
-
+            {/* Location Button */}
             <button
               type="button"
-              className="w-full bg-[#8AA896] text-white py-3 rounded-lg font-medium hover:bg-[#769382] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
+              className="w-full px-4 py-2.5 text-[#2A3B4D] bg-[#E0E3E6] rounded-lg font-[Nunito-Bold] hover:bg-[#D87C5A] hover:text-white transition-all transform hover:scale-105 active:scale-95"
               onClick={geoLocation}
             >
               {data.location === null ? (
-                '📍 Get Location'
+                '📍 Get My Location'
               ) : (
                 `📍 ${data.location}`
               )}
             </button>
 
+            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-[#D87C5A] text-white py-3 rounded-lg font-semibold hover:bg-[#C56947] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
-              onClick={handleSubmit}
+              className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95 shadow-md"
             >
               {loading ? (
                 <div className="flex justify-center items-center">
@@ -139,24 +145,39 @@ const Signup = () => {
             </button>
           </form>
 
-          <p className="text-sm text-center text-[#4A4A4A] mt-6">
-            Already have an account?{" "}
-            <a href="/login" className="text-[#8AA896] hover:text-[#769382] font-medium transition-colors duration-200">
-              Login
-            </a>
-          </p>
-
-          <div className="my-4 flex items-center">
-            <div className="flex-1 border-t border-[#A79B8D]"></div>
-            <span className="px-4 text-[#4A4A4A]">or</span>
-            <div className="flex-1 border-t border-[#A79B8D]"></div>
+          {/* Login Link */}
+          <div className="py-3 border-t border-[#E0E3E6] text-center">
+            <p className="text-sm text-[#4A4A4A]">
+              Already have an account?{" "}
+              <a
+                href="/login"
+                className="text-[#8AA896] hover:text-[#769382] font-[Nunito-Medium] transition-colors"
+              >
+                Login
+              </a>
+            </p>
           </div>
-          <p className="text-sm text-center text-[#4A4A4D]">
-            <a href="/registerRestaurant" className="text-[#8AA896] hover:text-[#769382] font-medium transition-colors duration-200">
-              Register your restaurant
-            </a>
-          </p>
 
+          {/* Divider */}
+          <div className="px-2">
+            <div className="flex items-center">
+              <div className="flex-1 border-t border-[#A79B8D]"></div>
+              <span className="px-4 text-sm text-[#4A4A4A]">or</span>
+              <div className="flex-1 border-t border-[#A79B8D]"></div>
+            </div>
+          </div>
+
+          {/* Register Restaurant Link */}
+          <div className="mb-8 mt-4 text-center">
+            <p className="text-sm text-[#4A4A4A]">
+              <a
+                href="/registerRestaurant"
+                className="text-[#8AA896] hover:text-[#769382] font-[Nunito-Bold] transition-colors"
+              >
+                Register your restaurant
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </>

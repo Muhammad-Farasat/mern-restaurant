@@ -45,14 +45,14 @@ const CheckOut = ({ isOpen, onclose }) => {
         <div className="bg-white rounded-xl shadow-lg w-full max-w-md overflow-hidden">
           {/* Header */}
           <div className="p-6 border-b border-[#E0E3E6]">
-            <h2 className="text-2xl font-bold text-[#2A3B4D]">Confirm Your Order</h2>
+            <h2 className="text-2xl font-[Nunito-ExtraBold] text-[#2A3B4D]">Confirm Your Order</h2>
           </div>
 
           {/* Body */}
           <div className="p-6 space-y-4">
             {/* Name Input */}
             <div>
-              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+              <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                 Name
               </label>
               <input
@@ -67,7 +67,7 @@ const CheckOut = ({ isOpen, onclose }) => {
 
             {/* Address Input */}
             <div>
-              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+              <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                 Address
               </label>
               <input
@@ -82,7 +82,7 @@ const CheckOut = ({ isOpen, onclose }) => {
 
             {/* Order Summary */}
             <div>
-              <h3 className="text-lg font-semibold text-[#2A3B4D] mb-3">
+              <h3 className="text-lg font-[Nunito-Bold] text-[#2A3B4D] mb-3">
                 Order Summary
               </h3>
               <ul className="divide-y divide-[#E0E3E6]">
@@ -91,7 +91,7 @@ const CheckOut = ({ isOpen, onclose }) => {
                     <span className="text-[#4A4A4A]">
                       {item.foodId.name} (x{item.quantity})
                     </span>
-                    <span className="text-[#D87C5A] font-medium">
+                    <span className="text-[#D87C5A] font-[Nunito-Bold]">
                       Rs.{item.foodId.price * item.quantity}
                     </span>
                   </li>
@@ -101,7 +101,7 @@ const CheckOut = ({ isOpen, onclose }) => {
 
             {/* Total Price */}
             <div className="pt-4 border-t border-[#E0E3E6]">
-              <p className="text-xl font-bold text-[#2A3B4D]">
+              <p className="text-xl font-[Nunito-ExtraBold] text-[#2A3B4D]">
                 Total: Rs. {totalPrice}
               </p>
             </div>
@@ -111,13 +111,13 @@ const CheckOut = ({ isOpen, onclose }) => {
           <div className="p-6 border-t border-[#E0E3E6] flex justify-end gap-3">
             <button
               onClick={onclose}
-              className="px-6 py-2.5 text-[#2A3B4D] bg-[#E0E3E6] rounded-lg font-medium hover:bg-[#D87C5A] hover:text-white transition-all transform hover:scale-105 active:scale-95"
+              className="px-6 py-2.5 text-[#2A3B4D] bg-[#E0E3E6] rounded-lg font-[Nunito-Bold] hover:bg-[#D87C5A] hover:text-white transition-all transform hover:scale-105 active:scale-95"
             >
               Cancel
             </button>
             <button
               onClick={handlePlaceOrder}
-              className="px-6 py-2.5 text-white bg-[#8AA896] rounded-lg font-medium hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95"
+              className="px-6 py-2.5 text-white bg-[#8AA896] rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95"
             >
               Confirm & Place Order
             </button>

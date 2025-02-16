@@ -90,11 +90,11 @@ const Card = ({ name, description, image, price, foodId, id }) => {
 
         {/* Content */}
         <div className="p-6">
-          <h2 className="text-xl font-bold text-[#2A3B4D]">{name}</h2>
+          <h2 className="text-xl font-[Nunito-ExtraBold] text-[#2A3B4D]">{name}</h2>
           <p className="text-[#4A4A4A] text-sm mt-3 line-clamp-2">
             {description}
           </p>
-          <p className="text-[#D87C5A] text-lg font-semibold mt-4">
+          <p className="text-[#D87C5A] text-lg font-[Nunito-Bold] mt-4">
             Rs. {price}
           </p>
         </div>
@@ -104,7 +104,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
           <div className="px-6 pb-6">
             <button
               onClick={handleAddToCart}
-              className="w-full bg-[#8AA896] text-white py-3 rounded-lg font-medium hover:bg-[#769382] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
+              className="w-full bg-[#8AA896] text-white py-3 rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
             >
               Add to Cart
             </button>
@@ -139,7 +139,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
       </div>
 
       <Modal
-        title={<p className="text-lg font-semibold">Edit Item</p>}
+        title={<p className="text-lg font-[Nunito-Bold]">Edit Item</p>}
         open={editOpen}
         onCancel={() => setEditOpen(false)}
         footer={null}
@@ -147,7 +147,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
         <div className="space-y-4">
           {/* Food Name */}
           <div>
-            <label className="block font-medium text-gray-700">Food Name</label>
+            <label className="block font-[Nunito-Bold] text-gray-700">Food Name</label>
             <input
               type="text"
               name="name"
@@ -162,7 +162,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
 
           {/* Description */}
           <div>
-            <label className="block font-medium text-gray-700">
+            <label className="block font-[Nunito-Bold] text-gray-700">
               Description
             </label>
             <textarea
@@ -178,7 +178,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
 
           {/* Price */}
           <div>
-            <label className="block font-medium text-gray-700">Price ($)</label>
+            <label className="block font-[Nunito-Bold] text-gray-700">Price ($)</label>
             <input
               type="number"
               name="price"
@@ -193,7 +193,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
 
           {/* Image Upload */}
           <div>
-            <label className="block font-medium text-gray-700">
+            <label className="block font-[Nunito-Bold] text-gray-700">
               Upload Image
             </label>
             <input

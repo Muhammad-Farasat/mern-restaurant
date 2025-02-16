@@ -46,7 +46,7 @@ const EditProfile = () => {
             <div className="bg-white rounded-xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
                 {/* Header */}
                 <div className="p-6 border-b border-[#E0E3E6]">
-                    <h2 className="text-2xl font-bold text-[#2A3B4D] text-center">
+                    <h2 className="text-2xl font-[Nunito-ExtraBold] text-[#2A3B4D] text-center">
                         Edit Profile
                     </h2>
                 </div>
@@ -55,7 +55,7 @@ const EditProfile = () => {
                 <form onSubmit={handleSubmit} className="p-6 space-y-5">
                     {/* Username */}
                     <div>
-                        <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                        <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                             Username
                         </label>
                         <input
@@ -70,7 +70,7 @@ const EditProfile = () => {
 
                     {/* Email */}
                     <div>
-                        <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                        <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                             Email
                         </label>
                         <input
@@ -86,7 +86,7 @@ const EditProfile = () => {
 
                     {/* Location */}
                     <div>
-                        <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                        <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                             Location
                         </label>
                         <input
@@ -102,7 +102,7 @@ const EditProfile = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-medium hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95 shadow-md"
+                        className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95 shadow-md"
                     >
                         {loading ? "Loading..." : "Save Changes"}
                     </button>

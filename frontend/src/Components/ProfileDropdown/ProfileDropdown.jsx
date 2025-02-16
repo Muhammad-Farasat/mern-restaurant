@@ -152,7 +152,7 @@ const ProfileDropdown = () => {
 
 
             <Modal
-                title={<p className="text-xl font-bold text-[#2A3B4D]">Upload Food Item</p>}
+                title={<p className="text-xl font-[Nunito-ExtraBold] text-[#2A3B4D]">Upload Food Item</p>}
                 open={open}
                 onCancel={() => setOpen(false)}
                 footer={null}
@@ -161,7 +161,7 @@ const ProfileDropdown = () => {
                 <div className="space-y-5">
                     {/* Food Name */}
                     <div>
-                        <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                        <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                             Food Name
                         </label>
                         <input
@@ -176,7 +176,7 @@ const ProfileDropdown = () => {
 
                     {/* Description */}
                     <div>
-                        <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                        <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                             Description
                         </label>
                         <textarea
@@ -190,7 +190,7 @@ const ProfileDropdown = () => {
 
                     {/* Price */}
                     <div>
-                        <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                        <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                             Price (Rs.)
                         </label>
                         <input
@@ -205,7 +205,7 @@ const ProfileDropdown = () => {
 
                     {/* Image Upload */}
                     <div>
-                        <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+                        <label className="block text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                             Upload Image
                         </label>
                         <input
@@ -220,7 +220,7 @@ const ProfileDropdown = () => {
                     {/* Submit Button */}
                     <button
                         onClick={handleSubmit}
-                        className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-medium hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95 shadow-md"
+                        className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95 shadow-md"
                     >
                         {loading ? (
                             <div className="flex justify-center items-center">

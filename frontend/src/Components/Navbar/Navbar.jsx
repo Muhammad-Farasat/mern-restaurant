@@ -38,7 +38,7 @@ const Navbar = () => {
     <>
       <nav className="flex items-center justify-between bg-[#2A3B4D] px-6 py-3 shadow-xl text-white">
 
-        <div className="text-2xl font-bold text-[#F5F0E6]">
+        <div className="text-2xl font-[Nunito-ExtraBold] text-[#F5F0E6]">
           {userType === "customer" ?
             ' ZenBites' : (rUser?.name || null)
           }

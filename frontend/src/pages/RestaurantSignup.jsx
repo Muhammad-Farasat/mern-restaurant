@@ -56,14 +56,14 @@ const RestaurantSignup = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-lg p-8 bg-white rounded-xl shadow-lg border border-[#E0E3E6]"
       >
-        <h2 className="mb-8 text-3xl font-medium text-center text-[#2A3B4D]">
-          Register Your <span className="text-[#4A4A4A] font-bold ">Restaurant</span>
+        <h2 className="mb-8 text-3xl font-[Nunito-Bold] text-center text-[#2A3B4D]">
+          Register Your <span className="text-[#4A4A4A] font-[Nunito-ExtraBold] ">Restaurant</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-sm:gap-0 ">
 
           <div className="mb-6">
-            <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
+            <label className="block mb-3 max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A]">
               Restaurant Name
             </label>
             <input
@@ -78,7 +78,7 @@ const RestaurantSignup = () => {
           </div>
 
           <div className="mb-6">
-            <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
+            <label className="block mb-3 max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A]">
               Email
             </label>
             <input
@@ -96,18 +96,18 @@ const RestaurantSignup = () => {
 
         {/* Location */}
         <div className="mb-6">
-          <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
+          <label className="block mb-3 max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A]">
             Location
           </label>
           <div className="flex items-center gap-4">
             <button
               type="button"
-              className="px-6 py-3 text-[#2A3B4D] bg-[#8AA896] rounded-lg font-medium hover:bg-[#769382] hover:text-white transition-all transform hover:scale-105 active:scale-95 shadow-md"
+              className="px-6 py-3 text-[#2A3B4D] bg-[#8AA896] rounded-lg font-[Nunito-Bold] hover:bg-[#769382] hover:text-white transition-all transform hover:scale-105 active:scale-95 shadow-md"
               onClick={geoLocation}
             >
               Get My Location
             </button>
-            <p className="text-[#4A4A4A] font-medium">
+            <p className="text-[#4A4A4A] font-[Nunito-Bold]">
               {data.location ? (
                 <span className="text-[#D87C5A]">{data.location}</span>
               ) : (
@@ -119,7 +119,7 @@ const RestaurantSignup = () => {
 
         {/* Password */}
         <div className="mb-6">
-          <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
+          <label className="block mb-3 max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A]">
             Password
           </label>
           <input
@@ -135,7 +135,7 @@ const RestaurantSignup = () => {
 
         {/* Upload Image */}
         <div className="mb-6">
-          <label className="block mb-3 text-sm font-medium text-[#4A4A4A]">
+          <label className="block mb-3 max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A]">
             Upload Image
           </label>
           <input
@@ -150,9 +150,9 @@ const RestaurantSignup = () => {
 
         {/* Login Link */}
         <div className="mb-6">
-          <p className="text-center text-[#4A4A4A]">
+          <p className="text-center max-sm:text-sm text-[#4A4A4A]">
             Already have an account?{" "}
-            <a href="/loginRestaurant" className="text-[#8AA896] hover:text-[#769382] font-medium">
+            <a href="/loginRestaurant" className="text-[#8AA896] hover:text-[#769382] font-[Nunito-Bold]">
               Login
             </a>
           </p>
@@ -161,7 +161,7 @@ const RestaurantSignup = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full px-4 py-3 text-lg font-semibold text-white bg-[#D87C5A] rounded-lg hover:bg-[#C56947] transition-all transform hover:scale-105 active:scale-95 shadow-md"
+          className="w-full px-4 py-3 text-lg font-[Nunito-ExtraBold] text-white bg-[#D87C5A] rounded-lg hover:bg-[#C56947] transition-all transform hover:scale-105 active:scale-95 shadow-md"
         >
           {loading ? (
             <div className="flex justify-center items-center">
@@ -180,7 +180,7 @@ const RestaurantSignup = () => {
         <p className="mt-4 text-center text-[#4A4A4A]">
           <a
             href="/login"
-            className="text-[#8AA896] hover:text-[#769382] font-medium"
+            className="text-[#8AA896] hover:text-[#769382] font-[Nunito-Bold]"
           >
             Login as Customer
           </a>

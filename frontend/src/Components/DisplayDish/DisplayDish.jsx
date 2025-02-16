@@ -13,7 +13,7 @@ const DisplayDish = () => {
     <>
       <section className="w-full h-full flex justify-center  ">
         <div className="container">
-        <h1 className="text-4xl text-center font-bold mt-8 mb-6 ">Food List</h1>
+        <h1 className="text-4xl text-center font-[Nunito-ExtraBold] mt-8 mb-6 ">Food List</h1>
         {loading && <p>Loading...</p>}
         <div className="grid grid-cols-3">
         {dishesDisplay.map((dish) => (

@@ -29,12 +29,12 @@ const Login = () => {
     <>
       <div className="flex justify-center items-center h-screen bg-[#F5F0E6]">
         <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
-          <h2 className="text-3xl font-bold text-center mb-8 text-[#2A3B4D]">
+          <h2 className="text-3xl font-[Nunito-ExtraBold] text-center mb-8 text-[#2A3B4D]">
             Welcome Back
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
-              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+              <label className="block max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                 Email
               </label>
               <input
@@ -47,7 +47,7 @@ const Login = () => {
             </div>
 
             <div className="mb-8">
-              <label className="block text-sm font-medium text-[#4A4A4A] mb-2">
+              <label className="block max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A] mb-2">
                 Password
               </label>
               <input
@@ -61,7 +61,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full bg-[#D87C5A] text-white py-3 rounded-lg font-semibold hover:bg-[#C56947] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
+              className="w-full bg-[#D87C5A] text-white py-3 rounded-lg text-lg font-[Nunito-ExtraBold] tracking-wide hover:bg-[#C56947] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
             >
               {loading ? (
                 <div className="flex justify-center items-center">
@@ -74,14 +74,14 @@ const Login = () => {
           </form>
 
           <div className="mt-6 space-y-4 text-center">
-            <p className="text-sm text-[#4A4A4A]">
+            <p className="max-sm:text-sm text-[#4A4A4A]">
               Don't have an account?{" "}
-              <a href="/signup" className="text-[#8AA896] hover:text-[#769382] font-medium transition-colors duration-200">
+              <a href="/signup" className="text-[#8AA896] hover:text-[#769382] font-[Nunito-Bold] transition-colors duration-200">
                 Sign up
               </a>
             </p>
             <p className="text-sm text-[#4A4A4D]">
-              <a href="/registerRestaurant" className="text-[#8AA896] hover:text-[#769382] font-medium transition-colors duration-200">
+              <a href="/registerRestaurant" className="text-[#8AA896] hover:text-[#769382] font-[Nunito-Bold] transition-colors duration-200">
                 Register your restaurant
               </a>
             </p>

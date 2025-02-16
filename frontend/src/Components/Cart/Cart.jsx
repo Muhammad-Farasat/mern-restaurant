@@ -56,7 +56,7 @@ const Cart = () => {
 
   return (
     <div className="p-6 bg-white rounded-xl shadow-lg border border-[#E0E3E6]">
-      <h2 className="text-2xl font-bold text-[#2A3B4D] mb-6">Your Cart</h2>
+      <h2 className="text-2xl font-[Nunito-ExtraBold] text-[#2A3B4D] mb-6">Your Cart</h2>
 
       {cart.items.length === 0 ? (
         <div className="text-center py-6">
@@ -73,7 +73,7 @@ const Cart = () => {
               <li key={item.foodId._id} className="py-4">
                 <div className="flex justify-between items-center">
                   <div>
-                    <h3 className="text-lg font-medium text-[#2A3B4D]">
+                    <h3 className="text-lg font-[Nunito-Bold] text-[#2A3B4D]">
                       {item.foodId.name}
                     </h3>
                     <p className="text-[#4A4A4A]">
@@ -82,7 +82,7 @@ const Cart = () => {
                   </div>
                   <button
                     onClick={() => removeItem({ foodId: item.foodId._id })}
-                    className="px-3 py-1.5 text-[#D87C5A] hover:text-[#C56947] font-medium rounded-lg hover:bg-[#F5F0E6] transition-colors"
+                    className="px-3 py-1.5 text-[#D87C5A] hover:text-[#C56947] font-[Nunito-Bold] rounded-lg hover:bg-[#F5F0E6] transition-colors"
                   >
                     Remove
                   </button>
@@ -93,7 +93,7 @@ const Cart = () => {
 
           {/* Total Price */}
           <div className="pt-4 border-t border-[#E0E3E6]">
-            <p className="text-lg font-semibold text-[#2A3B4D]">
+            <p className="text-lg font-[Nunito-Bold] text-[#2A3B4D]">
               Total: Rs. {cart.items.reduce((total, item) => total + (item.foodId.price * item.quantity), 0)}
             </p>
           </div>
@@ -102,13 +102,13 @@ const Cart = () => {
           <div className="flex flex-col gap-3 mt-6">
             <button
               onClick={clear}
-              className="w-full px-4 py-2.5 text-[#2A3B4D] bg-[#E0E3E6] rounded-lg font-medium hover:bg-[#D87C5A] hover:text-white transition-all transform hover:scale-105 active:scale-95"
+              className="w-full px-4 py-2.5 text-[#2A3B4D] bg-[#E0E3E6] rounded-lg font-[Nunito-Bold] hover:bg-[#D87C5A] hover:text-white transition-all transform hover:scale-105 active:scale-95"
             >
               Clear Cart
             </button>
             <button
               onClick={() => setIsCheckedOpen(true)}
-              className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-medium hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95"
+              className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95"
             >
               Proceed to Checkout
             </button>

@@ -25,7 +25,7 @@ const RestaurantCard = ({ name, description, image, id }) => {
 
       {/* Content */}
       <div className="p-6">
-        <h2 className="text-xl font-bold text-[#2A3B4D] group-hover:text-[#D87C5A] transition-colors duration-300">
+        <h2 className="text-xl font-[Nunito-ExtraBold] text-[#2A3B4D] group-hover:text-[#D87C5A] transition-colors duration-300">
           {name}
         </h2>
         <p className="text-[#4A4A4A] text-sm mt-2 line-clamp-2">
