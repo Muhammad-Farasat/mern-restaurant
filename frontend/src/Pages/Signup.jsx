@@ -3,8 +3,6 @@ import useSignup from "../hooks/useSignup";
 import axios from "axios";
 
 const Signup = () => {
-  // const API_CALL =
-  // const API_KEY = 'b4f083b25cc72a7b04fcda2825f8e04d'
 
   const [data, setData] = useState({
     username: "",
@@ -31,7 +29,6 @@ const Signup = () => {
         if (result.data && result.data.length > 0) {
           const address = result.data[0].label;
           data.location = address
-          console.log("Location:", data.location);
         } else {
           console.error("No location data found");
         }

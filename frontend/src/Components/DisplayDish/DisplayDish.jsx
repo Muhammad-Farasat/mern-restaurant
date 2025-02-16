@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useDisplayDish from "../../hooks/useDisplayRestaurant";
 import Card from "../Card/Card";
 import { useParams } from "react-router-dom";
@@ -8,7 +8,7 @@ const DisplayDish = () => {
   const restaurantId = useParams()
 
   const { dishesDisplay, loading } = useDisplayDish(restaurantId);
-// console.log(dishesDisplay);
+
   return (
     <>
       <section className="w-full h-full flex justify-center  ">

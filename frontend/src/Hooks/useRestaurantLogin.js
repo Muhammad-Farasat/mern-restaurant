@@ -6,13 +6,14 @@ import Cookies from 'js-cookie'
 function useRestaurantLogin() {
 
     const [loading, setLoading] = useState(false)
+    const backend_url = process.env.FRONTEND_URL
 
     const login = async({data}) =>{
         try {
             
             setLoading(true)
 
-            const response = await axios.post('/loginRestaurant', data, {withCredentials: true})
+            const response = await axios.post(`${backend_url}/loginRestaurant`, data, {withCredentials: true})
 
             // console.log(response.data.restaurant);
 

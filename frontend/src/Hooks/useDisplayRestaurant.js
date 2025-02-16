@@ -6,12 +6,13 @@ function useDisplayRestaurant() {
 
     const [displayRestaurant, setDisplayRestaurant] = useState([])
     const [loading, setLoading] = useState(false)
+    const backend_url = process.env.FRONTEND_URL
 
     const restaurant = async() =>{
         try {
             setLoading(true)
 
-            const response = await axios.get('/allRestaurant', {withCredentials: true})
+            const response = await axios.get(`${backend_url}/allRestaurant`, {withCredentials: true})
 
             // console.log(response.data);
 

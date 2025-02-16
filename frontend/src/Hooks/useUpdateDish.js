@@ -5,6 +5,7 @@ import axios from 'axios'
 
 function useUpdateDish() {
     const [loading, setLoading] = useState(false)
+    const backend_url = process.env.FRONTEND_URL
 
     const updateFood = async (foodData) => {
         try {
@@ -16,14 +17,14 @@ function useUpdateDish() {
             if (foodData.image instanceof File) {
                 formData.append("image", foodData.image)
 
-                const imageResponse = await axios.post('/upload', formData)
+                const imageResponse = await axios.post(`${backend_url}/upload`, formData)
                 console.log("Image Upload Response:", imageResponse.data)
 
                 if (!imageResponse.data.image_url) {
                     throw new Error("Error uploading image")
                 }
 
-                imageUrl = imageResponse.data.image_url // Update with new image
+                imageUrl = imageResponse.data.image_url 
             }
 
             const restaurantData = Cookies.get('restaurant-user')
@@ -36,17 +37,14 @@ function useUpdateDish() {
             const foodDetails = {
                 ...foodData,
                 restaurantId: user._id,
-                image: imageUrl, // Use updated or existing image
+                image: imageUrl, 
             }
 
             console.log("Updating Food with Data:", foodDetails) // Debugging
 
-            const response = await axios.post('/updateFood', foodDetails, {
+            const response = await axios.post(`${backend_url}/updateFood`, foodDetails, {
                 withCredentials: true
             })
-
-            // console.log("Update Response:", response)
-
 
             toast.success("Food updated successfully!")
 

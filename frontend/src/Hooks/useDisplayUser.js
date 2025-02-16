@@ -4,10 +4,11 @@ import React, { useEffect, useState } from 'react'
 function useDisplayUser() {
 
     const [data, setData] = useState("")
+    const backend_url = process.env.FRONTEND_URL
 
     const displayUser = async() => {
         try {
-            const response = await axios.get("/user-details", {withCredentials: true})
+            const response = await axios.get(`${backend_url}/user-details`, {withCredentials: true})
 
             setData(response.data.user)
 

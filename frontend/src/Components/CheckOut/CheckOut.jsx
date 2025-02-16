@@ -2,13 +2,9 @@ import React, { useState } from 'react'
 import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from '../../redux/orderSlice';
-import toast from 'react-hot-toast';
-import { clearCart } from '../../redux/cartSlice';
-// import { placeOrder } from ;
 
 const CheckOut = ({ isOpen, onclose }) => {
-
-
+  
   let userData = JSON.parse(Cookies.get('user-data'))
 
   const [userInfo, setUserInfo] = useState({

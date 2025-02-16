@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import useAddFood from "../../hooks/useAddFood";
-import { useNavigate } from 'react-router-dom'
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import useDisplayUser from "../../hooks/useDisplayUser";
 
@@ -23,12 +21,6 @@ const Navbar = () => {
       setUserType("restaurant");
     }
   }, []);
-
-
-
-
-
-
 
   const [foodData, setFoodData] = useState({
     name: "",

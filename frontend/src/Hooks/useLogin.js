@@ -6,12 +6,13 @@ import Cookies from 'js-cookie'
 function useLogin() {
 
     const [loading, setLoading] = useState(false)
+    const backend_url = process.env.FRONTEND_URL
 
     const login = async({data}) => {
         try {
             setLoading(true)
 
-            const resposne = await axios.post('/login', data, {withCredentials: true})
+            const resposne = await axios.post(`${backend_url}/login`, data, {withCredentials: true})
             // console.log(resposne);
             
             if (resposne.status === 200) {

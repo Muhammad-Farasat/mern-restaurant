@@ -14,7 +14,7 @@ function VerifyEmail() {
                 const response = await axios.get(`/verify-email/${token}`);
                 toast.success(response.data.message);
                 setVerified(true);
-                setTimeout(() => navigate("/login"), 3000);  // Redirect to login after 3 seconds
+                setTimeout(() => navigate("/login"), 3000); 
             } catch (error) {
                 toast.error("Invalid or expired link.");
                 setVerified(false);

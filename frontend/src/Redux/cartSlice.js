@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
+const backend_url = process.env.FRONTEND_URL
 
-// Fix endpoint URLs and parameter handling
+
 export const addToCart = createAsyncThunk('cart/addToCart', 
   async({ userId, restaurantId, foodId, price, quantity, name }) => {
-    const res = await fetch("/cart/add", { // Update endpoint
+    const res = await fetch(`${backend_url}/cart/add`, { // Update endpoint
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId, foodId, quantity, name, price }),
@@ -21,7 +22,7 @@ export const addToCart = createAsyncThunk('cart/addToCart',
 
 export const removeFromCart = createAsyncThunk('cart/removeFromCart', 
   async({ userId, restaurantId, foodId }) => { // Add userId
-    const res = await fetch("/cart/remove", { // Update endpoint
+    const res = await fetch(`${backend_url}/cart/remove`, { // Update endpoint
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId, foodId }),
@@ -37,7 +38,7 @@ export const removeFromCart = createAsyncThunk('cart/removeFromCart',
 
 export const clearCart = createAsyncThunk('cart/clearCart', 
   async({ userId, restaurantId }) => {
-    const res = await fetch("/cart/clear", { 
+    const res = await fetch(`${backend_url}/cart/clear`, { 
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId }),
@@ -55,7 +56,7 @@ export const clearCart = createAsyncThunk('cart/clearCart',
 export const fetchCart = createAsyncThunk("cart/getCart", 
   async({ userId, restaurantId }) => {
     const res = await fetch(
-      `/cart/${userId}?restaurantId=${restaurantId}`
+      `${backend_url}/cart/${userId}?restaurantId=${restaurantId}`
     );
     const data = await res.json();
     return data.cart; 

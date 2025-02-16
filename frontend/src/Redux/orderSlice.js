@@ -2,13 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 import { clearCart, clearCartState } from "./cartSlice";
 
-export const placeOrder = createAsyncThunk(
-  "order/placeOrder",
-  async (orderData, {dispatch}) => {
-    console.log(orderData.restaurantId, orderData.userId);
-    
+const backend_url = process.env.FRONTEND_URL
 
-      const res = await fetch("/placeOrder", {
+
+export const placeOrder = createAsyncThunk("order/placeOrder", async (orderData, {dispatch}) => {
+      const res = await fetch(`${backend_url}/placeOrder`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
@@ -27,21 +25,17 @@ export const placeOrder = createAsyncThunk(
   }
 );
 
-export const fetchUserOrders = createAsyncThunk(
-  "order/fetchUserOrders",
-  async (userId) => {
-    const res = await fetch(`/userOrders/${userId}`);
+export const fetchUserOrders = createAsyncThunk("order/fetchUserOrders", async (userId) => {
+    const res = await fetch(`${backend_url}/userOrders/${userId}`);
     const data = await res.json();
     return data.orders;
   }
 );
 
 // ✅ Fetch Orders for a Restaurant
-export const fetchRestaurantOrders = createAsyncThunk(
-  "order/fetchRestaurantOrders",
-  async (restaurantId) => {
+export const fetchRestaurantOrders = createAsyncThunk("order/fetchRestaurantOrders", async (restaurantId) => {
     const res = await fetch(
-      `/restaurantOrders/${restaurantId}`
+      `${backend_url}/restaurantOrders/${restaurantId}`
     );
     const data = await res.json();
     console.log(data.orders);
@@ -50,13 +44,9 @@ export const fetchRestaurantOrders = createAsyncThunk(
 );
 
 // ✅ Update Order Status
-export const updateOrderStatus = createAsyncThunk(
-  "order/updateOrderStatus",
-  async ({ orderId, status }) => {
-    console.log("This is orderId",orderId);
+export const updateOrderStatus = createAsyncThunk("order/updateOrderStatus", async ({ orderId, status }) => {
     
-    const res = await fetch(
-      `/updateOrder/${orderId}`,
+    const res = await fetch(`${backend_url}/updateOrder/${orderId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

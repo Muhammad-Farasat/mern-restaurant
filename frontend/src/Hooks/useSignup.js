@@ -7,12 +7,13 @@ import Cookies from 'js-cookie'
 function useSignup() {
 
     const [loading, setLoading] = useState(false)
+    const backend_url = process.env.FRONTEND_URL
 
     const signup = async ({ data }) => {
         try {
             setLoading(true)
 
-            const response = await axios.post('/signup', data, { withCredentials: true })
+            const response = await axios.post(`${backend_url}/signup`, data, { withCredentials: true })
 
             if (response.status === 200) {
                 

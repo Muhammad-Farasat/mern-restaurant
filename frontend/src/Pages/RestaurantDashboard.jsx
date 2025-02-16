@@ -11,7 +11,7 @@ const RestaurantDashboard = () => {
   console.log(orders);
 
   useEffect(() => {
-    dispatch(fetchRestaurantOrders(restaurantId._id)); // Fetch orders for this restaurant
+    dispatch(fetchRestaurantOrders(restaurantId._id)); 
   }, [dispatch]);
 
   const handleStatusChange = (orderId, newStatus) => {

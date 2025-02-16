@@ -6,12 +6,13 @@ import Cookies from 'js-cookie'
 function useLogout() {
 
   const [loading, setLoading] = useState(false)
+  const backend_url = process.env.FRONTEND_URL
 
   const logout = async() => {
       try {
         setLoading(true)
 
-        await axios.post('/logout',  {withCredentials: true})
+        await axios.post(`${backend_url}/logout`,  {withCredentials: true})
 
         Cookies.remove('authorization')
         Cookies.remove('user-data')

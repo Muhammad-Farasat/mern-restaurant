@@ -5,12 +5,13 @@ import Cookies from 'js-cookie'
 
 function useRestaurantLogout() {
   const [loading, setLoading] = useState(false);
+  const backend_url = process.env.FRONTEND_URL
 
   const restaurantLogout = async () => {
     try {
       setLoading(true);
 
-      await axios.post("/removeRestaurant", {
+      await axios.post(`${backend_url}/removeRestaurant`, {
         withCredentials: true,
       });
 

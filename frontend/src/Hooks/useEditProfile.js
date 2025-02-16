@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 function useEditProfile() {
 
     const [loading, setLoading] = useState(false)
+    const backend_url = process.env.FRONTEND_URL
 
     const editProfile = async (formData) => {
         try {
@@ -12,7 +13,7 @@ function useEditProfile() {
             
             setLoading(true)
 
-            const response = await axios.post("/edit-profile", formData, { withCredentials: true })
+            const response = await axios.post(`${backend_url}/edit-profile`, formData, { withCredentials: true })
 
             if (response.status === 200) {
                 toast.success("Edited Successfully..!")

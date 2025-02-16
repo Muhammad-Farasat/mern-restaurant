@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 function useRestaurantSignup() {
 
     const [loading, setLoading] = useState(false)
+    const backend_url = process.env.FRONTEND_URL
 
     const restaurantSignup = async({data}) => {
         try {
@@ -14,7 +15,7 @@ function useRestaurantSignup() {
             const formData = new FormData()
             formData.append("image", data.image)
 
-            const imgUrl = await axios.post('/upload', formData)
+            const imgUrl = await axios.post(`${backend_url}/upload`, formData)
 
             // console.log(imgUrl);
             if (!imgUrl.data.image_url) {
@@ -23,7 +24,7 @@ function useRestaurantSignup() {
 
             const restaurantData = {...data, image: imgUrl.data.image_url}
 
-            const response = await axios.post('/registerRestaurant', restaurantData, {withCredentials: true})
+            const response = await axios.post(`${backend_url}/registerRestaurant`, restaurantData, {withCredentials: true})
 
             if (response.status === 200) {
                 console.log(response);

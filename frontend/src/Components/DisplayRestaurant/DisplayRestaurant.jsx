@@ -6,8 +6,6 @@ const DisplayRestaurant = () => {
 
   const { displayRestaurant, loading } = useDisplayRestaurant()
 
-  // console.log(displayRestaurant);
-
   return (
     <>
       <section className="w-full min-h-screen py-12 bg-[#F5F0E6]">

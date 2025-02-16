@@ -6,12 +6,13 @@ function useDisplayDish(id) {
 
     const [dishesDisplay, setDishesDisplay] = useState([])
     const [loading, setLoading] = useState(false)
+    const backend_url = process.env.FRONTEND_URL
 
     const dishes = async() =>{
         try {
             setLoading(true)
 
-            const response = await axios.get(`/getFoods?restaurantId=${id}`, {withCredentials: true})
+            const response = await axios.get(`${backend_url}/getFoods?restaurantId=${id}`, {withCredentials: true})
 
             
             if (response.status === 200) {
