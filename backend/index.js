@@ -66,9 +66,9 @@ app.use(foodRoute);
 app.use(orderRoute);
 app.use(cartRoute);
 
-app.get('/', (req, res)=>{
-  res.send("HEllo world")
-})
+// app.get('/', (req, res)=>{
+//   res.send("HEllo world")
+// })
 
 app.use(express.static(path.join(__dirname, '/dist')));
 
