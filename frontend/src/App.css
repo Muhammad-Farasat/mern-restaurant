@@ -14,25 +14,25 @@
 
 @font-face {
   font-family: Nunito;
-  src: url('Fonts/static/Nunito-Regular.ttf');
+  src: url('/Fonts/static/Nunito-Regular.ttf')format('truetype');
 }
 
 
 @font-face {
   font-family: Nunito-Medium;
-  src: url('Fonts/static/Nunito-Medium.ttf');
+  src: url('/Fonts/static/Nunito-Medium.ttf')format('truetype');
 }
 
 
 @font-face {
   font-family: Nunito-Bold;
-  src: url('Fonts/static/Nunito-Bold.ttf');
+  src: url('/Fonts/static/Nunito-Bold.ttf')format('truetype');
 }
 
 
 @font-face {
   font-family: Nunito-ExtraBold;
-  src: url('Fonts/static/Nunito-ExtraBold.ttf');
+  src: url('/Fonts/static/Nunito-ExtraBold.ttf')format('truetype');
 }
 
 body{
