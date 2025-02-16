@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 function useEditProfile() {
 
     const [loading, setLoading] = useState(false)
-    const backend_url = process.env.FRONTEND_URL
+    const backend_url = import.meta.env.VITE_BACKEND_URL
 
     const editProfile = async (formData) => {
         try {

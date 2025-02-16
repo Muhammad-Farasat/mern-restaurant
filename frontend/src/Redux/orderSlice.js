@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 import { clearCart, clearCartState } from "./cartSlice";
 
-const backend_url = process.env.FRONTEND_URL
+const backend_url = import.meta.env.VITE_BACKEND_URL
 
 
 export const placeOrder = createAsyncThunk("order/placeOrder", async (orderData, {dispatch}) => {

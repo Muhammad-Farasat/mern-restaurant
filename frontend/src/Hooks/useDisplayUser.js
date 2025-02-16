@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 function useDisplayUser() {
 
     const [data, setData] = useState("")
-    const backend_url = process.env.FRONTEND_URL
+    const backend_url = import.meta.env.VITE_BACKEND_URL
 
     const displayUser = async() => {
         try {

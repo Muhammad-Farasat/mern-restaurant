@@ -21,8 +21,6 @@ const app = express();
 
 app.use(express.json());
 
-const __dirname = path.resolve();
-
 app.use(cookieParser());
 
 app.use(
