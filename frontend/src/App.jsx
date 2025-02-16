@@ -1,6 +1,6 @@
 import './App.css'
 import { Toaster } from 'react-hot-toast'
-import Signup from './pages/Signup'
+// import Signup from './pages/Signup'
 import {Navigate, Route, Routes} from 'react-router-dom'
 import Login from './pages/Login'
 import Home from './pages/Home'
@@ -24,7 +24,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={ authUser ? <Home /> : <Navigate to={'/login'} /> } />
-        <Route path='/signup' element={ !authUser ? <Signup /> :<Navigate to={'/'} /> } />
+        {/* <Route path='/signup' element={ !authUser ? <Signup /> :<Navigate to={'/'} /> } /> */}
         <Route path='/login' element={ !authUser ? <Login /> :<Navigate to={'/'} /> } />
         <Route path='/registerRestaurant' element={!authRest ? <RestaurantSignup /> : <Navigate to={'/RestaurantHome/:id'}/> } />
         <Route path='/loginRestaurant' element={ !authRest ? <RestaurantLogin /> : <Navigate to={'/RestaurantHome/:id'} /> } />
