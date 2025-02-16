@@ -11,6 +11,7 @@ import restaurantRoute from "./Routes/restaurant.route.js";
 import foodRoute from "./Routes/food.route.js";
 import orderRoute from "./Routes/order.route.js";
 import cartRoute from './Routes/cart.route.js'
+import path from 'path'
 
 dotenv.config();
 db();
