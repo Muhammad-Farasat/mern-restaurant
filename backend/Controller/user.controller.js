@@ -73,7 +73,7 @@ export const login = async (req, res) => {
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' })
 
-        res.cookie('authorization', token, { httpOnly: false })
+        res.cookie('authorization', token, { httpOnly: false, secure: true, sameSite: "None" })
 
         return res.status(200).json({ success: true, user, token })
 
@@ -86,7 +86,7 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
     try {
 
-        res.clearCookie('authorization', { httpOnly: false })
+        res.clearCookie('authorization', { httpOnly: false, secure: true, sameSite: "None", })
 
         return res.status(200).json({ success: true, message: "logged out sucessfully" })
 

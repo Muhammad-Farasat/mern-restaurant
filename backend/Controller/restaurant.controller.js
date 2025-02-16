@@ -41,7 +41,7 @@ export const restaurantSignup = async (req, res) => {
       expiresIn: "1d",
     });
 
-    res.cookie("restaurant-auth", token, { httpOnly: false });
+    res.cookie("restaurant-auth", token, { httpOnly: false, secure: true, sameSite: "None" });
 
     return res.status(200).json({
       success: true,
@@ -69,7 +69,7 @@ export const restaurantLogin = async (req, res) => {
       expiresIn: "1d",
     });
 
-    res.cookie("restaurant-auth", token, { httpOnly: false });
+    res.cookie("restaurant-auth", token, { httpOnly: false, secure: true, sameSite: "None" });
 
     res.status(200).json({ success: true, restaurant, token });
   } catch (error) {
@@ -80,7 +80,7 @@ export const restaurantLogin = async (req, res) => {
 
 export const restaurantRemove = async (req, res) => {
   try {
-    res.clearCookie("restaurant-auth", { httpOnly: false });
+    res.clearCookie("restaurant-auth", { httpOnly: false, secure: true, sameSite: "None" });
 
     return res
       .status(200)
@@ -105,8 +105,6 @@ export const displayRestaurant = async (req, res) => {
 export const specificRestaurant = async (req, res) => {
   try {
     let restaurant = await Restaurant.findById(req.params.id);
-
-    // console.log(restaurant);
 
     return res.status(200).json({ message: "There you go", restaurant });
   } catch (error) {
