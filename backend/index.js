@@ -65,6 +65,10 @@ app.use(foodRoute);
 app.use(orderRoute);
 app.use(cartRoute);
 
+app.get('/', (req, res)=>{
+  res.send("HEllo world")
+})
+
 app.listen(port, () => {
   console.log("Port Connected");
 });
