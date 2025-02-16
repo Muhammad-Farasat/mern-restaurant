@@ -24,7 +24,12 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://zen-bites.vercel.app",
+    credentials: true, 
+  })
+);
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUD_NAME,
