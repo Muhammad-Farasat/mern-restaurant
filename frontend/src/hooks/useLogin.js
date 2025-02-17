@@ -13,7 +13,6 @@ function useLogin() {
             setLoading(true)
 
             const resposne = await axios.post(`${backend_url}/login`, data, {withCredentials: true})
-            // console.log(resposne);
             
             if (resposne.status === 200) {
                 toast.success("Logged In")
@@ -23,7 +22,7 @@ function useLogin() {
                 console.log(resposne.data.user);
                 Cookies.set('user-data', JSON.stringify(userData), {expiresIn: '1d'})
 
-                window.location.replace('/')
+                // window.location.replace('/')
             }
             
 
