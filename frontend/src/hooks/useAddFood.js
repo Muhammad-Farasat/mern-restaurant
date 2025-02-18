@@ -29,7 +29,7 @@ function useAddFood() {
 
             const foodDetails = {...foodData, restaurantId: user._id, image: imageUrl.data.image_url}
 
-            const response = await axios.post(`${backend_url}/addFood`, foodDetails, {withCredentials: true})
+            const response = await axios.post(`${backend_url}/api/addFood`, foodDetails, {withCredentials: true})
 
             console.log(response.data.data);
 

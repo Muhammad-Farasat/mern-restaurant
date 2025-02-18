@@ -3,9 +3,9 @@ import { placeOrder, getUserOrders, getRestaurantOrders, updateOrderStatus } fro
 
 const router = express.Router();
 
-router.post("/placeOrder", placeOrder);
-router.get("/userOrders/:userId", getUserOrders);
-router.get("/restaurantOrders/:restaurantId", getRestaurantOrders);
-router.put("/updateOrder/:orderId", updateOrderStatus);
+router.post("/api/placeOrder", placeOrder);
+router.get("/api/userOrders/:userId", getUserOrders);
+router.get("/api/restaurantOrders/:restaurantId", getRestaurantOrders);
+router.put("/api/updateOrder/:orderId", updateOrderStatus);
 
 export default router;

@@ -10,10 +10,11 @@ function useSpecificRestaurant(id) {
 
   const specificRestaurant = async() => {
     try {
+    
       setLoading(true)
-      const response = await axios.get(`${backend_url}/specificRestaurant/${id}`)
-      // console.log(response.data);
+      const response = await axios.get(`${backend_url}/api/specificRestaurant/${id}`)
       setOneRestaurant(response.data.restaurant)
+    
     } catch (error) {
       toast.error("Can't bring")
       console.log(error);

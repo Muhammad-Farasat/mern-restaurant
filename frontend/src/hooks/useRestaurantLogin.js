@@ -13,7 +13,7 @@ function useRestaurantLogin() {
             
             setLoading(true)
 
-            const response = await axios.post(`${backend_url}/loginRestaurant`, data, {withCredentials: true})
+            const response = await axios.post(`${backend_url}/api/loginRestaurant`, data, {withCredentials: true})
 
             // console.log(response.data.restaurant);
 

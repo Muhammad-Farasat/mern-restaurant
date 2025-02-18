@@ -3,10 +3,10 @@ import { restaurantLogin, restaurantRemove, restaurantSignup, displayRestaurant,
 
 const router = express.Router()
 
-router.post('/registerRestaurant', restaurantSignup)
-router.post('/loginRestaurant', restaurantLogin)
-router.post('/removeRestaurant', restaurantRemove)
-router.get('/allRestaurant', displayRestaurant)
-router.get('/specificRestaurant/:id', specificRestaurant)
+router.post('/api/registerRestaurant', restaurantSignup)
+router.post('/api/loginRestaurant', restaurantLogin)
+router.post('/api/removeRestaurant', restaurantRemove)
+router.get('/api/allRestaurant', displayRestaurant)
+router.get('/api/specificRestaurant/:id', specificRestaurant)
 
 export default router

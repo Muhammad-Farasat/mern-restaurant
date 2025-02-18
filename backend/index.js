@@ -12,6 +12,7 @@ import foodRoute from "./Routes/food.route.js";
 import orderRoute from "./Routes/order.route.js";
 import cartRoute from './Routes/cart.route.js'
 import path from 'path';
+import { log } from "console";
 
 
 dotenv.config();
@@ -77,6 +78,8 @@ app.get('/check', (req, res)=>{
 })
 
 app.use(express.static(path.join(__dirname, '/dist')));
+
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));

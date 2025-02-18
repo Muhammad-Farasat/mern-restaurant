@@ -5,10 +5,10 @@ import { verifyRestaurantToken } from '../Middleware/authenticate.js'
 
 const router = express.Router()
 
-router.post('/addFood', verifyRestaurantToken, addFood)
-router.post('/deleteFood', verifyRestaurantToken, deleteFood)
-router.post('/updateFood', verifyRestaurantToken, updateFood)
-router.get('/getFoods', getFoods)
+router.post('/api/addFood', verifyRestaurantToken, addFood)
+router.post('/api/deleteFood', verifyRestaurantToken, deleteFood)
+router.post('/api/updateFood', verifyRestaurantToken, updateFood)
+router.get('/api/getFoods', getFoods)
 // router.get('/getFood/:id', specificFood)
 
 

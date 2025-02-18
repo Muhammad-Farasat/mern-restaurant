@@ -3,10 +3,10 @@ import { addToCart, removeCartItem, getCart, clearCart} from '../Controller/cart
 
 const router = express.Router()
 
-router.post('/cart/add', addToCart)
-router.post('/cart/remove', removeCartItem)
-router.post('/cart/clear', clearCart)
-router.get('/cart/:userId', getCart)
+router.post('/api/cart/add', addToCart)
+router.post('/api/cart/remove', removeCartItem)
+router.post('/api/cart/clear', clearCart)
+router.get('/api/cart/:userId', getCart)
 
 
 export default router

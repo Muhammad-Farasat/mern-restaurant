@@ -24,7 +24,7 @@ function useRestaurantSignup() {
 
             const restaurantData = {...data, image: imgUrl.data.image_url}
 
-            const response = await axios.post(`${backend_url}/registerRestaurant`, restaurantData, {withCredentials: true})
+            const response = await axios.post(`${backend_url}/api/registerRestaurant`, restaurantData, {withCredentials: true})
 
             if (response.status === 200) {
                 console.log(response);

@@ -4,11 +4,11 @@ import {verifyCustomerToken} from '../Middleware/authenticate.js'
 
 const router = express.Router()
 
-router.post('/login',  login)
-router.post('/signup', signup)
-router.post('/logout', logout)
-router.get('/user-details', verifyCustomerToken, userDetail)
-router.get('/verify-email/:token', verifyEmail)
-router.post('/edit-profile', editUser)
+router.post('/api/login',  login)
+router.post('/api/signup', signup)
+router.post('/api/logout', logout)
+router.get('/api/user-details', verifyCustomerToken, userDetail)
+router.get('/api/verify-email/:token', verifyEmail)
+router.post('/api/edit-profile', editUser)
 
 export default router

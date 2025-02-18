@@ -99,9 +99,7 @@ export const logout = async (req, res) => {
 export const userDetail = async (req, res) => {
     try {
         const id = req.user.id
-        console.log("This is the user ID: ", id);
-
-
+       
         const user = await User.findById(id)
 
         if (!user) {

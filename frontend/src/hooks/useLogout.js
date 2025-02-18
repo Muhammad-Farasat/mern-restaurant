@@ -12,7 +12,7 @@ function useLogout() {
       try {
         setLoading(true)
 
-        await axios.post(`${backend_url}/logout`,  {withCredentials: true})
+        await axios.post(`${backend_url}/api/logout`,  {withCredentials: true})
 
         Cookies.remove('authorization')
         Cookies.remove('user-data')

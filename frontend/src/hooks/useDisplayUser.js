@@ -8,7 +8,7 @@ function useDisplayUser() {
 
     const displayUser = async() => {
         try {
-            const response = await axios.get(`${backend_url}/user-details`, {withCredentials: true})
+            const response = await axios.get(`${backend_url}/api/user-details`, {withCredentials: true})
 
             setData(response.data.user)
 

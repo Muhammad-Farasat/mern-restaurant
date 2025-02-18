@@ -12,7 +12,7 @@ function useUpdateDish() {
             setLoading(true)
 
             const formData = new FormData()
-            let imageUrl = foodData.image; // Default to existing image
+            let imageUrl = foodData.image; 
 
             if (foodData.image instanceof File) {
                 formData.append("image", foodData.image)
@@ -40,9 +40,9 @@ function useUpdateDish() {
                 image: imageUrl, 
             }
 
-            console.log("Updating Food with Data:", foodDetails) // Debugging
+            console.log("Updating Food with Data:", foodDetails) 
 
-            const response = await axios.post(`${backend_url}/updateFood`, foodDetails, {
+            const response = await axios.post(`${backend_url}/api/updateFood`, foodDetails, {
                 withCredentials: true
             })
 
