@@ -11,8 +11,8 @@ import restaurantRoute from "./Routes/restaurant.route.js";
 import foodRoute from "./Routes/food.route.js";
 import orderRoute from "./Routes/order.route.js";
 import cartRoute from './Routes/cart.route.js'
-import path from 'path';
-import { log } from "console";
+// import path from 'path';
+// import { log } from "console";
 
 
 dotenv.config();
@@ -21,7 +21,7 @@ db();
 const port = process.env.PORT
 
 const app = express();
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -77,11 +77,11 @@ app.get('/check', (req, res)=>{
   res.send("HEllo world")
 })
 
-app.use(express.static(path.join(__dirname, '/dist')));
+// app.use(express.static(path.join(__dirname, '/dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+// });
 
 app.listen(port, () => {
   console.log("Port Connected");
