@@ -25,12 +25,6 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use(
-//   cors({
-//     origin: "https://zen-bites.vercel.app",
-//     credentials: true, 
-//   })
-// );
 
 app.use(cors());
 app.use(express.json());
