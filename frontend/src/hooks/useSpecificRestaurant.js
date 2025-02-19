@@ -12,7 +12,7 @@ function useSpecificRestaurant(id) {
     try {
     
       setLoading(true)
-      const response = await axios.get(`${backend_url}/api/specificRestaurant/${id}`)
+      const response = await axios.get(`/api/specificRestaurant/${id}`)
       setOneRestaurant(response.data.restaurant)
     
     } catch (error) {

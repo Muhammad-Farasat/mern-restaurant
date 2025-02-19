@@ -6,7 +6,7 @@ const backend_url = import.meta.env.VITE_BACKEND_URL
 
 
 export const placeOrder = createAsyncThunk("order/placeOrder", async (orderData, {dispatch}) => {
-      const res = await fetch(`${backend_url}/api/placeOrder`, {
+      const res = await fetch(`/api/placeOrder`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
@@ -26,7 +26,7 @@ export const placeOrder = createAsyncThunk("order/placeOrder", async (orderData,
 );
 
 export const fetchUserOrders = createAsyncThunk("order/fetchUserOrders", async (userId) => {
-    const res = await fetch(`${backend_url}/api/userOrders/${userId}`);
+    const res = await fetch(`/api/userOrders/${userId}`);
     const data = await res.json();
     return data.orders;
   }
@@ -34,7 +34,7 @@ export const fetchUserOrders = createAsyncThunk("order/fetchUserOrders", async (
 
 export const fetchRestaurantOrders = createAsyncThunk("order/fetchRestaurantOrders", async (restaurantId) => {
     const res = await fetch(
-      `${backend_url}/api/restaurantOrders/${restaurantId}`
+      `/api/restaurantOrders/${restaurantId}`
     );
     const data = await res.json();
     console.log(data.orders);
@@ -44,7 +44,7 @@ export const fetchRestaurantOrders = createAsyncThunk("order/fetchRestaurantOrde
 
 export const updateOrderStatus = createAsyncThunk("order/updateOrderStatus", async ({ orderId, status }) => {
     
-    const res = await fetch(`${backend_url}/api/updateOrder/${orderId}`,
+    const res = await fetch(`/api/updateOrder/${orderId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

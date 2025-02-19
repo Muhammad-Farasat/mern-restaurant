@@ -14,7 +14,7 @@ const transport = nodemailer.createTransport({
 const frontend_url = process.env.URL
 
 export const senderEmailVerification = async(email, token) => {
-    const verificationLink = `${frontend_url}/verify-email/${token}`
+    const verificationLink = `/verify-email/${token}`
 
 
     const mailOptions = {
