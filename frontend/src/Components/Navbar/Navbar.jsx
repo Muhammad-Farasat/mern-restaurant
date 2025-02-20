@@ -22,14 +22,6 @@ const Navbar = () => {
     }
   }, []);
 
-  const [foodData, setFoodData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    image: null,
-    restaurantId: null,
-    foodId: null,
-  });
 
   const { data } = useDisplayUser()
 

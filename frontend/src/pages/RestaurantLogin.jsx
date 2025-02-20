@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useRestaurantLogin from "../hooks/useRestaurantLogin";
 
 const RestaurantLogin = () => {
+
   const [data, setData] = useState({ email: "", password: "" });
 
   const { loading, login } = useRestaurantLogin();
@@ -12,8 +13,10 @@ const RestaurantLogin = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#F5F0E6] px-4">
-      <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg border border-[#E0E3E6]">
+    <div className="flex items-center justify-center min-h-screen bg-[#F5F0E6]">
+      
+      <div className="w-full max-w-md p-8 max-sm:px-3 max-sm:py-8 bg-white rounded-xl shadow-lg border border-[#E0E3E6]">
+        
         <h2 className="mb-8 text-3xl max-sm:text-2xl font-[Nunito-ExtraBold] text-center text-[#2A3B4D]">
           Restaurant Login
         </h2>
@@ -22,9 +25,11 @@ const RestaurantLogin = () => {
 
           {/* Email Input */}
           <div className="mb-6">
+           
             <label className="block mb-3 max-sm:text-sm font-[Nunito-Bold] text-[#4A4A4A]">
               Email
             </label>
+           
             <input
               type="email"
               className="w-full px-4 py-3 max-sm:px-3 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
@@ -33,6 +38,7 @@ const RestaurantLogin = () => {
               onChange={(e) => setData({ ...data, email: e.target.value })}
               required
             />
+          
           </div>
 
           {/* Password Input */}
@@ -81,11 +87,13 @@ const RestaurantLogin = () => {
           </p>
           {/* Divider */}
         </div>
+        
         <div className="my-4 flex items-center">
           <div className="flex-1 border-t border-[#A79B8D]"></div>
           <span className="px-4 text-[#4A4A4A]">or</span>
           <div className="flex-1 border-t border-[#A79B8D]"></div>
         </div>
+      
         <p className="mt-4 text-center text-[#4A4A4A]">
           <a
             href="/login"
@@ -94,7 +102,9 @@ const RestaurantLogin = () => {
             Login as Customer
           </a>
         </p>
+      
       </div>
+      
     </div>
   );
 };

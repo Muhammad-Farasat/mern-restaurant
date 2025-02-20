@@ -8,7 +8,6 @@ const Home = () => {
     <>
       <Navbar />
       <DisplayRestaurant />
-      {/* <DisplayDish /> */}
     </>
   )
 }

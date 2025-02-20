@@ -49,8 +49,8 @@ const Signup = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center min-h-screen bg-[#F5F0E6] p-4">
-        <div className="bg-white rounded-xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
+      <div className="flex justify-center items-center min-h-screen bg-[#F5F0E6] p-4 bg-[url(/Images/bg-image.png)] bg-repeat bg-contain  ">
+        <div className="bg-[#ffffff93] backdrop-blur-xs rounded-xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
           {/* Header */}
           <div className="p-6 border-b  border-[#E0E3E6]">
             <h2 className="text-3xl font-[Nunito-ExtraBold] text-[#2A3B4D] text-center">
@@ -147,7 +147,7 @@ const Signup = () => {
 
           {/* Login Link */}
           <div className="py-3 border-t border-[#E0E3E6] text-center">
-            <p className="text-sm text-[#4A4A4A]">
+            <p className="max-sm:text-sm text-[#4A4A4A]">
               Already have an account?{" "}
               <a
                 href="/login"
@@ -169,7 +169,7 @@ const Signup = () => {
 
           {/* Register Restaurant Link */}
           <div className="mb-8 mt-4 text-center">
-            <p className="text-sm text-[#4A4A4A]">
+            <p className="max-sm:text-sm text-[#4A4A4A]">
               <a
                 href="/registerRestaurant"
                 className="text-[#8AA896] hover:text-[#769382] font-[Nunito-Bold] transition-colors"

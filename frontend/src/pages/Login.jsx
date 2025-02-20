@@ -27,8 +27,8 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen bg-[#F5F0E6]">
-        <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
+      <div className="flex justify-center items-center h-screen bg-[#F5F0E6] bg-[url(/Images/bg-image.png)] bg-repeat bg-contain overflow-hidden ">
+        <div className="bg-[#ffffff93] backdrop-blur-xs   p-8 max-sm:p-3 max-sm:py-8 rounded-2xl shadow-lg w-full max-w-md border border-[#E0E3E6]">
           <h2 className="text-3xl font-[Nunito-ExtraBold] text-center mb-8 text-[#2A3B4D]">
             Welcome Back
           </h2>

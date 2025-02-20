@@ -20,7 +20,7 @@ function useLogin() {
                 const userData = resposne.data.user
 
                 console.log(resposne.data.user);
-                Cookies.set('user-data', JSON.stringify(userData), {expiresIn: '1d'})
+                // Cookies.set('user-data', JSON.stringify(userData), {expiresIn: '1d'})
 
                 window.location.replace('/')
             }
