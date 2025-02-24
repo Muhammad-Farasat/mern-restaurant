@@ -1,33 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
-import useDisplayDish from "../../hooks/useDisplayDish";
 import useUpdateDish from "../../hooks/useUpdateDish";
 import { Modal } from "antd";
-import Cookies from "js-cookie";
 import axios from "axios";
+import useDisplayUser from "../../hooks/useDisplayUser";
+import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
 
 const Card = ({ name, description, image, price, foodId, id }) => {
 
   const dispatch = useDispatch();
 
-  const fetchCookies = Cookies.get("user-data");
-  const fetchRestaurantCookies = Cookies.get("restaurant-user");
+  const { data } = useDisplayUser()
+  const { restaurantDetails } = useSpecificRestaurantToken()
+  const backend_url = import.meta.env.VITE_BACKEND_URL
 
-  const userData = fetchCookies ? JSON.parse(fetchCookies) : null;
-  const restaurantData = fetchRestaurantCookies
-    ? JSON.parse(fetchRestaurantCookies)
-    : null;
 
-  const userId = userData?._id || null;
-  const restaurantId = restaurantData?._id || null;
-
+  const userId = data?._id || null;
+  const restaurantId = restaurantDetails?._id || null;
+  
   const [foodData, setFoodData] = useState({
     name: "",
     description: "",
     price: "",
     image: null,
     foodId: null,
+    restaurantId: restaurantId
   });
 
   const { loading, updateFood } = useUpdateDish();
@@ -36,7 +34,6 @@ const Card = ({ name, description, image, price, foodId, id }) => {
 
   const handleAddToCart = () => {
     if (!userId) {
-      console.error("User ID is missing");
       return;
     }
     dispatch(
@@ -47,40 +44,38 @@ const Card = ({ name, description, image, price, foodId, id }) => {
   const handleDelete = async (foodId) => {
 
     const response = await axios.post(
-      "/deleteFood",
+      `/api/deleteFood`,
       { foodId },
       { withCredentials: true }
-
-      
     );
 
     if (response.status === 200) {
-      console.log(response);
-
       window.location.reload();
     } else {
       toast.error("Error on delete");
     }
+
   };
 
   const handleEdit = async () => {
+    
     try {
-        await updateFood(foodData);  // Attempt to update
-        setEditOpen(false);  // Close modal only if successful
-        window.location.reload();  // Refresh the page to reflect changes
+      await updateFood(foodData);
+      setEditOpen(false);
+      window.location.reload();
     } catch (error) {
-        console.error("Error updating food:", error);
-        toast.error("Failed to update food. Please try again!"); // Show error message
+      console.error("Error updating food:", error);
+      toast.error("Failed to update food. Please try again!");
     }
-};
+
+  };
 
   const handleImage = (e) => {
     const { name, files, value } = e.target;
     setFoodData({ ...foodData, [name]: files ? files[0] : value });
   };
 
-  console.log(name, price, description);
-  
+
 
   return (
     <>
@@ -110,7 +105,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
             </button>
           </div>
         ) : restaurantId ? (
-          <div className="flex justify-between px-6 pb-6">
+          <div className="flex flex-col space-y-1.5  justify-between px-6 pb-6">
             <button
               onClick={() => {
                 setFoodData({
@@ -119,6 +114,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
                   image,
                   price,
                   foodId,
+                  restaurantId
                 }
                 )
                 setEditOpen(true);
@@ -139,15 +135,16 @@ const Card = ({ name, description, image, price, foodId, id }) => {
       </div>
 
       <Modal
-        title={<p className="text-lg font-[Nunito-Bold]">Edit Item</p>}
+        title={<p className="text-lg font-[Nunito-Bold] text-green-800">Edit Item</p>}
         open={editOpen}
         onCancel={() => setEditOpen(false)}
         footer={null}
+        className="rounded-lg overflow-hidden"
       >
-        <div className="space-y-4">
+        <div className="space-y-4 p-6 bg-green-50">
           {/* Food Name */}
           <div>
-            <label className="block font-[Nunito-Bold] text-gray-700">Food Name</label>
+            <label className="block font-[Nunito-Bold] text-green-800">Food Name</label>
             <input
               type="text"
               name="name"
@@ -156,15 +153,13 @@ const Card = ({ name, description, image, price, foodId, id }) => {
                 setFoodData({ ...foodData, name: e.target.value });
               }}
               placeholder="Enter food name"
-              className="mt-1 border rounded-md px-3 py-2 w-full"
+              className="mt-1 border-2 border-green-200 rounded-lg px-3 py-2 w-full focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block font-[Nunito-Bold] text-gray-700">
-              Description
-            </label>
+            <label className="block font-[Nunito-Bold] text-green-800">Description</label>
             <textarea
               name="description"
               value={foodData.description}
@@ -172,13 +167,13 @@ const Card = ({ name, description, image, price, foodId, id }) => {
                 setFoodData({ ...foodData, description: e.target.value });
               }}
               placeholder="Enter food description"
-              className="mt-1 border rounded-md px-3 py-2 w-full h-24"
+              className="mt-1 border-2 border-green-200 rounded-lg px-3 py-2 w-full h-24 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
           </div>
 
           {/* Price */}
           <div>
-            <label className="block font-[Nunito-Bold] text-gray-700">Price ($)</label>
+            <label className="block font-[Nunito-Bold] text-green-800">Price ($)</label>
             <input
               type="number"
               name="price"
@@ -187,33 +182,32 @@ const Card = ({ name, description, image, price, foodId, id }) => {
                 setFoodData({ ...foodData, price: e.target.value });
               }}
               placeholder="Enter price"
-              className="mt-1 border rounded-md px-3 py-2 w-full"
+              className="mt-1 border-2 border-green-200 rounded-lg px-3 py-2 w-full focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
           </div>
 
           {/* Image Upload */}
           <div>
-            <label className="block font-[Nunito-Bold] text-gray-700">
-              Upload Image
-            </label>
+            <label className="block font-[Nunito-Bold] text-green-800">Upload Image</label>
             <input
               type="file"
               accept="image/*"
               name="image"
               onChange={handleImage}
-              className="mt-1 w-full"
+              className="mt-1 w-full border-2 border-green-200 rounded-lg px-3 py-2 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
             />
           </div>
 
           {/* Submit Button */}
           <button
             onClick={handleEdit}
-            className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            className="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
-            {loading ? "loading" : "Edit Item"}
+            {loading ? "Loading..." : "Edit Item"}
           </button>
         </div>
       </Modal>
+
     </>
 
   );

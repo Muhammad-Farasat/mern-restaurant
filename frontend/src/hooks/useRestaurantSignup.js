@@ -29,10 +29,7 @@ function useRestaurantSignup() {
             if (response.status === 200) {
                 console.log(response);
                 const restaurantUser = response.data.restaurant
-                const cookie =  Cookies.set('restaurant-user', JSON.stringify(restaurantUser), {expiresIn: '1d'})
-                const data = JSON.parse(Cookies.get(cookie))
-                const id = data._id
-                window.location.replace(`/RestaurantHome/${id}`)
+                window.location.replace(`/RestaurantHome`)
             }
 
         } catch (error) {

@@ -13,12 +13,13 @@ const Signup = () => {
   });
 
   const { loading, signup } = useSignup();
+  const [isFetchingLocation, setIsFetchingLocation] = useState(false);
 
   const geoLocation = async () => {
+    setIsFetchingLocation(true)
     navigator.geolocation.getCurrentPosition(async (position) => {
       let lat = position.coords.latitude;
       let lgn = position.coords.longitude;
-
       try {
         const response = await axios.get(
           `http://api.positionstack.com/v1/reverse?access_key=b4f083b25cc72a7b04fcda2825f8e04d&query=${lat},${lgn}`
@@ -28,13 +29,20 @@ const Signup = () => {
 
         if (result.data && result.data.length > 0) {
           const address = result.data[0].label;
-          data.location = address
+
+          setData((prevData) => ({
+            ...prevData,
+            location: address,
+          }));
+
         } else {
           console.error("No location data found");
         }
 
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsFetchingLocation(false)
       }
 
     });
@@ -123,7 +131,9 @@ const Signup = () => {
               className="w-full px-4 py-2.5 text-[#2A3B4D] bg-[#E0E3E6] rounded-lg font-[Nunito-Bold] hover:bg-[#D87C5A] hover:text-white transition-all transform hover:scale-105 active:scale-95"
               onClick={geoLocation}
             >
-              {data.location === null ? (
+              {isFetchingLocation ? (
+                '📍 Fetching Location...'
+              ) : data.location === null ? (
                 '📍 Get My Location'
               ) : (
                 `📍 ${data.location}`

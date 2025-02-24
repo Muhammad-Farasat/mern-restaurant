@@ -15,10 +15,7 @@ function useAddFood() {
             const formData = new FormData()
             formData.append("image", foodData.image)
 
-            const restaurantData = Cookies.get('restaurant-user')
-            const user = restaurantData ? JSON.parse(restaurantData) : null
-
-           
+            
             const imageUrl = await axios.post(`/api/upload`, formData)
            
             console.log(imageUrl);
@@ -27,13 +24,14 @@ function useAddFood() {
                 throw new Error("Error in uploading image", error)
             }
 
-            const foodDetails = {...foodData, restaurantId: user._id, image: imageUrl.data.image_url}
+            const foodDetails = {...foodData, image: imageUrl.data.image_url}
 
             const response = await axios.post(`/api/addFood`, foodDetails, {withCredentials: true})
 
-            console.log(response.data.data);
+            if (response.status === 200) {
+                toast.success('Hurray added')                
+            }
 
-            toast.success('Hurray added')
 
         } catch (error) {
             console.error(error);

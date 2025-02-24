@@ -1,42 +1,48 @@
 import { useState, useEffect } from "react";
 import useRestaurantLogout from "../../hooks/useRestaurantLogout";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Cookies from "js-cookie";
 import useLogout from "../../hooks/useLogout";
 import { Modal } from "antd";
 import useDisplayUser from "../../hooks/useDisplayUser";
 import useAddFood from "../../hooks/useAddFood";
 import { IoIosArrowDown } from "react-icons/io";
+import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
 
 
 
 const ProfileDropdown = () => {
 
-
-    const [isOpen, setIsOpen] = useState(false);
-
-    const userData = Cookies.get("user-data");
-    const user = userData ? JSON.parse(userData) : null;
-
-    const restaurantData = Cookies.get("restaurant-user");
-    const rUser = restaurantData ? JSON.parse(restaurantData) : null;
+    // User Type specification start
 
     const [userType, setUserType] = useState("");
+
+    // Hooks
+    const { data } = useDisplayUser()
+    const { restaurantDetails } = useSpecificRestaurantToken()
+
+    // Checking cookies
+    const userData = Cookies.get("authorization");
+    const restaurantData = Cookies.get("restaurant-auth");
+
+    useEffect(() => {
+        if (!userData) {
+            setUserType("restaurant");
+        } else if (!restaurantData) {
+            setUserType("customer");
+        }
+    }, []);
+
+
+    // User Type specification end
+
+    const [isOpen, setIsOpen] = useState(false);
 
 
     const { loading, logout } = useLogout();
     const { restaurantLogout } = useRestaurantLogout();
 
     const nav = useNavigate()
-
-
-    useEffect(() => {
-        if (user !== null) {
-            setUserType("customer");
-        } else if (rUser !== null) {
-            setUserType("restaurant");
-        }
-    }, []);
 
     const handleNavigate = () => {
         nav('/order-tracking')
@@ -51,10 +57,9 @@ const ProfileDropdown = () => {
     }
     const [open, setOpen] = useState(false);
 
-    const { data } = useDisplayUser()
 
     const handleDashboard = (restaurantId) => {
-        console.log(rUser._id);
+        console.log(restaurantData._id);
         nav(`/dashboard/${restaurantId}`)
     }
 
@@ -63,20 +68,24 @@ const ProfileDropdown = () => {
         setFoodData({ ...foodData, [name]: files ? files[0] : value });
     };
 
+    const restaurantId = restaurantDetails?._id || null;
+
     const [foodData, setFoodData] = useState({
         name: "",
         description: "",
         price: "",
         image: null,
-        restaurantId: null,
+        restaurantId,
         foodId: null,
     });
 
-    const { addFood } = useAddFood();
-    
+    const { addFood, loading: addFoodLoading } = useAddFood();
+
 
     const handleSubmit = async () => {
         await addFood({ foodData });
+        setIsOpen(false)
+        window.location.reload()
     };
 
     return (
@@ -88,10 +97,10 @@ const ProfileDropdown = () => {
                 <span>
                     {
                         userType === 'customer' ?
-                            data?.username : rUser?.name
+                            data?.username : restaurantDetails?.name
                     }
                 </span>
-                    <IoIosArrowDown />
+                <IoIosArrowDown />
             </button>
 
             {isOpen && (
@@ -133,7 +142,7 @@ const ProfileDropdown = () => {
                                 </li>
 
                                 <li
-                                    onClick={() => handleDashboard(rUser._id)}
+                                    onClick={() => handleDashboard(restaurantDetails._id)}
                                     className="px-4 py-2 text-[#D87C5A] hover:bg-gray-100 cursor-pointer"
                                 >
                                     Dashboard
@@ -222,7 +231,7 @@ const ProfileDropdown = () => {
                         onClick={handleSubmit}
                         className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95 shadow-md"
                     >
-                        {loading ? (
+                        {addFoodLoading ? (
                             <div className="flex justify-center items-center">
                                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
                             </div>

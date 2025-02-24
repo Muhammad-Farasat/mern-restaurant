@@ -18,17 +18,18 @@ import VerifyEmail from './pages/VerifyEmail'
 function App() {
 
   const authUser = Cookies.get('authorization')
+  
   const authRest = Cookies.get('restaurant-auth')
-
+  
   return (
     <>
       <Routes>
         <Route path='/' element={ authUser ? <Home /> : <Navigate to={'/login'} /> } />
         <Route path='/signup' element={ !authUser ? <Signup /> :<Navigate to={'/'} /> } />
         <Route path='/login' element={ !authUser ? <Login /> :<Navigate to={'/'} /> } />
-        <Route path='/registerRestaurant' element={!authRest ? <RestaurantSignup /> : <Navigate to={'/RestaurantHome/:id'}/> } />
-        <Route path='/loginRestaurant' element={ !authRest ? <RestaurantLogin /> : <Navigate to={'/RestaurantHome/:id'} /> } />
-        <Route path='/RestaurantHome/:id' element={ authRest ? <RestaurantHome /> : <Navigate to={'/registerRestaurant'} /> } />
+        <Route path='/registerRestaurant' element={!authRest ? <RestaurantSignup /> : <Navigate to={'/RestaurantHome'}/> } />
+        <Route path='/loginRestaurant' element={ !authRest ? <RestaurantLogin /> : <Navigate to={'/RestaurantHome'} /> } />
+        <Route path='/RestaurantHome' element={ authRest ? <RestaurantHome /> : <Navigate to={'/registerRestaurant'} /> } />
         <Route path='/restaurant/:id' element={<SpecificRestaurant />} />
         <Route path='/dashboard/:id' element={<RestaurantDashboard />} />
         <Route path='/order-tracking' element={<OrderTracking />} />

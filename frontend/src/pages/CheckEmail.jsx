@@ -1,6 +1,8 @@
 import React from 'react'
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useResendEmail from '../hooks/useResendEmail';
+import toast from 'react-hot-toast';
 
 const VerifyEmail = () => {
 
@@ -10,6 +12,17 @@ const VerifyEmail = () => {
     useEffect(() => {
         if (!email) navigate("/signup");
     }, [email, navigate]);
+
+    const { success, resendVerificationEmail, loading } = useResendEmail()
+
+    const handleResendEmail = () => {
+        resendVerificationEmail(email)
+
+        if (success) {
+            toast.success("Email has been resent")
+        }
+    }
+
 
     return (
         <>
@@ -46,6 +59,10 @@ const VerifyEmail = () => {
                         <p>
                             Please check your inbox and click the link to verify your account.
                         </p>
+                    </div>
+
+                    <div className='mt-4 w-32 mx-auto '>
+                        <button onClick={handleResendEmail} className={`w-full px-4 py-2.5 text-xs text-white rounded-lg font-[Nunito-Bold]  transition-all transform hover:scale-105 active:scale-95 shadow-md ${loading ? "bg-[#cd8a6f] cursor-not-allowed " : "bg-[#D87C5A] hover:bg-[#cd8a6f]"}`}>Resend E-mail</button>
                     </div>
 
                 </div>

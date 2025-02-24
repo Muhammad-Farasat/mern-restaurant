@@ -1,16 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from '../../redux/orderSlice';
+import useDisplayUser from '../../hooks/useDisplayUser';
 
 const CheckOut = ({ isOpen, onclose }) => {
-  
-  let userData = JSON.parse(Cookies.get('user-data'))
+
+
+  const { data } = useDisplayUser()
+
+  // let userData = data
+  console.log(data);
 
   const [userInfo, setUserInfo] = useState({
-    name: userData.username,
-    address: userData.location
+    username: "",
+    location: ""
   })
+
+  useEffect(() => {
+    if (data) {
+      setUserInfo({
+        username: data?.username || "",
+        location: data?.location || ""
+      });
+    }
+  }, [data]);
+
+
 
   const handleChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
@@ -22,18 +38,18 @@ const CheckOut = ({ isOpen, onclose }) => {
 
   const handlePlaceOrder = () => {
 
-      const orderData = {
-        userId: userData._id,
-        restaurantId: cart[0]?.foodId.restaurantId,
-        items: cart,
-        totalPrice,
-        status: "pending",
-        userInfo,
-      }
+    const orderData = {
+      userId: data._id,
+      restaurantId: cart[0]?.foodId.restaurantId,
+      items: cart,
+      totalPrice,
+      status: "pending",
+      userInfo,
+    }
 
-      dispatch(placeOrder(orderData))      
+    dispatch(placeOrder(orderData))
 
-      onclose() 
+    onclose()
 
   }
 
@@ -57,8 +73,8 @@ const CheckOut = ({ isOpen, onclose }) => {
               </label>
               <input
                 type="text"
-                name="name"
-                value={userInfo.name}
+                name="username"
+                value={userInfo.username}
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
                 placeholder="Enter your name"
@@ -72,8 +88,8 @@ const CheckOut = ({ isOpen, onclose }) => {
               </label>
               <input
                 type="text"
-                name="address"
-                value={userInfo.address}
+                name="location"
+                value={userInfo.location}
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 border border-[#A79B8D] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8AA896] focus:border-transparent transition-all"
                 placeholder="Enter your address"

@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 
 function useSpecificRestaurant(id) {
 
-  const [oneRestaurant, setOneRestaurant] = useState()
+  const [oneRestaurant, setOneRestaurant] = useState(null)
   const [loading, setLoading] = useState(false)
   const backend_url = import.meta.env.VITE_BACKEND_URL
 
@@ -12,20 +12,22 @@ function useSpecificRestaurant(id) {
     try {
     
       setLoading(true)
+      
       const response = await axios.get(`/api/specificRestaurant/${id}`)
-      setOneRestaurant(response.data.restaurant)
-    
+
+        setOneRestaurant(response.data.restaurant) 
+      
     } catch (error) {
-      toast.error("Can't bring")
       console.log(error);
     }finally{
       setLoading(false)
     }
   }
-
+  
   useEffect(()=>{
-    specificRestaurant()
-  },[])
+    specificRestaurant()   
+     
+  },[id])
 
   return {oneRestaurant, loading}
 }

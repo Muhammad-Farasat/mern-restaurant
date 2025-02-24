@@ -68,7 +68,7 @@ export const login = async (req, res) => {
         }
 
         if (!user.verified) {
-            return res.status(400).json({message: "Not verified"})
+            return res.status(400).json({ message: "Not verified" })
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' })
@@ -99,14 +99,14 @@ export const logout = async (req, res) => {
 export const userDetail = async (req, res) => {
     try {
         const id = req.user.id
-       
+
         const user = await User.findById(id)
 
         if (!user) {
-           return res.status(400).json({ message: "User not found" })
+            return res.status(400).json({ message: "User not found" })
         }
 
-       return  res.status(200).json({ success: true, user })
+        return res.status(200).json({ success: true, user })
 
 
     } catch (error) {
@@ -139,14 +139,14 @@ export const editUser = async (req, res) => {
 
 export const verifyEmail = async (req, res) => {
     try {
-        const {token} = req.params
+        const { token } = req.params
 
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         console.log('Decoded token:', decoded);
-    
+
         const user = await User.findById(decoded.id);
-        
+
         if (!user) {
             return res.status(400).json({ message: "User not found" })
         }
@@ -156,6 +156,34 @@ export const verifyEmail = async (req, res) => {
         await user.save()
 
         return res.status(200).json({ message: "Verified successfully" })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal server error", error })
+    }
+}
+
+
+export const resendVerificationEmail = async (req, res) => {
+    try {
+
+        const { email } = req.body
+
+        const user = await User.findOne({email})
+
+        if (!user) {
+            return res.status(400).json({ message: "Email not found" })
+        }
+
+        if (user.verified){
+            return res.status(400).json({message: "User is verified"})
+        }
+
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' })
+
+        await senderEmailVerification(email, token)     
+        
+        return res.status(200).json({ message: "Email has been resend successfully" })
 
     } catch (error) {
         console.log(error);

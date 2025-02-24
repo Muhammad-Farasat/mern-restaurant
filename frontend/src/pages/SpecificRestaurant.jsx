@@ -9,6 +9,8 @@ import { removeFromCart } from "../redux/cartSlice";
 import Navbar from "../Components/Navbar/Navbar";
 
 const SpecificRestaurant = () => {
+
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const { oneRestaurant } = useSpecificRestaurant(id);
@@ -21,7 +23,9 @@ const SpecificRestaurant = () => {
   return (
     <>
       <Navbar />
+      
       <div className="min-h-screen bg-[#F5F0E6]">
+
         {/* Banner Section */}
         <div className="relative h-72 w-full">
           <img

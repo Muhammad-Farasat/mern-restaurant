@@ -9,17 +9,17 @@ function useDisplayUser() {
     const displayUser = async() => {
         try {
             const response = await axios.get(`/api/user-details`, {withCredentials: true})
-
-            setData(response.data.user)
-
+            
+            if (response.status === 200) {
+                setData(response.data.user)            
+            }
         } catch (error) {
          console.log(error);
-            
         }
     }
 
     useEffect(()=>{
-        displayUser()
+        displayUser()        
     },[])
 
   return {data}

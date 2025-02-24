@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import CheckOut from "../CheckOut/CheckOut";
+import useDisplayUser from "../../hooks/useDisplayUser"
 
 const Cart = () => {
   
@@ -19,8 +20,10 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
 
-  const fetchCookies = JSON.parse(Cookies.get("user-data"));
-  const userId = fetchCookies._id;
+  // const fetchCookies = JSON.parse(Cookies.get("user-data"));
+
+  const { data } = useDisplayUser()
+  const userId = data._id;
 
   useEffect(() => {
     if (id && userId) {

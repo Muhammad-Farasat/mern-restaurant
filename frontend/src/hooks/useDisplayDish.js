@@ -18,10 +18,8 @@ function useDisplayDish(id) {
             if (response.status === 200) {
                 setDishesDisplay(response.data.foods)
             }
-            console.log(response.data.foods);
 
         } catch (error) {
-            toast.error("Can't bring dishes")
             console.log(error);
         }finally{
             setLoading(false)

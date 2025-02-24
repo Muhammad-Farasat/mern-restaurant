@@ -2,28 +2,33 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import useDisplayUser from "../../hooks/useDisplayUser";
+import { useParams } from "react-router-dom";
+import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
+
+
+
 
 const Navbar = () => {
 
-  const userData = Cookies.get("user-data");
-  const user = userData ? JSON.parse(userData) : null;
+  const {id} = useParams()
 
-  const restaurantData = Cookies.get("restaurant-user");
-  const rUser = restaurantData ? JSON.parse(restaurantData) : null;
+  // Cookies checking
+  const userData = Cookies.get("authorization");
+  const restaurantData = Cookies.get("restaurant-auth");
 
   const [userType, setUserType] = useState("");
 
+  const { data } = useDisplayUser()
+  const {restaurantDetails} = useSpecificRestaurantToken(id)
 
   useEffect(() => {
-    if (user !== null) {
-      setUserType("customer");
-    } else if (rUser !== null) {
+    if (!userData) {
       setUserType("restaurant");
+    } else if (!restaurantData) {
+      setUserType("customer");
     }
   }, []);
 
-
-  const { data } = useDisplayUser()
 
 
   return (
@@ -32,7 +37,7 @@ const Navbar = () => {
 
         <div className="text-2xl font-[Nunito-ExtraBold] text-[#F5F0E6]">
           {userType === "customer" ?
-            ' ZenBites' : (rUser?.name || null)
+            ' ZenBites' : (restaurantDetails?.name || null)
           }
         </div>
 

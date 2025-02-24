@@ -13,6 +13,7 @@ function useLogin() {
             setLoading(true)
 
             const resposne = await axios.post(`/api/login`, data, {withCredentials: true})
+            console.log(resposne);
             
             if (resposne.status === 200) {
                 toast.success("Logged In")
@@ -27,7 +28,7 @@ function useLogin() {
             
 
         } catch (error) {
-            toast.error("Can't login")
+            toast.error("Can't login", error)
             console.log(error);
         }finally{
             setLoading(false)

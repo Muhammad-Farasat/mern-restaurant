@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserOrders } from '../redux/orderSlice'
-import Cookies from 'js-cookie'
+import useDisplayUser from '../hooks/useDisplayUser'
 
 const OrderTracking = () => {
 
     const dispatch = useDispatch()
     const { orders } = useSelector((state) => state.order)
 
-    const userData = JSON.parse(Cookies.get('user-data'))
+    const { data } = useDisplayUser()
+    const userId = data._id
 
     useEffect(() => {
-        dispatch(fetchUserOrders(userData._id))
-    }, [dispatch])
+        if (data && data._id) {
+          dispatch(fetchUserOrders(userId));
+        }
+      }, [dispatch, data])
 
     return (
         <>

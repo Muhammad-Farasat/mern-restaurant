@@ -65,11 +65,15 @@ export const restaurantLogin = async (req, res) => {
 
     const restaurant = await Restaurant.findOne({ email });
 
+    if (!restaurant) {
+      return res.status(400).json({message: "restaurant not found"})
+    }
+
     const token = jwt.sign({ id: restaurant._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 
-    res.cookie("restaurant-auth", token, { httpOnly: false, secure: true, sameSite: "None" });
+    res.cookie("restaurant-auth", token, { httpOnly: false, secure: true, sameSite: "None", path: '/', maxAge: 24 * 60 * 60 * 1000 });
 
     res.status(200).json({ success: true, restaurant, token });
   } catch (error) {
@@ -104,10 +108,30 @@ export const displayRestaurant = async (req, res) => {
 
 export const specificRestaurant = async (req, res) => {
   try {
+
     let restaurant = await Restaurant.findById(req.params.id);
 
     return res.status(200).json({ message: "There you go", restaurant });
+
   } catch (error) {
+    console.error("Error in getting all restaurant", error);
+    res.status(500).json({ error: "Internal server error", error });
+  }
+};
+
+export const getRestaurantByToken = async (req, res) => {
+  try {
+    const id = req.user.id
+       
+    const restaurant = await Restaurant.findById(id)
+
+    if (!restaurant) {
+       return res.status(400).json({ message: "restaurant not found" })
+    }
+
+   return  res.status(200).json({ success: true, restaurant })
+
+} catch (error) {
     console.error("Error in getting all restaurant", error);
     res.status(500).json({ error: "Internal server error", error });
   }

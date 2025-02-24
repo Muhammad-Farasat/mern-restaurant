@@ -10,7 +10,8 @@ function useUpdateDish() {
     const updateFood = async (foodData) => {
         try {
             setLoading(true)
-
+            console.log(foodData);
+            
             const formData = new FormData()
             let imageUrl = foodData.image; 
 
@@ -27,16 +28,9 @@ function useUpdateDish() {
                 imageUrl = imageResponse.data.image_url 
             }
 
-            const restaurantData = Cookies.get('restaurant-user')
-            const user = restaurantData ? JSON.parse(restaurantData) : null
-
-            if (!user) {
-                throw new Error("User not found in cookies.")
-            }
 
             const foodDetails = {
                 ...foodData,
-                restaurantId: user._id,
                 image: imageUrl, 
             }
 
@@ -46,7 +40,10 @@ function useUpdateDish() {
                 withCredentials: true
             })
 
-            toast.success("Food updated successfully!")
+            if (response.status === 200) {
+                toast.success("Food updated successfully!")
+            }
+
 
         } catch (error) {
             toast.error("Error while updating food")

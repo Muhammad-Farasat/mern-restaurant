@@ -7,8 +7,6 @@ import useDisplayUser from "../hooks/useDisplayUser";
 const EditProfile = () => {
 
 
-    const user = JSON.parse(Cookies.get('user-data'))
-
     const {loading, editProfile} = useEditProfile()
 
     const {data} = useDisplayUser()
@@ -27,7 +25,7 @@ const EditProfile = () => {
                 location: data?.location || ""
             });
         }
-    }, [data]);
+    }, [data]);                    
 
     const handleChange = (e) => {
         const { name, value } = e.target;

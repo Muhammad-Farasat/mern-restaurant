@@ -37,7 +37,7 @@ export const fetchRestaurantOrders = createAsyncThunk("order/fetchRestaurantOrde
       `/api/restaurantOrders/${restaurantId}`
     );
     const data = await res.json();
-    console.log(data.orders);
+    // console.log(data.orders);
     return data.orders;
   }
 );
@@ -88,11 +88,15 @@ const orderSlice = createSlice({
       })
 
       .addCase(updateOrderStatus.fulfilled, (state, action) => {
+        const updatedOrder = action.payload;
         const index = state.restaurantOrders.findIndex(
-          (order) => order._id === action.payload._id
+          (order) => order._id === updatedOrder._id
         );
         if (index !== -1) {
-          state.restaurantOrders[index] = action.payload; 
+          state.restaurantOrders[index] = {
+            ...state.restaurantOrders[index],
+            status: updatedOrder.status, 
+          };
         }
       })
       .addCase(updateOrderStatus.rejected, (state, action) => {
