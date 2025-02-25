@@ -24,7 +24,7 @@ const RestaurantSignup = () => {
         const response = await axios.get(
           `https://api.positionstack.com/v1/reverse?access_key=b4f083b25cc72a7b04fcda2825f8e04d&query=${lat},${log}`
         );
-        
+
         const result = response.data;
 
         if (result.data && result.data.length > 0) {
@@ -32,7 +32,7 @@ const RestaurantSignup = () => {
 
           setData((prevData) => ({
             ...prevData,
-            location: address,
+            location: data.location,
           }));
           console.log(data.location);
         } else {
