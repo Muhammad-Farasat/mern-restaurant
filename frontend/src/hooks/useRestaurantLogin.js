@@ -14,25 +14,28 @@ function useRestaurantLogin() {
             setLoading(true)
 
             const response = await axios.post(`/api/loginRestaurant`, data, { withCredentials: true })
-
-            // console.log(response.data.restaurant);
-
+            
             if (response.status === 200) {
-                const restaurantUser = response.data.restaurantUser
-                
                 window.location.replace('/RestaurantHome');
             }
 
-            } catch (error) {
-                console.error(error);
-                toast.error("Can't login")
-            } finally {
-                setLoading(false)
+        } catch (error) {
+
+            let errorMessage = "Something went wrong"
+            if (error.response) {
+                errorMessage = error.response.data?.message || "An unexpected error occurred";
             }
+
+            toast.error(errorMessage)
+            console.error(error);
+
+        } finally {
+            setLoading(false)
         }
-
-
-  return { loading, login }
     }
 
-    export default useRestaurantLogin
+
+    return { loading, login }
+}
+
+export default useRestaurantLogin

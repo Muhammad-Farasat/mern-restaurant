@@ -25,6 +25,13 @@ const Login = () => {
     }
   }, []);
 
+  const isFormFilled = () => {
+    return(
+      data.email.trim() !== "" &&
+      data.password.trim() !== ""
+    );
+  }
+
   return (
     <>
       <div className="flex justify-center items-center h-screen bg-[#F5F0E6] bg-[url(/Images/bg-image.png)] bg-repeat bg-contain overflow-hidden ">
@@ -61,7 +68,8 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full bg-[#D87C5A] text-white py-3 rounded-lg text-lg font-[Nunito-ExtraBold] tracking-wide hover:bg-[#C56947] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
+              disabled={!isFormFilled()}
+              className={`w-full text-white py-3 rounded-lg text-lg font-[Nunito-ExtraBold] tracking-wide transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md ${isFormFilled() ? 'bg-[#D87C5A] hover:bg-[#C56947]' : 'bg-[#997061] cursor-not-allowed ' } `}
             >
               {loading ? (
                 <div className="flex justify-center items-center">

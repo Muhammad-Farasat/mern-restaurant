@@ -28,13 +28,19 @@ function useRestaurantSignup() {
 
             if (response.status === 200) {
                 console.log(response);
-                const restaurantUser = response.data.restaurant
                 window.location.replace(`/RestaurantHome`)
             }
 
         } catch (error) {
-            toast.error("Can't sign up") 
-            console.log(error);           
+            
+            let errorMessage = "Something went wrong"
+            if (error.response) {
+                errorMessage = error.response.data?.message || "An unexpected error occurred";
+            }
+
+            toast.error(errorMessage) 
+            console.log(error);      
+
         }finally{
             setLoading(false)
         }

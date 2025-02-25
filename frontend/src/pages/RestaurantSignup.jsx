@@ -13,34 +13,55 @@ const RestaurantSignup = () => {
 
   const { loading, restaurantSignup } = useRestaurantSignup();
   const [isFetchingLocation, setIsFetchingLocation] = useState(false)
+  
+  
   const geoLocation = async () => {
+    
     setIsFetchingLocation(true)
+    
+    
     navigator.geolocation.getCurrentPosition(async (position) => {
+    
       let lat = position.coords.latitude;
       let log = position.coords.longitude;
-      // console.log(lat, log);
 
       try {
-        const response = await axios.get(
-          `https://api.positionstack.com/v1/reverse?access_key=b4f083b25cc72a7b04fcda2825f8e04d&query=${lat},${log}`
-        );
+        // const response = await axios.get(
+        //   `https://api.positionstack.com/v1/reverse?access_key=b4f083b25cc72a7b04fcda2825f8e04d&query=${lat},${log}`
+        // );
 
-        const result = response.data;
+        // const result = response.data;
 
-        if (result.data && result.data.length > 0) {
-          data.location = result.data[0].label;
+        // if (result.data && result.data.length > 0) {
+        //   data.location = result.data[0].label;
+
+        //   setData((prevData) => ({
+        //     ...prevData,
+        //     location: data.location,
+        //   }));
+        // } else {
+        //   console.error("No location");
+        // }
+
+        const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${log}&key=41cf5ee49ff744a1b40e2b62d046110f`)
+
+        const result = response.data
+
+        if (result.results && result.results.length > 0) {
+          const address = result.results[0].formatted;
 
           setData((prevData) => ({
             ...prevData,
-            location: data.location,
+            location: address,
           }));
-          console.log(data.location);
+
         } else {
-          console.error("No location");
+          console.error("No location data found");
         }
+
       } catch (error) {
         console.error(error);
-      }finally{
+      } finally {
         setIsFetchingLocation(false)
       }
     });
@@ -55,6 +76,16 @@ const RestaurantSignup = () => {
     e.preventDefault();
     await restaurantSignup({ data });
   };
+
+  const isFormFilled = () => {
+    return(
+      data.name.trim() !== "" && 
+      data.email.trim() !== "" &&
+      data.password.trim() !== "" &&
+      data.image !== null &&
+      data.location !== null
+    );
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F5F0E6] px-4">
@@ -169,7 +200,8 @@ const RestaurantSignup = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full px-4 py-3 text-lg font-[Nunito-ExtraBold] text-white bg-[#D87C5A] rounded-lg hover:bg-[#C56947] transition-all transform hover:scale-105 active:scale-95 shadow-md"
+          disabled={!isFormFilled()}
+          className={`w-full px-4 py-3 text-lg font-[Nunito-ExtraBold] text-white rounded-lg transition-all transform hover:scale-105 active:scale-95 shadow-md ${isFormFilled() ? 'bg-[#D87C5A] hover:bg-[#C56947] ' : 'bg-[#7e5343] cursor-not-allowed '} `}
         >
           {loading ? (
             <div className="flex justify-center items-center">

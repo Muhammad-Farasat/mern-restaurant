@@ -12,6 +12,13 @@ const RestaurantLogin = () => {
     await login({ data });
   };
 
+  const isFormFilled = () => {
+    return(
+      data.email.trim() !== "" &&
+      data.password.trim() !== ""
+    );
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F5F0E6]">
       
@@ -59,7 +66,8 @@ const RestaurantLogin = () => {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full px-4 py-3 max-sm:py-2 font-[Nunito-Bold] text-white bg-[#D87C5A] rounded-lg hover:bg-[#C56947] transition-all transform hover:scale-105 active:scale-95 shadow-md"
+            disabled={!isFormFilled()}
+            className={`w-full px-4 py-3 max-sm:py-2 font-[Nunito-Bold] text-white rounded-lg transition-all transform hover:scale-105 active:scale-95 shadow-md ${isFormFilled() ? 'bg-[#D87C5A] hover:bg-[#C56947]' : 'bg-[#997061] cursor-not-allowed ' } `}
           >
             {loading ? (
               <div className="flex justify-center items-center">

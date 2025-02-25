@@ -16,11 +16,7 @@ function useSignup() {
             const response = await axios.post(`/api/signup`, data, { withCredentials: true })
 
             if (response.status === 200) {
-                
-                console.log(response);
                 const userData = response.data.user
-
-                console.log(userData);
 
                 localStorage.setItem("user-email", userData.email);
 
@@ -28,7 +24,15 @@ function useSignup() {
             }
 
         } catch (error) {
-            toast.error("Couldn't signup")
+            
+            let errorMessage = "Something went wrong"
+            if (error.response) {
+                errorMessage = error.response.data?.message || "An unexpected error occurred";
+            }
+
+            toast.error(errorMessage)
+            console.log(error);
+            
         } finally {
             setLoading(false)
         }

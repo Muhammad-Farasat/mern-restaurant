@@ -8,34 +8,35 @@ function useLogin() {
     const [loading, setLoading] = useState(false)
     const backend_url = import.meta.env.VITE_BACKEND_URL
 
-    const login = async({data}) => {
+    const login = async ({ data }) => {
         try {
             setLoading(true)
 
-            const resposne = await axios.post(`/api/login`, data, {withCredentials: true})
+            const resposne = await axios.post(`/api/login`, data, { withCredentials: true })
             console.log(resposne);
-            
+
             if (resposne.status === 200) {
                 toast.success("Logged In")
-
-                const userData = resposne.data.user
-
-                console.log(resposne.data.user);
-                // Cookies.set('user-data', JSON.stringify(userData), {expiresIn: '1d'})
-
                 window.location.replace('/')
             }
-            
+
 
         } catch (error) {
-            toast.error("Can't login", error)
+
+            let errorMessage = "Something went wrong"
+            if (error.response) {
+                errorMessage = error.response.data?.message || "An unexpected error occurred";
+            }
+
+            toast.error(errorMessage)
             console.log(error);
-        }finally{
+
+        } finally {
             setLoading(false)
         }
     }
 
-  return {loading, login}
+    return { loading, login }
 }
 
 export default useLogin

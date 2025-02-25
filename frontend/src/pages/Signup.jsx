@@ -12,32 +12,62 @@ const Signup = () => {
     location: null,
   });
 
+  const isFormFilled = () => {
+    return(
+      data.username.trim() !== "" && 
+      data.email.trim() !== "" &&
+      data.password.trim() !== "" &&
+      data.confirmPassword.trim() !== "" &&
+      data.location !== null
+    );
+  }
+
   const { loading, signup } = useSignup();
   const [isFetchingLocation, setIsFetchingLocation] = useState(false);
 
   const geoLocation = async () => {
+   
     setIsFetchingLocation(true)
+   
     navigator.geolocation.getCurrentPosition(async (position) => {
+   
       let lat = position.coords.latitude;
       let lgn = position.coords.longitude;
+   
       try {
-        const response = await axios.get(
-          `http://api.positionstack.com/v1/reverse?access_key=b4f083b25cc72a7b04fcda2825f8e04d&query=${lat},${lgn}`
-        )
+    
+        // const response = await axios.get(
+        //   `http://api.positionstack.com/v1/reverse?access_key=b4f083b25cc72a7b04fcda2825f8e04d&query=${lat},${lgn}`
+        // )
+
+
+        const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lgn}&key=41cf5ee49ff744a1b40e2b62d046110f`)
 
         const result = response.data
 
-        if (result.data && result.data.length > 0) {
-          const address = result.data[0].label;
+        if (result.results && result.results.length > 0) {
+            const address = result.results[0].formatted;
+  
+            setData((prevData) => ({
+              ...prevData,
+              location: address,
+            }));
+  
+          } else {
+            console.error("No location data found");
+          }
 
-          setData((prevData) => ({
-            ...prevData,
-            location: address,
-          }));
+        // if (result.data && result.data.length > 0) {
+        //   const address = result.data[0].label;
 
-        } else {
-          console.error("No location data found");
-        }
+        //   setData((prevData) => ({
+        //     ...prevData,
+        //     location: address,
+        //   }));
+
+        // } else {
+        //   console.error("No location data found");
+        // }
 
       } catch (error) {
         console.error(error);
@@ -143,7 +173,8 @@ const Signup = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full px-4 py-2.5 text-white bg-[#8AA896] rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all transform hover:scale-105 active:scale-95 shadow-md"
+              disabled={!isFormFilled()}
+              className={`w-full px-4 py-2.5 text-white rounded-lg font-[Nunito-Bold] transition-all transform hover:scale-105 active:scale-95 shadow-md ${isFormFilled() ? 'bg-[#8AA896] hover:bg-[#769382]' : 'bg-[#606a64] cursor-not-allowed' } `}
             >
               {loading ? (
                 <div className="flex justify-center items-center">
