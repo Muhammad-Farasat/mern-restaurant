@@ -12,8 +12,9 @@ const RestaurantSignup = () => {
   });
 
   const { loading, restaurantSignup } = useRestaurantSignup();
-
+  const [isFetchingLocation, setIsFetchingLocation] = useState(false)
   const geoLocation = async () => {
+    setIsFetchingLocation(true)
     navigator.geolocation.getCurrentPosition(async (position) => {
       let lat = position.coords.latitude;
       let log = position.coords.longitude;
@@ -23,19 +24,24 @@ const RestaurantSignup = () => {
         const response = await axios.get(
           `https://api.positionstack.com/v1/reverse?access_key=b4f083b25cc72a7b04fcda2825f8e04d&query=${lat},${log}`
         );
-
-        // console.log(response.data);
-
+        
         const result = response.data;
 
         if (result.data && result.data.length > 0) {
           data.location = result.data[0].label;
+
+          setData((prevData) => ({
+            ...prevData,
+            location: address,
+          }));
           console.log(data.location);
         } else {
           console.error("No location");
         }
       } catch (error) {
         console.error(error);
+      }finally{
+        setIsFetchingLocation(false)
       }
     });
   };
@@ -108,10 +114,12 @@ const RestaurantSignup = () => {
               Get My Location
             </button>
             <p className="text-[#4A4A4A] font-[Nunito-Bold]">
-              {data.location ? (
-                <span className="text-[#D87C5A]">{data.location}</span>
+              {isFetchingLocation ? (
+                '📍 Fetching Location...'
+              ) : data.location === null ? (
+                '📍 Get My Location'
               ) : (
-                "Select Location"
+                `📍 ${data.location}`
               )}
             </p>
           </div>
