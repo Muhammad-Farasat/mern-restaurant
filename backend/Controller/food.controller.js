@@ -35,13 +35,14 @@ export const deleteFood = async(req, res) => {
         const {foodId} = req.body
         const restaurantId = req.user.id
         
-        console.log("This is ID from body", req.body);
+        console.log("This is ID from body", foodId);
         
         const food = await Food.findByIdAndDelete(foodId)
 
         const restaurant = await Restaurant.findByIdAndUpdate(restaurantId, {
-            $pull: { foods: foodId },
-        });
+            $pull: { foodItems: foodId },
+        },{new: true}
+    );
 
         if (!food) {
             console.log("This is food", food);

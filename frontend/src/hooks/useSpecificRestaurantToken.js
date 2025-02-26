@@ -13,7 +13,6 @@ function useSpecificRestaurantToken(id) {
       setLoading(true)
       const response = await axios.get(`/api/restaurant-by-token`, {withCredentials: true})
       setRestaurantDetails(response.data.restaurant)
-      console.log(response);
       
     } catch (error) {
       console.log(error);

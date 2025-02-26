@@ -32,6 +32,7 @@ function useAddFood() {
                 toast.success('Hurray added')                
             }
 
+            return response
 
         } catch (error) {
             console.error(error);

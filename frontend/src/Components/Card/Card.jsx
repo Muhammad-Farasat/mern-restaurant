@@ -6,6 +6,7 @@ import { Modal } from "antd";
 import axios from "axios";
 import useDisplayUser from "../../hooks/useDisplayUser";
 import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
+import { removeDish } from "../../redux/foodSlice";
 
 const Card = ({ name, description, image, price, foodId, id }) => {
 
@@ -50,7 +51,9 @@ const Card = ({ name, description, image, price, foodId, id }) => {
     );
 
     if (response.status === 200) {
-      window.location.reload();
+      console.log(response);
+      
+      dispatch(removeDish(foodId))
     } else {
       toast.error("Error on delete");
     }

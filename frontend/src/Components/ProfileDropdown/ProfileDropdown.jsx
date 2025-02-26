@@ -8,6 +8,8 @@ import useDisplayUser from "../../hooks/useDisplayUser";
 import useAddFood from "../../hooks/useAddFood";
 import { IoIosArrowDown } from "react-icons/io";
 import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
+import { useDispatch } from "react-redux";
+import { addDish } from "../../redux/foodSlice";
 
 
 
@@ -81,11 +83,18 @@ const ProfileDropdown = () => {
 
     const { addFood, loading: addFoodLoading } = useAddFood();
 
+    const dispatch = useDispatch()
 
     const handleSubmit = async () => {
-        await addFood({ foodData });
-        setIsOpen(false)
-        window.location.reload()
+
+        const response = await addFood({ foodData });
+        console.log(response.status);
+        
+        if (response.status === 200) {
+            dispatch(addDish(response.data.food))
+            setOpen(false)
+        }
+
     };
 
     return (
@@ -123,7 +132,7 @@ const ProfileDropdown = () => {
                                 >
                                     {loading ? (
                                         <div className="flex justify-center items-center">
-                                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black"></div>
                                         </div>
                                     ) : (
                                         'Logout'
