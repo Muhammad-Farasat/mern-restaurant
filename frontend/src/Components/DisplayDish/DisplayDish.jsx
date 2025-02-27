@@ -2,12 +2,15 @@ import React from "react";
 import useDisplayDish from "../../hooks/useDisplayRestaurant";
 import Card from "../Card/Card";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const DisplayDish = () => {
 
   const restaurantId = useParams()
 
-  const { dishesDisplay, loading } = useDisplayDish(restaurantId);
+  // const { dishesDisplay, loading } = useDisplayDish(restaurantId);
+
+  const { dishesDisplay,loading } = useSelector((state)=> state.food)
 
   return (
     <>

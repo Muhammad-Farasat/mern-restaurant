@@ -4,7 +4,7 @@ import useSpecificRestaurant from "../hooks/useSpecificRestaurant";
 import useDisplayDish from "../hooks/useDisplayDish";
 import Card from "../Components/Card/Card";
 import Cart from "../Components/Cart/Cart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../redux/cartSlice";
 import Navbar from "../Components/Navbar/Navbar";
 
@@ -14,11 +14,15 @@ const SpecificRestaurant = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { oneRestaurant } = useSpecificRestaurant(id);
-  const { dishesDisplay } = useDisplayDish(id);
+  const { dishesDisplay, loading } = useSelector((state)=> state.food)
+  useDisplayDish(id);
+
 
   useEffect(() => {
     dispatch(removeFromCart());
   }, [id, dispatch]);
+
+  console.log(dishesDisplay)
 
   return (
     <>
