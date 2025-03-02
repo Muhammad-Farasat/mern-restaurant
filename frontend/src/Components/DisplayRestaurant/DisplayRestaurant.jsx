@@ -1,6 +1,7 @@
 import React from 'react'
 import useDisplayRestaurant from '../../hooks/useDisplayRestaurant'
 import RestaurantCard from '../RestaurantCard/RestaurantCard'
+import SplitText from '../SplitText/SplitText';
 
 const DisplayRestaurant = () => {
 
@@ -12,7 +13,16 @@ const DisplayRestaurant = () => {
         <div className="container mx-auto px-4">
           {/* Heading */}
           <h1 className="text-4xl md:text-5xl font-[Nunito-ExtraBold] text-center text-[#2A3B4D] mb-12">
-            Discover Restaurants
+            <SplitText
+              text="Discover Restaurant"
+              delay={100}
+              animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+              animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+              easing="easeOutCubic"
+              threshold={0.2}
+              rootMargin="-50px"
+              // onLetterAnimationComplete={handleAnimationComplete}
+            />
           </h1>
 
           {/* Loading State */}
@@ -40,6 +50,7 @@ const DisplayRestaurant = () => {
                   description={rest.description}
                   image={rest.image}
                   id={rest._id}
+                  location={rest.location}
                 />
               ))}
             </div>

@@ -4,15 +4,21 @@ import {
   removeFromCart,
   clearCartState,
   clearCart,
+  increaseItemCart,
+  decreaseItemCart,
 } from "../../redux/cartSlice";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import CheckOut from "../CheckOut/CheckOut";
 import useDisplayUser from "../../hooks/useDisplayUser"
+import Counter from '../Counter/Counter';
+
+
+
 
 const Cart = () => {
-  
+
   let { id } = useParams();
 
   const [isCheckedOpen, setIsCheckedOpen] = useState(false)
@@ -27,40 +33,30 @@ const Cart = () => {
 
   useEffect(() => {
     if (id && userId) {
-      dispatch(
-        fetchCart({
-          userId,
-          restaurantId: id,
-        })
-      );
+      dispatch(fetchCart({ userId, restaurantId: id }));
     }
   }, [dispatch, id, userId]);
 
   const removeItem = (foodId) => {
-    dispatch(
-      removeFromCart({
-        userId,
-        restaurantId: id,
-        foodId,
-      })
-    );
+    dispatch(removeFromCart({ userId, restaurantId: id, foodId }));
   };
 
   const clear = () => {
-    dispatch(
-      clearCart({
-        userId,
-        restaurantId: id,
-      })
-    );
-
+    dispatch(clearCart({ userId, restaurantId: id }));
     window.location.reload();
   };
+
+  const handleIncrease = (foodId) => {
+    dispatch(increaseItemCart({ userId, restaurantId: id, foodId }))
+  }
+
+  const handleDecrease = (foodId) => {
+    dispatch(decreaseItemCart({ userId, restaurantId: id, foodId }))
+  }
 
   return (
     <div className="p-6 bg-white rounded-xl shadow-lg border border-[#E0E3E6]">
       <h2 className="text-2xl font-[Nunito-ExtraBold] text-[#2A3B4D] mb-6">Your Cart</h2>
-
       {cart.items.length === 0 ? (
         <div className="text-center py-6">
           <p className="text-[#4A4A4A]">Your cart is empty</p>
@@ -80,27 +76,52 @@ const Cart = () => {
                       {item.foodId.name}
                     </h3>
                     <p className="text-[#4A4A4A]">
-                      Quantity: {item.quantity}
+                      Price: Rs. {item.foodId.price}
                     </p>
                   </div>
-                  <button
-                    onClick={() => removeItem({ foodId: item.foodId._id })}
-                    className="px-3 py-1.5 text-[#D87C5A] hover:text-[#C56947] font-[Nunito-Bold] rounded-lg hover:bg-[#F5F0E6] transition-colors"
-                  >
-                    Remove
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleDecrease(item.foodId._id)}
+                      className="px-2 py-1 bg-[#E0E3E6] rounded-md hover:bg-[#D87C5A] hover:text-white transition-colors"
+                    >
+                      -
+                    </button>
+                      <Counter
+                        value={item.quantity}
+                        places={[10, 1]}
+                        fontSize={18}
+                        padding={0}
+                        gap={1}
+                        textColor="black"
+                        fontWeight={900}
+                      />
+                    <button
+                      onClick={() => handleIncrease(item.foodId._id)}
+                      className="px-2 py-1 bg-[#8AA896] text-white rounded-md hover:bg-[#769382] transition-colors"
+                    >
+                      +
+                    </button>
+                    <button
+                      onClick={() => removeItem(item.foodId._id)}
+                      className="px-3 py-1.5 text-[#D87C5A] hover:text-[#C56947] font-[Nunito-Bold] rounded-lg hover:bg-[#F5F0E6] transition-colors"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               </li>
             ))}
           </ul>
-
           {/* Total Price */}
           <div className="pt-4 border-t border-[#E0E3E6]">
             <p className="text-lg font-[Nunito-Bold] text-[#2A3B4D]">
-              Total: Rs. {cart.items.reduce((total, item) => total + (item.foodId.price * item.quantity), 0)}
+              Total: Rs.{" "}
+              {cart.items.reduce(
+                (total, item) => total + item.foodId.price * item.quantity,
+                0
+              )}
             </p>
           </div>
-
           {/* Action Buttons */}
           <div className="flex flex-col gap-3 mt-6">
             <button
@@ -118,7 +139,6 @@ const Cart = () => {
           </div>
         </div>
       )}
-
       {/* Checkout Modal */}
       {isCheckedOpen && (
         <CheckOut

@@ -12,7 +12,7 @@ function useDisplayRestaurant() {
         try {
             setLoading(true)
 
-            const response = await axios.get(`/api/allRestaurant`, {withCredentials: true})
+            const response = await axios.get(`${backend_url}/api/allRestaurant`, {withCredentials: true})
 
             if (response.status === 200) {
                 setDisplayRestaurant(response.data.restaurant)

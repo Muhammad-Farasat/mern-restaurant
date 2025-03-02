@@ -10,6 +10,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
 import { useDispatch } from "react-redux";
 import { addDish } from "../../redux/foodSlice";
+import React from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+
 
 
 
@@ -59,7 +63,6 @@ const ProfileDropdown = () => {
     }
     const [open, setOpen] = useState(false);
 
-
     const handleDashboard = (restaurantId) => {
         console.log(restaurantData._id);
         nav(`/dashboard/${restaurantId}`)
@@ -86,10 +89,9 @@ const ProfileDropdown = () => {
     const dispatch = useDispatch()
 
     const handleSubmit = async () => {
-
         const response = await addFood({ foodData });
         console.log(response.status);
-        
+
         if (response.status === 200) {
             dispatch(addDish(response.data.food))
             setOpen(false)
@@ -97,19 +99,29 @@ const ProfileDropdown = () => {
 
     };
 
+
+
     return (
         <div className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700"
             >
-                <span>
+                <DotLottieReact
+                    src="https://lottie.host/343026b8-10c2-4460-9025-dca01e3bb10f/iLjPaTqMPv.lottie"
+                    loop
+                    autoplay
+                    width={24}
+                    height={24}
+                />
+
+                <span className="flex items-center gap-2">
                     {
                         userType === 'customer' ?
                             data?.username : restaurantDetails?.name
                     }
+                    <IoIosArrowDown />
                 </span>
-                <IoIosArrowDown />
             </button>
 
             {isOpen && (

@@ -16,7 +16,7 @@ function useAddFood() {
             formData.append("image", foodData.image)
 
             
-            const imageUrl = await axios.post(`/api/upload`, formData)
+            const imageUrl = await axios.post(`${backend_url}/api/upload`, formData)
            
             console.log(imageUrl);
            
@@ -26,7 +26,7 @@ function useAddFood() {
 
             const foodDetails = {...foodData, image: imageUrl.data.image_url}
 
-            const response = await axios.post(`/api/addFood`, foodDetails, {withCredentials: true})
+            const response = await axios.post(`${backend_url}/api/addFood`, foodDetails, {withCredentials: true})
 
             if (response.status === 200) {
                 toast.success('Hurray added')                

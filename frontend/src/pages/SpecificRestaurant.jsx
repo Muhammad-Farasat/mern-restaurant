@@ -31,13 +31,13 @@ const SpecificRestaurant = () => {
       <div className="min-h-screen bg-[#F5F0E6]">
 
         {/* Banner Section */}
-        <div className="relative h-72 w-full">
+        <div className="relative h-96 w-full">
           <img
             src={oneRestaurant?.image}
             alt="Restaurant Banner"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#2A3B4D]/90 flex items-center justify-center">
+          <div className="absolute inset-0 bg-[#2A3B4D]/70 flex items-center justify-center">
             <h1 className="text-3xl md:text-5xl font-[Nunito-ExtraBold] text-[#F5F0E6] text-center px-4">
               {oneRestaurant?.name}
             </h1>

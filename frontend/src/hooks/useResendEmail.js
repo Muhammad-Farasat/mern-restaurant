@@ -12,7 +12,7 @@ function useResendEmail() {
         try {
             setLoading(true)
 
-            const response = await axios.post(`/api/resend-verification-email`, { email })
+            const response = await axios.post(`${backend_url}/api/resend-verification-email`, { email })
 
             if (response.status === 200) {
                 setSuccess(response.data.message)

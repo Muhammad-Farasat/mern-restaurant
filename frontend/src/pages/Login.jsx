@@ -69,7 +69,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={!isFormFilled()}
-              className={`w-full text-white py-3 rounded-lg text-lg font-[Nunito-ExtraBold] tracking-wide transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md ${isFormFilled() ? 'bg-[#D87C5A] hover:bg-[#C56947]' : 'bg-[#997061] cursor-not-allowed ' } `}
+              className={`w-full text-white py-3 cursor-pointer rounded-lg text-lg font-[Nunito-ExtraBold] tracking-wide transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md ${isFormFilled() ? 'bg-[#D87C5A] hover:bg-[#C56947]' : 'bg-[#997061] cursor-not-allowed ' } `}
             >
               {loading ? (
                 <div className="flex justify-center items-center">

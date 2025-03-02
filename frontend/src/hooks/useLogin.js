@@ -12,7 +12,7 @@ function useLogin() {
         try {
             setLoading(true)
 
-            const resposne = await axios.post(`/api/login`, data, { withCredentials: true })
+            const resposne = await axios.post(`${backend_url}/api/login`, data, { withCredentials: true })
             console.log(resposne);
 
             if (resposne.status === 200) {

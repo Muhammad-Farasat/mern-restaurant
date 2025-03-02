@@ -174,7 +174,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={!isFormFilled()}
-              className={`w-full px-4 py-2.5 text-white rounded-lg font-[Nunito-Bold] transition-all transform hover:scale-105 active:scale-95 shadow-md ${isFormFilled() ? 'bg-[#8AA896] hover:bg-[#769382]' : 'bg-[#606a64] cursor-not-allowed' } `}
+              className={`w-full px-4 py-2.5 text-white rounded-lg font-[Nunito-Bold] transition-all transform hover:scale-105 active:scale-95 shadow-md ${isFormFilled() ? 'bg-[#8AA896] cursor-pointer hover:bg-[#769382]' : 'bg-[#606a64] cursor-not-allowed' } `}
             >
               {loading ? (
                 <div className="flex justify-center items-center">
