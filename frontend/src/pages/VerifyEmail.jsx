@@ -13,7 +13,7 @@ function VerifyEmail() {
     useEffect(() => {
         const verify = async () => {
             try {
-                const response = await axios.get(`${backend_url}/api/verify-email/${token}`);
+                const response = await axios.get(`/api/verify-email/${token}`);
                 toast.success(response.data.message);
                 setVerified(true);
                 setTimeout(() => navigate("/login"), 3000); 

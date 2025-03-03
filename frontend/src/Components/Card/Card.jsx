@@ -8,6 +8,10 @@ import useDisplayUser from "../../hooks/useDisplayUser";
 import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
 import { removeDish } from "../../redux/foodSlice";
 
+
+
+
+
 const Card = ({ name, description, image, price, foodId, id }) => {
 
   const dispatch = useDispatch();
@@ -19,7 +23,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
 
   const userId = data?._id || null;
   const restaurantId = restaurantDetails?._id || null;
-  
+
   const [foodData, setFoodData] = useState({
     name: "",
     description: "",
@@ -45,14 +49,14 @@ const Card = ({ name, description, image, price, foodId, id }) => {
   const handleDelete = async (foodId) => {
 
     const response = await axios.post(
-      `${backend_url}/api/deleteFood`,
+      `/api/deleteFood`,
       { foodId },
       { withCredentials: true }
     );
 
     if (response.status === 200) {
       console.log(response);
-      
+
       dispatch(removeDish(foodId))
     } else {
       toast.error("Error on delete");
@@ -61,7 +65,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
   };
 
   const handleEdit = async () => {
-    
+
     try {
       await updateFood(foodData);
       setEditOpen(false);

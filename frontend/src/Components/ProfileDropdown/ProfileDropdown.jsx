@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useRestaurantLogout from "../../hooks/useRestaurantLogout";
 import { useNavigate, useParams } from 'react-router-dom'
 import Cookies from "js-cookie";
@@ -99,10 +99,25 @@ const ProfileDropdown = () => {
 
     };
 
+    const dropDownRef = useRef(null)
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+                setIsOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+
+    }, [])
 
     return (
-        <div className="relative">
+        <div className="relative" ref={dropDownRef} >
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700"
@@ -110,7 +125,7 @@ const ProfileDropdown = () => {
                 <DotLottieReact
                     src="https://lottie.host/343026b8-10c2-4460-9025-dca01e3bb10f/iLjPaTqMPv.lottie"
                     loop
-                    autoplay
+                    autoplay    
                     width={24}
                     height={24}
                 />

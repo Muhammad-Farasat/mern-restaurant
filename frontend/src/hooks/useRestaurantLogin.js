@@ -13,7 +13,7 @@ function useRestaurantLogin() {
 
             setLoading(true)
 
-            const response = await axios.post(`${backend_url}/api/loginRestaurant`, data, { withCredentials: true })
+            const response = await axios.post(`/api/loginRestaurant`, data, { withCredentials: true })
             
             if (response.status === 200) {
                 window.location.replace('/RestaurantHome');

@@ -11,7 +11,7 @@ function useRestaurantLogout() {
     try {
       setLoading(true);
 
-      await axios.post(`${backend_url}/api/removeRestaurant`, {
+      await axios.post(`/api/removeRestaurant`, {
         withCredentials: true,
       });
 

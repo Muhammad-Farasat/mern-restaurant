@@ -11,7 +11,7 @@ function useDisplayUser() {
         try {
             setLoading(true)
             
-            const response = await axios.get(`${backend_url}/api/user-details`, {withCredentials: true})
+            const response = await axios.get(`/api/user-details`, {withCredentials: true})
             
             if (response.status === 200) {
                 setData(response.data.user)            
