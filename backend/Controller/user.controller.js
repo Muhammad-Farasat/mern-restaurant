@@ -155,6 +155,8 @@ export const verifyEmail = async (req, res) => {
 
         await user.save()
 
+        res.cookie('authorization', token, { httpOnly: false, secure: true, sameSite: "none", path: '/', maxAge: 24 * 60 * 60 * 1000 })
+
         return res.status(200).json({ message: "Verified successfully" })
 
     } catch (error) {
