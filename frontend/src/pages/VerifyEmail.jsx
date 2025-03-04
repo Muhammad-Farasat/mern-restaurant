@@ -15,11 +15,14 @@ function VerifyEmail() {
             try {
 
                 const response = await axios.get(`/api/verify-email/${token}`, { withCredentials: true });
-
+                console.log(response);
+                
                 if (response.status === 200) {
                     toast.success(response.data.message);
                     setVerified(true);
-                    setTimeout(() => navigate("/"), 3000);
+                    setTimeout(() => {
+                        navigate("/", {replace: true}),3000
+                    });
                 }
 
             } catch (error) {

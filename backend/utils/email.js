@@ -16,7 +16,7 @@ console.log(frontend_url);
 
 export const senderEmailVerification = async(email, token) => {
     const verificationLink = `${frontend_url}/verify-email/${token}`
-    console.log(verificationLink);
+    // console.log(verificationLink);
     
 
 
@@ -30,7 +30,7 @@ export const senderEmailVerification = async(email, token) => {
 
     try {
         await transport.sendMail(mailOptions)
-        console.log("Email sent");
+        // console.log("Email sent");
         
     } catch (error) {
         console.log("Can't send", error);

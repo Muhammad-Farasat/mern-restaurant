@@ -1,7 +1,7 @@
 import './App.css'
 import { Toaster } from 'react-hot-toast'
 import Signup from './pages/Signup'
-import {Navigate, Route, Routes} from 'react-router-dom'
+import {Navigate, Route, Routes, useLocation} from 'react-router-dom'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Cookies from 'js-cookie'
@@ -17,8 +17,9 @@ import VerifyEmail from './pages/VerifyEmail'
 
 function App() {
 
+  const location = useLocation()
+
   const authUser = Cookies.get('authorization')
-  
   const authRest = Cookies.get('restaurant-auth')
   
   return (

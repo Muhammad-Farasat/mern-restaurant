@@ -16,6 +16,7 @@ function useResendEmail() {
 
             if (response.status === 200) {
                 setSuccess(response.data.message)
+                toast.success("Email has been resend!")
             }
 
 
