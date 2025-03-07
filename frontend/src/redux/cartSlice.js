@@ -6,7 +6,7 @@ const backend_url = import.meta.env.VITE_BACKEND_URL
 
 export const addToCart = createAsyncThunk('cart/addToCart', 
   async({ userId, restaurantId, foodId, price, quantity, name }) => {
-    const res = await fetch(`/api/cart/add`, { // Update endpoint
+    const res = await fetch(`${backend_url}/api/cart/add`, { // Update endpoint
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId, foodId, quantity, name, price }),
@@ -22,7 +22,7 @@ export const addToCart = createAsyncThunk('cart/addToCart',
 
 export const removeFromCart = createAsyncThunk('cart/removeFromCart', 
   async({ userId, restaurantId, foodId }) => { // Add userId
-    const res = await fetch(`/api/cart/remove`, { // Update endpoint
+    const res = await fetch(`${backend_url}/api/cart/remove`, { // Update endpoint
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId, foodId }),
@@ -38,7 +38,7 @@ export const removeFromCart = createAsyncThunk('cart/removeFromCart',
 
 export const clearCart = createAsyncThunk('cart/clearCart', 
   async({ userId, restaurantId }) => {
-    const res = await fetch(`/api/cart/clear`, { 
+    const res = await fetch(`${backend_url}/api/cart/clear`, { 
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, restaurantId }),
@@ -56,7 +56,7 @@ export const clearCart = createAsyncThunk('cart/clearCart',
 export const fetchCart = createAsyncThunk("cart/getCart", 
   async({ userId, restaurantId }) => {
     const res = await fetch(
-      `/api/cart/${userId}?restaurantId=${restaurantId}`
+      `${backend_url}/api/cart/${userId}?restaurantId=${restaurantId}`
     );
     const data = await res.json();
     return data.cart; 
@@ -64,7 +64,7 @@ export const fetchCart = createAsyncThunk("cart/getCart",
 
 export const increaseItemCart = createAsyncThunk("cart/increaseItem", 
   async({foodId, restaurantId, userId}) => {
-    const res = await fetch(`/api/cart/increase`, {
+    const res = await fetch(`${backend_url}/api/cart/increase`, {
       method: 'POST',
       headers: {"Content-type": "application/json"},
       body: JSON.stringify({ foodId, restaurantId, userId })
@@ -77,7 +77,7 @@ export const increaseItemCart = createAsyncThunk("cart/increaseItem",
 
 export const decreaseItemCart = createAsyncThunk("cart/decreaseItem", 
   async({foodId, restaurantId, userId}) => {
-    const res = await fetch(`/api/cart/decrease`, {
+    const res = await fetch(`${backend_url}/api/cart/decrease`, {
       method: 'POST',
       headers: {"Content-type": "application/json"},
       body: JSON.stringify({ foodId, restaurantId, userId })

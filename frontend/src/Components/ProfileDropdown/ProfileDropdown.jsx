@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { addDish } from "../../redux/foodSlice";
 import React from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 
@@ -122,14 +123,8 @@ const ProfileDropdown = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700"
             >
-                <DotLottieReact
-                    src="https://lottie.host/343026b8-10c2-4460-9025-dca01e3bb10f/iLjPaTqMPv.lottie"
-                    loop
-                    autoplay    
-                    width={24}
-                    height={24}
-                />
-
+                <FontAwesomeIcon icon="fa-solid fa-user" />
+                {/* <FontAwesomeIcon icon={faUser} /> */}
                 <span className="flex items-center gap-2">
                     {
                         userType === 'customer' ?

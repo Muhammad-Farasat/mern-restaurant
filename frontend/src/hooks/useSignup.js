@@ -13,7 +13,7 @@ function useSignup() {
         try {
             setLoading(true)
 
-            const response = await axios.post(`/api/signup`, data, { withCredentials: true })
+            const response = await axios.post(`${backend_url}/api/signup`, data, { withCredentials: true })
 
             if (response.status === 200) {
                 const userData = response.data.user

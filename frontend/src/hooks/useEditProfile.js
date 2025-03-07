@@ -13,7 +13,7 @@ function useEditProfile() {
             
             setLoading(true)
 
-            const response = await axios.post(`/api/edit-profile`, formData, { withCredentials: true })
+            const response = await axios.post(`${backend_url}/api/edit-profile`, formData, { withCredentials: true })
 
             if (response.status === 200) {
                 toast.success("Edited Successfully..!")

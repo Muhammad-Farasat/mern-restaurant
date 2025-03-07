@@ -14,7 +14,7 @@ function VerifyEmail() {
         const verify = async () => {
             try {
 
-                const response = await axios.get(`/api/verify-email/${token}`, { withCredentials: true });
+                const response = await axios.get(`${backend_url}/api/verify-email/${token}`, { withCredentials: true });
                 console.log(response);
                 
                 if (response.status === 200) {

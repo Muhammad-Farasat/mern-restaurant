@@ -49,7 +49,7 @@ const Card = ({ name, description, image, price, foodId, id }) => {
   const handleDelete = async (foodId) => {
 
     const response = await axios.post(
-      `/api/deleteFood`,
+      `${backend_url}/api/deleteFood`,
       { foodId },
       { withCredentials: true }
     );
