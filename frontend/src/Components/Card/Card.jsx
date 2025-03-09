@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import useUpdateDish from "../../hooks/useUpdateDish";
@@ -7,7 +7,8 @@ import axios from "axios";
 import useDisplayUser from "../../hooks/useDisplayUser";
 import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
 import { removeDish } from "../../redux/foodSlice";
-
+import { Player } from "@lordicon/react";
+import Cart from '../../../public/Icon/Cart.json'
 
 
 
@@ -82,6 +83,13 @@ const Card = ({ name, description, image, price, foodId, id }) => {
     setFoodData({ ...foodData, [name]: files ? files[0] : value });
   };
 
+  const playerRef = useRef(null);
+
+  useEffect(
+    () => {
+      playerRef.current?.playFromBeginning();
+    }, []
+  )
 
 
   return (
@@ -106,9 +114,16 @@ const Card = ({ name, description, image, price, foodId, id }) => {
           <div className="px-6 pb-6">
             <button
               onClick={handleAddToCart}
-              className="w-full bg-[#8AA896] text-white py-3 rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
+              className="w-full bg-[#8AA896] flex items-center justify-center gap-x-2 text-white py-3 rounded-lg font-[Nunito-Bold] hover:bg-[#769382] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md"
             >
               Add to Cart
+
+              <Player
+                ref={playerRef}
+                icon={Cart}
+                onComplete={() => playerRef.current?.playFromBeginning()}
+              />
+
             </button>
           </div>
         ) : restaurantId ? (

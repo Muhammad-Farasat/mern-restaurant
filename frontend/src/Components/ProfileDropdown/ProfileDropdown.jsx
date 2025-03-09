@@ -11,9 +11,10 @@ import useSpecificRestaurantToken from "../../hooks/useSpecificRestaurantToken";
 import { useDispatch } from "react-redux";
 import { addDish } from "../../redux/foodSlice";
 import React from 'react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { Player } from '@lordicon/react';
+import Profile from '../../../public/Icon/avatar.json'
+import Edit from '../../../public/Icon/edit.json'
+import AddIcon from '../../../public/Icon/Add-Icon.json'
 
 
 
@@ -102,6 +103,8 @@ const ProfileDropdown = () => {
 
     const dropDownRef = useRef(null)
 
+    const playerRef = useRef(null);
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
@@ -111,11 +114,17 @@ const ProfileDropdown = () => {
 
         document.addEventListener("mousedown", handleClickOutside)
 
+        playerRef.current?.playFromBeginning();
+
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
 
     }, [])
+
+
+
 
     return (
         <div className="relative" ref={dropDownRef} >
@@ -123,8 +132,13 @@ const ProfileDropdown = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700"
             >
-                <FontAwesomeIcon icon="fa-solid fa-user" />
-                {/* <FontAwesomeIcon icon={faUser} /> */}
+
+                <Player
+                    ref={playerRef}
+                    icon={Profile}
+                    onComplete={() => playerRef.current?.playFromBeginning()}
+                />
+
                 <span className="flex items-center gap-2">
                     {
                         userType === 'customer' ?
@@ -139,8 +153,17 @@ const ProfileDropdown = () => {
                     {
                         userType === 'customer' ?
                             <ul className="py-2">
-                                <li onClick={handleProfile} className="px-4 py-2 text-[#D87C5A] hover:bg-gray-100 cursor-pointer">
+                                <li onClick={handleProfile} className="flex items-center gap-5 px-4 py-2 text-[#D87C5A] hover:bg-gray-100 cursor-pointer">
+
                                     Edit Profile
+
+                                    <Player
+                                        ref={playerRef}
+                                        icon={Edit}
+                                        size={24}
+                                        colorize={'#D87C5A'}
+                                    />
+
                                 </li>
                                 <li
                                     onClick={handleNavigate}
@@ -167,9 +190,18 @@ const ProfileDropdown = () => {
                             <ul>
                                 <li
                                     onClick={() => setOpen(true)}
-                                    className="px-4 py-2 text-[#D87C5A] hover:bg-gray-100 cursor-pointer"
+                                    className="px-4 py-2 flex items-center gap-x-2 text-[#D87C5A] hover:bg-gray-100 cursor-pointer"
                                 >
                                     Upload Item
+
+                                    <Player
+                                        ref={playerRef}
+                                        icon={AddIcon}
+                                        colorize={'#D87C5A'}
+                                        size={24}
+                                        onComplete={() => playerRef.current?.playFromBeginning()}
+                                    />
+
                                 </li>
 
                                 <li
@@ -273,7 +305,7 @@ const ProfileDropdown = () => {
                 </div>
             </Modal>
 
-
+            {/* <a href="https://lordicon.com/">Icons by Lordicon.com</a> */}
         </div>
     );
 };
