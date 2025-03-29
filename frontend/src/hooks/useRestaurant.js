@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
-function useSpecificRestaurantToken(id) {
+function useRestaurant(id) {
 
-  const [restaurantDetails, setRestaurantDetails] = useState()
+  const [oneRestaurant, setOneRestaurant] = useState(null)
   const [loading, setLoading] = useState(false)
   const backend_url = import.meta.env.VITE_BACKEND_URL
 
@@ -11,8 +12,10 @@ function useSpecificRestaurantToken(id) {
     try {
     
       setLoading(true)
-      const response = await axios.get(`${backend_url}/api/restaurant-by-token`, {withCredentials: true})
-      setRestaurantDetails(response.data.restaurant)
+      
+      const response = await axios.get(`${backend_url}/api/specificRestaurant/${id}`)
+
+        setOneRestaurant(response.data.restaurant) 
       
     } catch (error) {
       console.log(error);
@@ -22,10 +25,11 @@ function useSpecificRestaurantToken(id) {
   }
   
   useEffect(()=>{
-    specificRestaurant()    
-  },[])
-  
-  return {restaurantDetails, loading}
+    specificRestaurant()   
+     
+  },[id])
+
+  return {oneRestaurant, loading}
 }
 
-export default useSpecificRestaurantToken
+export default useRestaurant

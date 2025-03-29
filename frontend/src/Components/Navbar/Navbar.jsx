@@ -15,7 +15,6 @@ const Navbar = () => {
   const { data, loading: userLoading } = useDisplayUser();
   const { restaurantDetails, loading: restaurantLoading } = useSpecificRestaurantToken();
 
-  // Player ref for controlling the Lordicon animation
   const playerRef = useRef(null);
 
   useEffect(() => {
@@ -24,11 +23,7 @@ const Navbar = () => {
     } else if (!restaurantData) {
       setUserType("customer");
     }
-
-    // Play animation only when playerRef is available
-    if (playerRef.current) {
-      playerRef.current.play();
-    }
+    // Removed the play() call from here
   }, []);
 
   const id = restaurantDetails?._id;
@@ -52,11 +47,11 @@ const Navbar = () => {
                 icon={Location}
                 colorize={"#E8B7A3"}
                 onEvent={(e) => {
-                  if (e === "ready") {
-                    playerRef.current?.play();
+                  if (e === "ready" && playerRef.current) {
+                    playerRef.current.play(); // Ensure play is called only when ready
                   }
                 }}
-                loop
+                loop={true} // Ensure loop is a boolean
               />
               <p className="text-sm md:text-base text-[#E8B7A3] truncate max-w-[200px] md:max-w-[400px]">
                 {data.location}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useSelector, useDispatch } from 'react-redux'
-import { setDishes } from '../redux/foodSlice'
+import { setDishes } from '../../redux/foodSlice'
 
 function useDisplayDish(id) {
 
