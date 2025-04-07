@@ -8,11 +8,10 @@ import {
   decreaseItemCart,
 } from "../../redux/cartSlice";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
-import CheckOut from "../CheckOut/CheckOut";
-import useDisplayUser from "../../hooks/useDisplayUser"
-import Counter from '../Counter/Counter';
+import CheckOut from "./CheckOut";
+import useUserProfile from "../../hooks/user/useUserProfile"
+import Counter from '../comman/Counter/Counter';
 
 
 
@@ -28,7 +27,7 @@ const Cart = () => {
 
   // const fetchCookies = JSON.parse(Cookies.get("user-data"));
 
-  const { data } = useDisplayUser()
+  const { data } = useUserProfile()
   const userId = data._id;
 
   useEffect(() => {
@@ -86,15 +85,15 @@ const Cart = () => {
                     >
                       -
                     </button>
-                      <Counter
-                        value={item.quantity}
-                        places={[10, 1]}
-                        fontSize={18}
-                        padding={0}
-                        gap={1}
-                        textColor="black"
-                        fontWeight={900}
-                      />
+                    <Counter
+                      value={item.quantity}
+                      places={[10, 1]}
+                      fontSize={18}
+                      padding={0}
+                      gap={1}
+                      textColor="black"
+                      fontWeight={900}
+                    />
                     <button
                       onClick={() => handleIncrease(item.foodId._id)}
                       className="px-2 py-1 bg-[#8AA896] text-white rounded-md hover:bg-[#769382] transition-colors"

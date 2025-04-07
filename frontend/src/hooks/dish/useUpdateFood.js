@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 
-function useUpdateDish() {
+function  useUpdateFood () {
     const [loading, setLoading] = useState(false)
     const backend_url = import.meta.env.VITE_BACKEND_URL
 
@@ -56,4 +56,4 @@ function useUpdateDish() {
     return { updateFood, loading }
 }
 
-export default useUpdateDish
+export default  useUpdateFood 

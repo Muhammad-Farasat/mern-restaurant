@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import { useSelector, useDispatch } from 'react-redux'
 import { setDishes } from '../../redux/foodSlice'
 
-function useDisplayDish(id) {
+function useDisplayFood(id) {
 
     // const [dishesDisplay, setDishesDisplay] = useState([])
     
@@ -47,4 +47,4 @@ function useDisplayDish(id) {
 //   return {dishesDisplay, loading}
 }
 
-export default useDisplayDish
+export default useDisplayFood
