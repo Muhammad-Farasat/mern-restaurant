@@ -13,7 +13,7 @@
   animation: spin 1s linear infinite;
 }
 
-@font-face {
+/* @font-face {
   font-family: Nunito;
   src: url('/Fonts/static/Nunito-Regular.ttf')format('truetype');
 }
@@ -34,7 +34,7 @@
 @font-face {
   font-family: Nunito-ExtraBold;
   src: url('/Fonts/static/Nunito-ExtraBold.ttf')format('truetype');
-}
+} */
 
 
 @font-face {
@@ -42,8 +42,17 @@
   src: url('/Fonts/Anton/Anton-Regular.ttf')format('truetype');
 }
 
+@font-face {
+  font-family: titilium;
+  src: url('/Fonts/Titilium_Web/TitiliumWeb-Regular.ttf')format('truetype');
+}
+
 
 body{
   font-family: 'anton';
   background-color: #F5F0E6;
+}
+
+p{
+  font-family: 'titilium';
 }
