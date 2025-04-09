@@ -5,22 +5,20 @@ import Logout from '../../components/comman/button/Logout'
 import Hero from '../../components/layout/hero/Hero'
 import QuickAccess from '../../components/layout/quickAccess/QuickAccess'
 import AboutRestaurant from '../../components/layout/aboutRestaurant/AboutRestaurant'
-import WallOfLove from '../../components/layout/wallOfLove/WallOfLove'
+import Testimonial from '../../components/layout/testimonial/Testimonial'
+import Footer from '../../components/layout/footer/Footer'
 
 
 
 const Home = () => {
   return (
     <>
-      {/* <Navbar />
-      <DisplayRestaurant /> */}
 
-        <Hero />
-        <QuickAccess />
-        <AboutRestaurant />
-        <WallOfLove />
-        
-        {/* <Logout /> */}
+      <Hero />
+      <QuickAccess />
+      <AboutRestaurant />
+      <Testimonial />
+      <Footer />
 
     </>
   )

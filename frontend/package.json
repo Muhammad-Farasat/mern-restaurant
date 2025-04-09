@@ -18,6 +18,7 @@
     "@gsap/react": "^2.1.2",
     "@lordicon/react": "^1.10.1",
     "@lottiefiles/dotlottie-react": "^0.13.0",
+    "@react-spring/parallax": "^9.7.5",
     "@react-spring/web": "^9.7.5",
     "@reduxjs/toolkit": "^2.5.1",
     "@tailwindcss/vite": "^4.0.0",
