@@ -11,7 +11,7 @@ function QuickAccess() {
 
       <section className='w-full h-[100vh] flex max-sm:flex-col max-sm:h-max max-md:flex-col max-md:h-max  max-lg:flex-col max-lg:h-max '>
 
-      <QuickAccessItem heading={'CHECK RESTAURANTS'} image={access_1} />
+      <QuickAccessItem heading={'RESTAURANTS'} image={access_1} />
       <QuickAccessItem heading={'EDIT PROFILE'} image={access_2} />
       <QuickAccessItem heading={'ORDER TRACKING'} image={access_3} />
 

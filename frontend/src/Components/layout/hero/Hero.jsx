@@ -2,11 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import Logout from "../../comman/button/Logout";
 import Logo from "../../comman/logo/Logo";
 import img from "../../../../public/Images/Animate.svg";
+import { IoChevronDown } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 
 
 function Hero() {
 
+  const scrollRef = useRef(null);
 
 
 
@@ -26,9 +29,29 @@ function Hero() {
 
 
         <div className=" text-[#004632] absolute bottom-10 flex items-center justify-between w-[80vw] max-w-[1200px]">
-          <p className="text-sm md:text-lg tracking-wider">SCROLL DOWN</p>
+          
+          <motion.div
+            className="flex justify-center mb-10"
+            animate={{ y: [0, 15, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+          >
+            <button
+              onClick={() => scrollRef.current?.scrollIntoView({ behavior: "smooth" })}
+              className="text-4xl text-[#004632] flex flex-col items-center"
+            >
+
+              <IoChevronDown className="absolute bottom-2 " />
+              
+              <IoChevronDown />
+
+            </button>
+          </motion.div>
+
+
           <Logout />
+
         </div>
+
       </section>
     </>
   );

@@ -14,7 +14,7 @@ import OrderTracking from './pages/customer/OrderTracking'
 import EditProfile from './pages/customer/EditProfile'
 import CheckEmail from './pages/customer/CheckEmail'
 import VerifyEmail from './pages/customer/VerifyEmail'
-import DisplayRestaurant from './components/restaurant/DisplayRestaurant'
+import DisplayRestaurant from './pages/customer/DisplayRestaurant'
 
 function App() {
 
