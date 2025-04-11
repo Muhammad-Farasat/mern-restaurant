@@ -6,7 +6,7 @@ import Cart from "../../components/Cart/Cart";
 import useRestaurant from "../../hooks/restaurant/useRestaurant";
 import useDisplayFood from "../../hooks/dish/useDisplayFood";
 import FoodCard from "../../components/cards/FoodCard";
-import Navbar from "../../components/layout/Navbar/Navbar";
+import Footer from "../../components/layout/footer/Footer"
 
 const SpecificRestaurant = () => {
 
@@ -25,7 +25,7 @@ const SpecificRestaurant = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       
       <div className="min-h-screen bg-[#F5F0E6]">
 
@@ -72,6 +72,9 @@ const SpecificRestaurant = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
+
     </>
   );
 };

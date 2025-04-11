@@ -49,10 +49,20 @@
 
 
 body{
-  font-family: 'anton';
+  /* font-family: 'anton'; */
   background-color: #F5F0E6;
 }
 
 p{
   font-family: 'titilium';
+}
+
+h1,h2, h3, h4, h5, h6{
+  font-family: anton;
+}
+
+.stroke-text {
+  color: #F5F0E6;
+  -webkit-text-stroke: 0.2px #2A3B4D;
+  /* text-shadow: 0 1px 1px #F5F0E6; */
 }
