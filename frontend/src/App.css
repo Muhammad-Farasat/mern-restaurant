@@ -47,22 +47,33 @@
   src: url('/Fonts/Titilium_Web/TitiliumWeb-Regular.ttf')format('truetype');
 }
 
+@font-face {
+  font-family: oswald-bold;
+  src: url('/Fonts/Oswald/static/Oswald-Bold.ttf')format('truetype');
+}
+
+
+@font-face {
+  font-family: oswald;
+  src: url('/Fonts/Oswald/static/Oswald-Regular.ttf')format('truetype');
+}
+
 
 body{
   /* font-family: 'anton'; */
   background-color: #F5F0E6;
 }
 
-p{
-  font-family: 'titilium';
+p, a{
+  font-family: oswald;
 }
 
 h1,h2, h3, h4, h5, h6{
-  font-family: anton;
+  font-family: oswald-bold;
 }
 
 .stroke-text {
   color: #F5F0E6;
   -webkit-text-stroke: 0.2px #2A3B4D;
-  /* text-shadow: 0 1px 1px #F5F0E6; */
+  text-shadow: 0 1.5px 1.5px #2A3B4D;
 }

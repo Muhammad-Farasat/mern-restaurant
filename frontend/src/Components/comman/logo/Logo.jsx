@@ -1,11 +1,12 @@
 import React, {useRef, useEffect, useState} from 'react'
 import { motion } from "framer-motion"; // Import Framer Motion
 import gsap from "gsap";
+import pic from "../../../../public/Images/Animate.svg"
 
 
 
 
-function Logo({img}) {
+function Logo({img, width}) {
 
     const mascotRef = useRef(null);
 
@@ -35,41 +36,22 @@ function Logo({img}) {
 
 
     return (
-        <div
-            className=""
-
-        >
 
             <div className="relative cursor-pointer "
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}>
 
-                {/* <div className=" absolute inset-0 overflow-hidden w-96  ">
-              {particles.map((p, i) => (
-                <div
-                  key={i}
-                  className=" relative z-[-1] bg-[#d0e300] rounded-full opacity-30 animate-float"
-                  style={{
-                    left: p.left,
-                    width: p.size,
-                    height: p.size,
-                    animationDelay: p.animationDelay,
-                  }}
-                />
-              ))}
-            </div> */}
 
                 <img
-                    src={img}
+                    src={img || pic}
                     alt="mascot"
                     ref={mascotRef}
-                    className="w-[27vw] max-sm:w-[46vw] max-w-[400px] md:max-w-[450px] lg:max-w-[800px]"
+                    className={` ${width} max-sm:w-[46vw] max-w-[400px] md:max-w-[450px] lg:max-w-[800px]`}
                 />
 
             </div>
 
 
-        </div>
 
     )
 }

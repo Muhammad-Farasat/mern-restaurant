@@ -20,11 +20,14 @@ const RestaurantCard = ({ name, description, image, id, location }) => {
           alt={name}
           className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
         />
+
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#BDD0A0] to-transparent" />
 
-        <h4 className="absolute bottom-10 left-1/2 -translate-x-1/2 text-5xl font-black uppercase tracking-wider text-[#2A3B4D] stroke-text text-center max-sm:text-2xl max-sm:bottom-2 max-md:text-4xl max-md:bottom-6 max-lg:text-4xl max-lg:bottom-6 ">
+        <div className="absolute bottom-0 left-0 right-0 h-full w-full bg-[#11111151] transparent" />
+
+        <p className="absolute bottom-10 left-1/2 -translate-x-1/2 text-5xl font-black uppercase tracking-wider text-[#2A3B4D] stroke-text text-center max-sm:text-2xl max-sm:bottom-2 max-md:text-4xl max-md:bottom-6 max-lg:text-4xl max-lg:bottom-6 ">
           {name}
-        </h4>
+        </p>
 
 
         {/* <div className="px-4 pt-2 pb-4 text-center">

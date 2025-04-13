@@ -25,7 +25,6 @@ const SpecificRestaurant = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       
       <div className="min-h-screen bg-[#F5F0E6]">
 
